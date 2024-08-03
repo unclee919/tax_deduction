@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:lead_stage",
+ "creation": "2024-08-01 05:45:29.501838",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "lead_stage",
+  "close_costing_update"
+ ],
+ "fields": [
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "fieldname": "lead_stage",
+   "fieldtype": "Data",
+   "label": "Lead Stage",
+   "unique": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "default": "0",
+   "fieldname": "close_costing_update",
+   "fieldtype": "Check",
+   "label": "Close Costing Update"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-01 05:46:44.186070",
+ "modified_by": "Administrator",
+ "module": "decoration sales workflow",
+ "name": "Project Stage",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
