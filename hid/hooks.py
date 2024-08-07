@@ -9,6 +9,16 @@ app_license = "gpl-3.0"
 # Includes in <head>
 # ------------------
 
+doctype_js = {
+    "BoQ": [
+        "public/js/Generate Codes.js",
+        "public/js/Quotations.js"
+    ],
+    "Material Request": "public/js/ROQ.js",
+    "Request for Quotation": "public/js/Request for Quotation.js",
+    "Supplier quotation": "public/js/Supplier quotation.js"
+}
+
 # include js, css files in header of desk.html
 # app_include_css = "/assets/hid/css/hid.css"
 # app_include_js = "/assets/hid/js/hid.js"

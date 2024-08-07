@@ -223,15 +223,16 @@
    "label": "Total Finals"
   },
   {
+   "default": "0",
    "fieldname": "cost_get",
-   "fieldtype": "Currency",
+   "fieldtype": "Check",
    "label": "Cost Get"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-07 03:00:54.480161",
+ "modified": "2024-08-07 21:22:05.532473",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
