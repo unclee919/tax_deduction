@@ -1,0 +1,243 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-07 02:46:38.805003",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "product_name",
+  "hid_code",
+  "product_code",
+  "product_code_category",
+  "item_link",
+  "qty",
+  "uom",
+  "currency",
+  "exchange_rate",
+  "building_number",
+  "area",
+  "document",
+  "room_name",
+  "room_number",
+  "floor_level",
+  "supplier",
+  "supplier_part_number",
+  "diemensions",
+  "descripition",
+  "is_created",
+  "initial_cost_in_product_currency",
+  "initial_cost_per_unit",
+  "initial_cost",
+  "custom_and_clearnce",
+  "oh",
+  "logisitics",
+  "additional_cost",
+  "customiziation",
+  "stocking",
+  "cost_before_margin",
+  "total_before_margins",
+  "profit_margin",
+  "final_rate",
+  "total_finals",
+  "cost_get"
+ ],
+ "fields": [
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "label": "Product Name"
+  },
+  {
+   "fieldname": "hid_code",
+   "fieldtype": "Data",
+   "label": "HID Code"
+  },
+  {
+   "fieldname": "product_code",
+   "fieldtype": "Link",
+   "label": "Product Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "product_code_category",
+   "fieldtype": "Link",
+   "label": "Product Code Category",
+   "options": "Item Group"
+  },
+  {
+   "fieldname": "item_link",
+   "fieldtype": "Data",
+   "label": "Item Link"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "label": "Qty"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "exchange_rate",
+   "fieldtype": "Float",
+   "label": "Exchange Rate"
+  },
+  {
+   "fieldname": "building_number",
+   "fieldtype": "Data",
+   "label": "Building Number"
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Data",
+   "label": "Area"
+  },
+  {
+   "fieldname": "document",
+   "fieldtype": "Data",
+   "label": "Document"
+  },
+  {
+   "fieldname": "room_name",
+   "fieldtype": "Data",
+   "label": "Room Name"
+  },
+  {
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "label": "Room Number"
+  },
+  {
+   "fieldname": "floor_level",
+   "fieldtype": "Data",
+   "label": "Floor Level"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "supplier_part_number",
+   "fieldtype": "Data",
+   "label": "Supplier Part Number"
+  },
+  {
+   "fieldname": "diemensions",
+   "fieldtype": "Data",
+   "label": "Diemensions"
+  },
+  {
+   "fieldname": "descripition",
+   "fieldtype": "Data",
+   "label": "Descripition"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_created",
+   "fieldtype": "Check",
+   "label": "Is Created"
+  },
+  {
+   "default": "0",
+   "fieldname": "initial_cost_in_product_currency",
+   "fieldtype": "Currency",
+   "label": "Initial Cost in Product Currency"
+  },
+  {
+   "default": "0",
+   "fieldname": "initial_cost_per_unit",
+   "fieldtype": "Currency",
+   "label": "Initial Cost per Unit"
+  },
+  {
+   "default": "0",
+   "fieldname": "initial_cost",
+   "fieldtype": "Currency",
+   "label": "Initial Cost"
+  },
+  {
+   "fieldname": "custom_and_clearnce",
+   "fieldtype": "Percent",
+   "label": "Custom and Clearnce"
+  },
+  {
+   "fieldname": "oh",
+   "fieldtype": "Percent",
+   "label": "OH"
+  },
+  {
+   "fieldname": "logisitics",
+   "fieldtype": "Percent",
+   "label": "Logisitics"
+  },
+  {
+   "fieldname": "additional_cost",
+   "fieldtype": "Percent",
+   "label": "Additional Cost"
+  },
+  {
+   "fieldname": "customiziation",
+   "fieldtype": "Percent",
+   "label": "Customiziation"
+  },
+  {
+   "fieldname": "stocking",
+   "fieldtype": "Percent",
+   "label": "Stocking"
+  },
+  {
+   "fieldname": "cost_before_margin",
+   "fieldtype": "Currency",
+   "label": "Cost Before Margin"
+  },
+  {
+   "fieldname": "total_before_margins",
+   "fieldtype": "Currency",
+   "label": "Total Before Margins"
+  },
+  {
+   "fieldname": "profit_margin",
+   "fieldtype": "Percent",
+   "label": "Profit Margin"
+  },
+  {
+   "fieldname": "final_rate",
+   "fieldtype": "Currency",
+   "label": "Final Rate"
+  },
+  {
+   "fieldname": "total_finals",
+   "fieldtype": "Currency",
+   "label": "Total Finals"
+  },
+  {
+   "fieldname": "cost_get",
+   "fieldtype": "Currency",
+   "label": "Cost Get"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-08-07 03:00:54.480161",
+ "modified_by": "Administrator",
+ "module": "decoration sales workflow",
+ "name": "Bill of Quantity",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
