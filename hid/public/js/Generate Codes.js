@@ -159,7 +159,10 @@ async function createItemsFromBoQ(frm) {
                         custom_supplier_part_number: row.supplier_part_number,
                         custom_diemension: row.diemensions,
                         custom_describition: row.descripition,
-                        custom_boq: frm.doc.name
+                        custom_boq: frm.doc.name,
+                        custom_desugner_item_code:row.designer_item_code,
+                        custom_reference_document:row.refreference_document,
+                        custom_specification_details:specification_details
                     };
                     await createItem(itemData);
                 }
