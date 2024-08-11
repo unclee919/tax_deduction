@@ -9,14 +9,25 @@ app_license = "gpl-3.0"
 # Includes in <head>
 # ------------------
 
+app_include_js = [
+    "/assets/your_app/js/Generate Codes.js"
+]
+
+# Include JS files in header of web template
+web_include_js = [
+    "/assets/your_app/js/Generate Codes.js"
+]
+
+# Include CSS files in header of desk.html
+app_include_css = []
+
+# Include CSS files in header of web template
+web_include_css = []
+
+# Add custom scripts to specific forms
 doctype_js = {
-    "BoQ": [
-        "public/js/Generate Codes.js",
-        "public/js/Quotations.js"
-    ],
-    "Material Request": "public/js/ROQ.js",
-    "Request for Quotation": "public/js/Request for Quotation.js",
-    "Supplier quotation": "public/js/Supplier quotation.js"
+    "Lead": "public/js/Generate Codes.js",
+    "Material Request": "public/js/Generate Codes.js"  # Add if needed
 }
 
 # include js, css files in header of desk.html

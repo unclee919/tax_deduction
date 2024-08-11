@@ -1,110 +1,16 @@
-frappe.ui.form.on('Lead', {
-    refresh: function(frm) {
-        // Add custom buttons
-        frm.add_custom_button(__('Create Items from BoQ'), function() {
-            console.log('Button clicked');
-            createItemsFromBoQ(frm);
-        });
-
-        frm.page.add_inner_button(__('Material Request'), function() {
-            createMaterialRequest(frm);
-        }, __('Create'));
-
-        // Validate custom_lead_stage field
-        frm.cscript.custom_lead_stage = function() {
-            if (frm.doc.custom_lead_stage === 'Open') {
-                const allItemsCreated = frm.doc.custom_bill_of_quantity.every(row => row.is_created === 1);
-                if (!allItemsCreated) {
-                    frappe.msgprint('Cannot set Lead stage to "Open" until all items are created.');
-                    return false;
-                }
-            }
-            return true;
-        };
-    },
-
-    // Update child table fields based on parent field changes
-    custom_custom_and_clearnce: function(frm) {
-        updateChildTableField(frm, 'custom_custom_and_clearnce', 'custom_and_clearnce');
-    },
-    custom_logistics: function(frm) {
-        updateChildTableField(frm, 'custom_logistics', 'logisitics');
-    },
-    custom_aditional_cost: function(frm) {
-        updateChildTableField(frm, 'custom_aditional_cost', 'additional_cost');
-    },
-    custom_oh: function(frm) {
-        updateChildTableField(frm, 'custom_oh', 'oh');
-    },
-    custom_profit_margin: function(frm) {
-        updateChildTableField(frm, 'custom_profit_margin', 'profit_margin');
-    },
-    custom_customiziation: function(frm) {
-        updateChildTableField(frm, 'custom_customiziation', 'customiziation');
-    },
-    custom_stocking: function(frm) {
-        updateChildTableField(frm, 'custom_stocking', 'stocking');
-    },    
-});
-
-frappe.ui.form.on('Bill of Quantity', {
-    initial_cost_per_unit: function(frm, cdt, cdn) {
-        calculateMargins(frm, cdt, cdn);
-        updatetotals(frm, cdt, cdn);
-    },
-    // initial_cost_per_unit: function(frm, cdt, cdn) {
-    //     updatetotals(frm, cdt, cdn);
-    // },    
-    qty: function(frm, cdt, cdn) {
-        updatetotals(frm, cdt, cdn);
-    },
-    initial_cost_in_product_currency: function(frm, cdt, cdn) {
-        updateInitialCostPerUnit(frm, cdt, cdn);
-    },
-    exchange_rate: function(frm, cdt, cdn) {
-        updateInitialCostPerUnit(frm, cdt, cdn);
-    },
-    initial_cost: function(frm, cdt, cdn) {
-        calculateMargins(frm, cdt, cdn);
-    },
-    custom_and_clearnce: function(frm, cdt, cdn) {
-        calculateMargins(frm, cdt, cdn);
-    },
-    logisitics: function(frm, cdt, cdn) {
-        calculateMargins(frm, cdt, cdn);
-    },
-    additional_cost: function(frm, cdt, cdn) {
-        calculateMargins(frm, cdt, cdn);
-    },
-    oh: function(frm, cdt, cdn) {
-        calculateMargins(frm, cdt, cdn);
-    },
-    profit_margin: function(frm, cdt, cdn) {
-        calculateMargins(frm, cdt, cdn);
-    },
-    customiziation: function(frm, cdt, cdn) {
-        calculateMargins(frm, cdt, cdn);
-    },
-    stocking: function(frm, cdt, cdn) {
-        calculateMargins(frm, cdt, cdn);
-    },
-    cost_before_margin: function(frm, cdt, cdn) {
-        updatetotals(frm, cdt, cdn);
-    }, 
-});
+// public/js/Generate Codes.js
 
 // Function to create items from BoQ
 async function createItemsFromBoQ(frm) {
     let items_created = 0;
     let items_skipped = 0;
-    const total_items = frm.doc.custom_bill_of_quantity.length;
     const processedItemCodes = new Set();
 
     async function checkItemExists(hid_code) {
         try {
             return await frappe.db.exists('Item', hid_code);
         } catch (err) {
-            console.error(Error checking item existence with hid_code "${hid_code}":, err);
+            console.error(`Error checking item existence with hid_code "${hid_code}":`, err);
             throw err;
         }
     }
@@ -125,7 +31,7 @@ async function createItemsFromBoQ(frm) {
                 }
             });
         } catch (err) {
-            console.error(Error creating item with hid_code "${itemData.item_code}":, err);
+            console.error(`Error creating item with hid_code "${itemData.item_code}":`, err);
             items_skipped++;
             frappe.msgprint(__('Error creating item with hid_code "%s": %s', [itemData.item_code, err.message || 'Unknown error']));
         }
@@ -142,7 +48,7 @@ async function createItemsFromBoQ(frm) {
                 const exists = await checkItemExists(row.hid_code);
                 if (exists) {
                     items_skipped++;
-                    console.log(Item with hid_code "${row.hid_code}" already exists.);
+                    console.log(`Item with hid_code "${row.hid_code}" already exists.`);
                 } else {
                     const itemData = {
                         item_code: row.hid_code,
@@ -161,14 +67,14 @@ async function createItemsFromBoQ(frm) {
                         custom_diemension: row.diemensions,
                         custom_describition: row.descripition,
                         custom_boq: frm.doc.name,
-                        custom_desugner_item_code:row.designer_item_code,
-                        custom_reference_document:row.refreference_document,
-                        custom_specification_details:specification_details
+                        custom_desugner_item_code: row.designer_item_code,
+                        custom_reference_document: row.refreference_document,
+                        custom_specification_details: row.specification_details
                     };
                     await createItem(itemData);
                 }
             } catch (err) {
-                console.error(Error checking item existence with hid_code "${row.hid_code}":, err);
+                console.error(`Error checking item existence with hid_code "${row.hid_code}":`, err);
                 items_skipped++;
             }
         }
@@ -183,8 +89,6 @@ async function createItemsFromBoQ(frm) {
         frappe.msgprint(__('There was an issue saving the document.'));
     }
 }
-
-
 
 // Function to create a Material Request
 async function createMaterialRequest(frm) {
@@ -232,9 +136,6 @@ async function createMaterialRequest(frm) {
 function calculateMargins(frm, cdt, cdn) {
     const row = locals[cdt][cdn];
     
-    // Retrieve and parse values with default to 0 if undefined or NaN
-    // const initial_cost_in_product_currency = parseFloat(row.initial_cost_in_product_currency) || 0;
-    // const exchange_rate = parseFloat(row.exchange_rate) || 1;
     const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
     const custom_and_clearance = parseFloat(row.custom_and_clearnce) || 0;
     const additionalCost = parseFloat(row.additional_cost) || 0;
@@ -244,8 +145,6 @@ function calculateMargins(frm, cdt, cdn) {
     const stocking = parseFloat(row.stocking) || 0;
     const profitMargin = parseFloat(row.profit_margin) || 0;
 
-    // Calculate cost factors based on percentage
-    // const initial_cost_per_unit_value = (initial_cost_in_product_currency * exchange_rate)
     const custom_and_clearance_cost = (initial_cost_per_unit * custom_and_clearance) / 100;
     const additionalCost_value = (initial_cost_per_unit * additionalCost) / 100;
     const oh_cost = (initial_cost_per_unit * oh) / 100;
@@ -253,20 +152,15 @@ function calculateMargins(frm, cdt, cdn) {
     const customiziation_cost = (initial_cost_per_unit * customiziation) / 100;
     const stocking_cost = (initial_cost_per_unit * stocking) / 100;
 
-    // Calculate total additional costs and final cost
     const totalAdditionalCosts = custom_and_clearance_cost + additionalCost_value + oh_cost + logistics_cost + customiziation_cost + stocking_cost;
     const finalCost = initial_cost_per_unit + totalAdditionalCosts;
 
-    // Calculate margin and final rate
     const margin = finalCost * (profitMargin / 100);
     const finalRate = finalCost + margin;
 
-    // Round values to two decimal places
     const roundedFinalCost = finalCost.toFixed(2);
     const roundedFinalRate = finalRate.toFixed(2);
 
-    // Update fields in the row
-    // frappe.model.set_value(cdt, cdn, 'initial_cost_per_unit', initial_cost_per_unit_value);
     frappe.model.set_value(cdt, cdn, 'cost_before_margin', roundedFinalCost);
     frappe.model.set_value(cdt, cdn, 'final_rate', roundedFinalRate);
 }
@@ -284,16 +178,15 @@ function updateChildTableField(frm, parentField, childField) {
 function updateInitialCostPerUnit(frm, cdt, cdn) {
     const row = locals[cdt][cdn];
 
-    // Retrieve values with default to 0 if undefined or NaN
     const initial_cost_in_product_currency = parseFloat(row.initial_cost_in_product_currency) || 0;
     const exchange_rate = parseFloat(row.exchange_rate) || 1;
     
-    // Calculate initial cost per unit
     const initial_cost_per_unit_value = initial_cost_in_product_currency * exchange_rate;
 
-    // Update field in the row
     frappe.model.set_value(cdt, cdn, 'initial_cost_per_unit', initial_cost_per_unit_value.toFixed(2));
 }
+
+// Function to update totals
 function updatetotals(frm, cdt, cdn) {
     const row = locals[cdt][cdn];
     const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
@@ -303,9 +196,29 @@ function updatetotals(frm, cdt, cdn) {
     const total_before_margins_value = cost_before_margin * qty; 
     const total_cost = initial_cost_per_unit * qty;
     const total_final_value = final_rate * qty;
-    frappe.model.set_value(cdt, cdn, 'initial_cost', total_cost );
-    frappe.model.set_value(cdt, cdn, 'total_before_margins', total_before_margins_value );
-    frappe.model.set_value(cdt, cdn, 'total_finals', total_final_value)
+
+    frappe.model.set_value(cdt, cdn, 'initial_cost', total_cost);
+    frappe.model.set_value(cdt, cdn, 'total_before_margins', total_before_margins_value);
+    frappe.model.set_value(cdt, cdn, 'total_finals', total_final_value);
 }
 
+// Frappe form events
+frappe.ui.form.on('Lead', {
+    refresh: function(frm) {
+        frm.add_custom_button(__('Create Items from BoQ'), function() {
+            createItemsFromBoQ(frm);
+        });
 
+        frm.page.add_inner_button(__('Material Request'), function() {
+            createMaterialRequest(frm);
+        });
+    },
+    custom_update_margin: function(frm) {
+        frm.doc.custom_bill_of_quantity.forEach(row => {
+            updateInitialCostPerUnit(frm, row.doctype, row.name);
+            calculateMargins(frm, row.doctype, row.name);
+            updatetotals(frm, row.doctype, row.name);
+        });
+        frm.save();
+    }
+});
