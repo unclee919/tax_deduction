@@ -2,6 +2,7 @@ frappe.ui.form.on('Lead', {
     refresh: function(frm) {
         // Add custom buttons
         frm.add_custom_button(__('Create Items from BoQ'), function() {
+            console.log('Button clicked');
             createItemsFromBoQ(frm);
         });
 
