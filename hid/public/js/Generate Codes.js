@@ -71,7 +71,8 @@ async function createItemsFromBoQ(frm) {
                         custom_boq: frm.doc.name,
                         custom_desugner_item_code: row.designer_item_code,
                         custom_reference_document: row.refreference_document,
-                        custom_specification_details: row.specification_details
+                        custom_specification_details: row.specification_details,
+                        image:row.attach_image_wjpb
                     };
                     await createItem(itemData);
                 }
@@ -135,6 +136,10 @@ async function createMaterialRequest(frm) {
 
         const doc = await frappe.db.insert(new_doc);
         frappe.set_route('Form', 'Material Request', doc.name);
+        // Update Lead Doctype with new stage
+        frm.set_value('custom_lead_stage', 'Procurment Stage');
+        await frm.save();
+
     } catch (err) {
         console.error('Error creating Material Request:', err);
         frappe.msgprint(__('There was an issue creating the Material Request.'));
@@ -240,11 +245,11 @@ frappe.ui.form.on('Lead', {
             frm.save();
         });
         
-        frm.add_custom_button(__('Create Material Request'), function() {
+        frm.add_custom_button(__('Initiate Pricing Request'), function() {
             createMaterialRequest(frm);
         });
 
-        frm.add_custom_button(__('Control Book'), function() {
+        frm.add_custom_button(__('Create Items'), function() {
             createItemsFromBoQ(frm);
         });
     },

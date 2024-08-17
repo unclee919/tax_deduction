@@ -12,12 +12,14 @@
   "qty",
   "product_code",
   "currency",
+  "secondary_image",
   "column_break_cepk",
   "designer_item_code",
   "product_code_category",
   "uom",
   "exchange_rate",
   "attach_image_wjpb",
+  "attach_secondary_image",
   "image_give",
   "section_break_lytz",
   "document",
@@ -93,6 +95,7 @@
   },
   {
    "columns": 1,
+   "default": "1",
    "fieldname": "qty",
    "fieldtype": "Float",
    "in_list_view": 1,
@@ -115,6 +118,7 @@
    "options": "Currency"
   },
   {
+   "default": "1",
    "fieldname": "exchange_rate",
    "fieldtype": "Float",
    "label": "Exchange Rate"
@@ -318,20 +322,32 @@
   {
    "fieldname": "attach_image_wjpb",
    "fieldtype": "Attach Image",
-   "label": "Attach Image"
+   "label": "Attach Primary Image"
   },
   {
    "columns": 1,
    "fieldname": "image_give",
    "fieldtype": "Image",
    "in_preview": 1,
+   "label": "Primary Image",
    "options": "attach_image_wjpb"
+  },
+  {
+   "fieldname": "secondary_image",
+   "fieldtype": "Image",
+   "label": "Secondary Image",
+   "options": "attach_secondary_image"
+  },
+  {
+   "fieldname": "attach_secondary_image",
+   "fieldtype": "Attach Image",
+   "label": "Attach Secondary Image"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-14 00:32:02.579454",
+ "modified": "2024-08-17 20:13:36.052855",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
