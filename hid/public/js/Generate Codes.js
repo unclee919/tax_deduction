@@ -294,7 +294,13 @@ frappe.ui.form.on('Lead', {
         updateMappedFields(frm);
     },
     custom_profit_margin: function(frm) {
-        updateMappedFields(frm);
+        updateMappedFields(frm); 
+    },
+    total_cost_before_margin: function(frm) {
+        updatetotals(frm);
+    },
+    total_final_rate: function(frm) {
+        updatetotals(frm);
     },
     custom_bill_of_quantity_add: function(frm, cdt, cdn) {
         updateInitialCostPerUnit(frm, cdt, cdn);
