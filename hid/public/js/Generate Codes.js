@@ -72,7 +72,8 @@ async function createItemsFromBoQ(frm) {
                         custom_desugner_item_code: row.designer_item_code,
                         custom_reference_document: row.refreference_document,
                         custom_specification_details: row.specification_details,
-                        image:row.attach_image_wjpb
+                        image:row.attach_image_wjpb,
+                        custom_attach:row.attach_secondary_image
                     };
                     await createItem(itemData);
                 }
@@ -182,30 +183,35 @@ function calculateMargins(frm, cdt, cdn) {
 
 // Function to update field values in child table based on parent form field changes
 const fieldMappings = {
-    'custom_custom_and_clearnce': 'custom_and_clearnce',
-    'custom_logistics': 'logisitics',
-    'custom_aditional_cost': 'additional_cost',
-    'custom_oh': 'oh',
-    'custom_customiziation': 'customiziation',
-    'custom_stocking': 'stocking',
-    'custom_profit_margin': 'profit_margin'
+    'custom_custom_and_clearnce': 'custom_and_clearnce',  // Conditional update
+    'custom_logistics': 'logisitics',                      // Unconditional update
+    'custom_aditional_cost': 'additional_cost',           // Unconditional update
+    'custom_oh': 'oh',                                    // Unconditional update
+    'custom_customiziation': 'customiziation',            // Unconditional update
+    'custom_stocking': 'stocking',                        // Unconditional update
+    'custom_profit_margin': 'profit_margin'               // Unconditional update
     // Add more mappings as needed
 };
 
 // Function to update fields in child table based on parent document field changes
-function updateChildTableField(frm, parentField, childField) {
+function updateChildTableField(frm, parentField, childField, conditionalUpdate = false) {
     console.log(`Updating child table field: ${childField} based on parent field: ${parentField}`);
     frm.doc.custom_bill_of_quantity.forEach(row => {
-        frappe.model.set_value(row.doctype, row.name, childField, frm.doc[parentField]);
+        if (!conditionalUpdate || (conditionalUpdate && row.currency !== 'SAR')) {
+            frappe.model.set_value(row.doctype, row.name, childField, frm.doc[parentField]);
+        }
     });
 }
 
 // Function to update mapped fields
 function updateMappedFields(frm) {
     Object.entries(fieldMappings).forEach(([parentField, childField]) => {
-        updateChildTableField(frm, parentField, childField);
+        // Apply the currency condition only for 'custom_custom_and_clearnce' field
+        const conditionalUpdate = (parentField === 'custom_custom_and_clearnce');
+        updateChildTableField(frm, parentField, childField, conditionalUpdate);
     });
 }
+
 
 // Function to update initial cost per unit for the row
 function updateInitialCostPerUnit(frm, cdt, cdn) {
