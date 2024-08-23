@@ -5,6 +5,7 @@ async function createItemsFromBoQ(frm) {
     console.log("createItemsFromBoQ function called");
     let items_created = 0;
     let items_skipped = 0;
+    let items_updated = 0;
     const processedItemCodes = new Set();
 
     async function checkItemExists(hid_code) {
@@ -13,6 +14,48 @@ async function createItemsFromBoQ(frm) {
         } catch (err) {
             console.error(`Error checking item existence with hid_code "${hid_code}":`, err);
             throw err;
+        }
+    }
+
+    async function getItem(hid_code) {
+        try {
+            return await frappe.db.get_doc('Item', hid_code);
+        } catch (err) {
+            console.error(`Error retrieving item with hid_code "${hid_code}":`, err);
+            throw err;
+        }
+    }
+
+    async function updateItem(item_code, itemData) {
+        console.log("updateItem function called for", item_code);
+
+        try {
+            const response = await frappe.call({
+                method: 'frappe.client.set_value',
+                args: {
+                    doctype: 'Item',
+                    name: item_code,
+                    fieldname: itemData
+                }
+            });
+
+            if (!response.exc) {
+                items_updated++;
+                processedItemCodes.add(item_code);
+
+                frm.doc.custom_bill_of_quantity.forEach(row => {
+                    if (row.hid_code === item_code) {
+                        frappe.model.set_value(row.doctype, row.name, 'is_created', 1);
+                        frappe.model.set_value(row.doctype, row.name, 'product_code', item_code);
+                    }
+                });
+            } else {
+                console.error(`Error updating item with hid_code "${item_code}":`, response.message);
+                frappe.msgprint(`Error updating item with hid_code "${item_code}": ${response.message}`);
+            }
+        } catch (err) {
+            console.error(`Error updating item with hid_code "${item_code}":`, err);
+            frappe.msgprint(`Error updating item with hid_code "${item_code}": ${err.message || 'Unknown error'}`);
         }
     }
 
@@ -35,7 +78,7 @@ async function createItemsFromBoQ(frm) {
         } catch (err) {
             console.error(`Error creating item with hid_code "${itemData.item_code}":`, err);
             items_skipped++;
-            frappe.msgprint(__('Error creating item with hid_code "%s": %s', [itemData.item_code, err.message || 'Unknown error']));
+            frappe.msgprint(`Error creating item with hid_code "${itemData.item_code}": ${err.message || 'Unknown error'}`);
         }
     }
 
@@ -48,37 +91,53 @@ async function createItemsFromBoQ(frm) {
 
             try {
                 const exists = await checkItemExists(row.hid_code);
+                const itemData = {
+                    item_code: row.hid_code,
+                    item_name: row.product_name,
+                    stock_uom: row.uom,
+                    item_group: row.product_code_category,
+                    custom_item_link: row.item_link,
+                    custom_building_number: row.building_number,
+                    custom_area: row.area,
+                    custom_document: row.document,
+                    custom_room_name: row.room_name,
+                    custom_room_number: row.room_number,
+                    custom_floor_level: row.floor_level,
+                    custom_supplier: row.supplier,
+                    custom_supplier_part_number: row.supplier_part_number,
+                    custom_diemension: row.diemensions,
+                    custom_describition: row.descripition,
+                    custom_boq: frm.doc.name,
+                    custom_desugner_item_code: row.designer_item_code,
+                    custom_reference_document: row.refreference_document,
+                    custom_specification_details: row.specification_details,
+                    image: row.attach_image_wjpb,
+                    custom_attach: row.attach_secondary_image
+                };
+
                 if (exists) {
-                    items_skipped++;
-                    console.log(`Item with hid_code "${row.hid_code}" already exists.`);
+                    const existingItem = await getItem(row.hid_code);
+
+                    // Check for any differences between existing item and the current row data
+                    let isModified = false;
+                    for (const key in itemData) {
+                        if (itemData[key] !== existingItem[key]) {
+                            isModified = true;
+                            break;
+                        }
+                    }
+
+                    if (isModified) {
+                        await updateItem(row.hid_code, itemData);
+                    } else {
+                        items_skipped++;
+                        console.log(`No changes detected for item with hid_code "${row.hid_code}".`);
+                    }
                 } else {
-                    const itemData = {
-                        item_code: row.hid_code,
-                        item_name: row.product_name,
-                        stock_uom: row.uom,
-                        item_group: row.product_code_category,
-                        custom_item_link: row.item_link,
-                        custom_building_number: row.building_number,
-                        custom_area: row.area,
-                        custom_document: row.document,
-                        custom_room_name: row.room_name,
-                        custom_room_number: row.room_number,
-                        custom_floor_level: row.floor_level,
-                        custom_supplier: row.supplier,
-                        custom_supplier_part_number: row.supplier_part_number,
-                        custom_diemension: row.diemensions,
-                        custom_describition: row.descripition,
-                        custom_boq: frm.doc.name,
-                        custom_desugner_item_code: row.designer_item_code,
-                        custom_reference_document: row.refreference_document,
-                        custom_specification_details: row.specification_details,
-                        image:row.attach_image_wjpb,
-                        custom_attach:row.attach_secondary_image
-                    };
                     await createItem(itemData);
                 }
             } catch (err) {
-                console.error(`Error checking item existence with hid_code "${row.hid_code}":`, err);
+                console.error(`Error processing item with hid_code "${row.hid_code}":`, err);
                 items_skipped++;
             }
         }
@@ -87,12 +146,14 @@ async function createItemsFromBoQ(frm) {
     // Save the document after processing all items
     try {
         await frm.save();
-        frappe.msgprint(__('Items creation process completed. Created: %s, Skipped: %s', [items_created, items_skipped]));
+        frappe.msgprint(`Items creation process completed. Created: ${items_created}, Updated: ${items_updated}, Skipped: ${items_skipped}`);
     } catch (err) {
         console.error('Error saving document:', err);
-        frappe.msgprint(__('There was an issue saving the document.'));
+        frappe.msgprint('There was an issue saving the document.');
     }
 }
+
+
 
 // Function to create a Material Request
 async function createMaterialRequest(frm) {
@@ -152,7 +213,9 @@ function calculateMargins(frm, cdt, cdn) {
     console.log("calculateMargins function called for", cdt, cdn);
     const row = locals[cdt][cdn];
     
-    const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
+    // const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
+    const initial_cost_in_product_currency = parseFloat(row.initial_cost_in_product_currency) || 0;
+    const exchange_rate = parseFloat(row.exchange_rate) || 1;
     const custom_and_clearance = parseFloat(row.custom_and_clearance) || 0;
     const additionalCost = parseFloat(row.additional_cost) || 0;
     const oh = parseFloat(row.oh) || 0;
@@ -160,7 +223,7 @@ function calculateMargins(frm, cdt, cdn) {
     const customiziation = parseFloat(row.customiziation) || 0;
     const stocking = parseFloat(row.stocking) || 0;
     const profitMargin = parseFloat(row.profit_margin) || 0;
-
+    const initial_cost_per_unit = (initial_cost_in_product_currency * exchange_rate); 
     const custom_and_clearance_cost = (initial_cost_per_unit * custom_and_clearance) / 100;
     const additionalCost_value = (initial_cost_per_unit * additionalCost) / 100;
     const oh_cost = (initial_cost_per_unit * oh) / 100;
@@ -170,6 +233,7 @@ function calculateMargins(frm, cdt, cdn) {
 
     const totalAdditionalCosts = custom_and_clearance_cost + additionalCost_value + oh_cost + logistics_cost + customiziation_cost + stocking_cost;
     const finalCost = initial_cost_per_unit + totalAdditionalCosts;
+
 
     const margin = finalCost * (profitMargin / 100);
     const finalRate = finalCost + margin;
@@ -217,14 +281,16 @@ function updateMappedFields(frm) {
 function updateInitialCostPerUnit(frm, cdt, cdn) {
     console.log("updateInitialCostPerUnit function called");
     const row = locals[cdt][cdn];
-    const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
+    const initial_cost_in_product_currency = parseFloat(row.initial_cost_in_product_currency) || 0;
+    const exchange_rate = parseFloat(row.exchange_rate) || 1;
+    // const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
     const cost_before_margin = parseFloat(row.cost_before_margin) || 0;
 
-    if (cost_before_margin > 0) {
-        const initial_cost = cost_before_margin / (1 + (row.profit_margin / 100));
-        frappe.model.set_value(cdt, cdn, 'initial_cost_per_unit', initial_cost.toFixed(2));
+    // if (cost_before_margin > 0) {
+    const initial_cost = (initial_cost_in_product_currency * exchange_rate)
+    frappe.model.set_value(cdt, cdn, 'initial_cost_per_unit', initial_cost.toFixed(2));
     }
-}
+// }
 
 // Function to update totals
 function updatetotals(frm) {
@@ -255,7 +321,7 @@ frappe.ui.form.on('Lead', {
             createMaterialRequest(frm);
         });
 
-        frm.add_custom_button(__('Create Items'), function() {
+        frm.add_custom_button(__('Create - Update Items'), function() {
             createItemsFromBoQ(frm);
         });
     },
@@ -302,6 +368,16 @@ frappe.ui.form.on('Lead', {
     total_final_rate: function(frm) {
         updatetotals(frm);
     },
+    initial_cost_in_product_currency: function(frm) {
+        updateInitialCostPerUnit(frm);
+    },
+    exchange_rate: function(frm) {
+        updateInitialCostPerUnit(frm);
+
+    },
+    custom_and_clearance: function(frm){
+        calculateMargins(frm);
+    },   
     custom_bill_of_quantity_add: function(frm, cdt, cdn) {
         updateInitialCostPerUnit(frm, cdt, cdn);
         updatetotals(frm, cdt, cdn);
