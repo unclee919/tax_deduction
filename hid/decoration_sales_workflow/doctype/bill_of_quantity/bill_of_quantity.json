@@ -323,7 +323,7 @@
   {
    "fieldname": "attach_image_wjpb",
    "fieldtype": "Attach Image",
-   "label": "Attach Primary Image"
+   "label": "Primary Image"
   },
   {
    "columns": 1,
@@ -342,13 +342,13 @@
   {
    "fieldname": "attach_secondary_image",
    "fieldtype": "Attach Image",
-   "label": "Attach Secondary Image"
+   "label": "Secondary Image"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-24 00:14:36.177757",
+ "modified": "2024-08-24 20:14:08.078387",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
