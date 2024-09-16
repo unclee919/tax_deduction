@@ -216,12 +216,14 @@ function calculateMargins(frm, cdt, cdn) {
     // const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
     const initial_cost_in_product_currency = parseFloat(row.initial_cost_in_product_currency) || 0;
     const exchange_rate = parseFloat(row.exchange_rate) || 1;
-    const custom_and_clearance = parseFloat(row.custom_and_clearance) || 0;
+    const custom_and_clearance = parseFloat(row.custom_and_clearnce) || 0;
     const additionalCost = parseFloat(row.additional_cost) || 0;
     const oh = parseFloat(row.oh) || 0;
-    const logistics = parseFloat(row.logistics) || 0;
+    const logistics = parseFloat(row.logisitics) || 0;
     const customiziation = parseFloat(row.customiziation) || 0;
     const stocking = parseFloat(row.stocking) || 0;
+    const installation = parseFloat(row.installation) || 0;
+    const shipping = parseFloat(row.shipping) || 0;
     const profitMargin = parseFloat(row.profit_margin) || 0;
     const initial_cost_per_unit = (initial_cost_in_product_currency * exchange_rate); 
     const custom_and_clearance_cost = (initial_cost_per_unit * custom_and_clearance) / 100;
@@ -230,8 +232,10 @@ function calculateMargins(frm, cdt, cdn) {
     const logistics_cost = (initial_cost_per_unit * logistics) / 100;
     const customiziation_cost = (initial_cost_per_unit * customiziation) / 100;
     const stocking_cost = (initial_cost_per_unit * stocking) / 100;
+    const installation_Value = (initial_cost_per_unit * installation) / 100;
+    const shipping_value = (initial_cost_per_unit * shipping) / 100;
 
-    const totalAdditionalCosts = custom_and_clearance_cost + additionalCost_value + oh_cost + logistics_cost + customiziation_cost + stocking_cost;
+    const totalAdditionalCosts = custom_and_clearance_cost + additionalCost_value + oh_cost + logistics_cost + customiziation_cost + stocking_cost + installation_Value + shipping_value;
     const finalCost = initial_cost_per_unit + totalAdditionalCosts;
 
 
@@ -253,6 +257,8 @@ const fieldMappings = {
     'custom_oh': 'oh',                                    // Unconditional update
     'custom_customiziation': 'customiziation',            // Unconditional update
     'custom_stocking': 'stocking',                        // Unconditional update
+    'custom_shipping' : 'shipping',                       //  Conditional update
+    'installation' : 'installation' ,                      // Unconditional update
     'custom_profit_margin': 'profit_margin'               // Unconditional update
     // Add more mappings as needed
 };
@@ -284,7 +290,6 @@ function updateInitialCostPerUnit(frm, cdt, cdn) {
     const initial_cost_in_product_currency = parseFloat(row.initial_cost_in_product_currency) || 0;
     const exchange_rate = parseFloat(row.exchange_rate) || 1;
     // const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
-    const cost_before_margin = parseFloat(row.cost_before_margin) || 0;
 
     // if (cost_before_margin > 0) {
     const initial_cost = (initial_cost_in_product_currency * exchange_rate)
