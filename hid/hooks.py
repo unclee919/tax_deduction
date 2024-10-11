@@ -7,8 +7,9 @@ app_license = "gpl-3.0"
 
 # Includes in <head>
 app_include_js = [
+    "/assets/hid/js/hid.bundle.js" # Ensure this is the correct path for your new JS file
     "/assets/hid/js/Generate Codes.js",
-    "/assets/hid/js/ROQ.js"  # Ensure this is the correct path for your new JS file
+    "/assets/hid/js/ROQ.js" 
 ]
 
 web_include_js = [

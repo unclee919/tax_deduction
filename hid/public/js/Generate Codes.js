@@ -258,7 +258,7 @@ const fieldMappings = {
     'custom_customiziation': 'customiziation',            // Unconditional update
     'custom_stocking': 'stocking',                        // Unconditional update
     'custom_shipping' : 'shipping',                       //  Conditional update
-    'installation' : 'installation' ,                      // Unconditional update
+    'custom_installation_' : 'installation' ,                      // Unconditional update
     'custom_profit_margin': 'profit_margin'               // Unconditional update
     // Add more mappings as needed
 };
@@ -277,7 +277,7 @@ function updateChildTableField(frm, parentField, childField, conditionalUpdate =
 function updateMappedFields(frm) {
     Object.entries(fieldMappings).forEach(([parentField, childField]) => {
         // Apply the currency condition only for 'custom_custom_and_clearnce' field
-        const conditionalUpdate = (parentField === 'custom_custom_and_clearnce');
+        const conditionalUpdate = (parentField === 'custom_custom_and_clearnce' || parentField === 'custom_shipping');
         updateChildTableField(frm, parentField, childField, conditionalUpdate);
     });
 }
@@ -289,11 +289,15 @@ function updateInitialCostPerUnit(frm, cdt, cdn) {
     const row = locals[cdt][cdn];
     const initial_cost_in_product_currency = parseFloat(row.initial_cost_in_product_currency) || 0;
     const exchange_rate = parseFloat(row.exchange_rate) || 1;
+    const initial_cost_total = parseFloat(row.initial_cost) || 0;
+    const Quantity = parseFloat(row.qty) || 0;
     // const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
 
     // if (cost_before_margin > 0) {
     const initial_cost = (initial_cost_in_product_currency * exchange_rate)
+    const initial_cost_value = (initial_cost_total * Quantity)
     frappe.model.set_value(cdt, cdn, 'initial_cost_per_unit', initial_cost.toFixed(2));
+    frappe.model.set_value(cdt, cdn, 'initial_cost' , initial_cost_value.toFixed(2));
     }
 // }
 

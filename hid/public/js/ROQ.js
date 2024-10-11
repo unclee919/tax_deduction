@@ -41,3 +41,37 @@
 //     except Exception as e:
 //         frappe.log_error(frappe.get_traceback(), "Error in creating quotations from Material Request")
 //         return str(e)
+
+
+
+
+
+// image_view_custom.bundle.js
+
+// -----------------------------
+
+// Override frappe.views.ImageView Class
+
+
+frappe.provide("frappe.views");
+
+
+frappe.views.ImageView = class ImageViewCustom extends frappe.views.ImageView {
+    item_details_html(item) {
+        // TODO: Image view field in DocType
+        let info_fields = this.get_fields_in_list_view().map((el) => el) || [];
+        const title_field = this.meta.title_field || "name";
+        info_fields = info_fields.filter((field) => field.fieldname !== title_field);
+        let info_html = `<div><ul class="list-unstyled image-view-info">`;
+        let set = false;
+        info_fields.forEach((field, index) => {
+            if (item[field.fieldname] && !set) {
+                if (index == 0) info_html += `<li><b>${__(field.label)}: </b> ${__(item[field.fieldname])}</li>`;
+                else info_html += `<li class="text-muted"><b>${__(field.label)}: </b> ${__(item[field.fieldname])}</li>`;
+                // set = true; // Comment
+            }
+        });
+        info_html += `</ul></div>`;
+        return info_html;
+    }
+}
