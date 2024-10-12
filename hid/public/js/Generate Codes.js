@@ -112,7 +112,10 @@ async function createItemsFromBoQ(frm) {
                     custom_reference_document: row.refreference_document,
                     custom_specification_details: row.specification_details,
                     image: row.attach_image_wjpb,
-                    custom_attach: row.attach_secondary_image
+                    custom_attach: row.attach_secondary_image,
+                    custom_date_of_pacage: row.date_of_packge,
+                    custom_status: row.status,
+                    custom_boq_item: row.name
                 };
 
                 if (exists) {

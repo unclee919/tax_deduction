@@ -1,6 +1,7 @@
 frappe.ui.form.on('Supplier Quotation', {
     refresh: function(frm) {
-        if (frm.doc.docstatus === 1) {
+        // Check the status directly from frm.doc
+        if (frm.doc.status === "Submitted") {
             frm.add_custom_button(__('Update Original BoQ'), function() {
                 if (!frm.doc.items || frm.doc.items.length === 0) {
                     frappe.msgprint(__('No items found in the Supplier Quotation.'));
@@ -22,7 +23,14 @@ frappe.ui.form.on('Supplier Quotation', {
                         return Promise.resolve(); // Skip this item
                     }
 
-                    return frappe.db.get_doc('Lead', item.custom_bill_of_quanitity).then(lead => {
+                    return frappe.call({
+                        method: 'frappe.client.get',
+                        args: {
+                            doctype: 'Lead',
+                            name: item.custom_bill_of_quanitity
+                        }
+                    }).then(response => {
+                        let lead = response.message;
                         if (!lead || !lead.custom_bill_of_quantity) {
                             let errorMessage = __('Lead {0} is not valid or does not have a Bill of Quantity child table.', [item.custom_bill_of_quanitity]);
                             errorMessages.push(errorMessage);
@@ -30,7 +38,14 @@ frappe.ui.form.on('Supplier Quotation', {
                         }
 
                         // Check the custom_lead_stage field
-                        return frappe.db.get_doc('Project Stage', lead.custom_lead_stage).then(stage => {
+                        return frappe.call({
+                            method: 'frappe.client.get',
+                            args: {
+                                doctype: 'Project Stage',
+                                name: lead.custom_lead_stage
+                            }
+                        }).then(response => {
+                            let stage = response.message;
                             if (stage.close_costing_update && !skippedLeads.has(lead.name)) {
                                 let message = __('Costing update for Lead {0} is not allowed as per the Project Stage settings.', [lead.name]);
                                 errorMessages.push(message);
@@ -48,7 +63,8 @@ frappe.ui.form.on('Supplier Quotation', {
 
                             if (boq_item) {
                                 boq_item.initial_cost_in_product_currency = item.rate;
-                                boq_item.cost_get = 1; // Mark the item
+                                boq_item.cost_get = 1; 
+                                boq_item.status = 'Quoted'; // Update status to Quoted// Mark the item
                                 updatedLeads.add(lead.name); // Mark this lead as updated
                             } else {
                                 let message = __('Bill of Quantity Item {0} not found in Lead\'s Bill of Quantity.', [item.custom_bill_of_quanitity_item]);
@@ -77,7 +93,12 @@ frappe.ui.form.on('Supplier Quotation', {
                         }
 
                         let lead_doc = lead_updates[lead_name];
-                        return frappe.db.set_value('Lead', lead_doc.name, { 'custom_bill_of_quantity': lead_doc.custom_bill_of_quantity }).then(() => {
+                        return frappe.call({
+                            method: 'frappe.client.save',
+                            args: {
+                                doc: lead_doc
+                            }
+                        }).then(() => {
                             return Promise.resolve(__('Lead {0} updated successfully.', [lead_doc.name]));
                         }).catch(err => {
                             let errorMessage = err.message || __('Error updating Lead {0}.', [lead_doc.name]);
