@@ -21,6 +21,9 @@
   "hid_code",
   "designer_item_code",
   "product_name",
+  "is_component",
+  "parent_item",
+  "base_code",
   "item_link",
   "supplier_part_number",
   "supplier",
@@ -63,22 +66,21 @@
   {
    "columns": 1,
    "fieldname": "product_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Item Name"
+   "label": "Item Name",
+   "options": "Item Coding"
   },
   {
    "columns": 1,
    "fieldname": "hid_code",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "HID Item Code",
-   "reqd": 1
+   "label": "HID Item Code"
   },
   {
    "fieldname": "product_code",
    "fieldtype": "Link",
-   "hidden": 1,
    "label": "Product Code",
    "options": "Item"
   },
@@ -173,17 +175,20 @@
   {
    "fieldname": "supplier",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Supplier",
    "options": "Supplier"
   },
   {
    "fieldname": "supplier_part_number",
    "fieldtype": "Text",
+   "in_list_view": 1,
    "label": "Supplier Part No"
   },
   {
    "fieldname": "diemensions",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Dimension"
   },
   {
@@ -265,14 +270,12 @@
    "columns": 1,
    "fieldname": "final_rate",
    "fieldtype": "Currency",
-   "in_list_view": 1,
    "label": "Final Rate"
   },
   {
    "columns": 1,
    "fieldname": "total_finals",
    "fieldtype": "Currency",
-   "in_list_view": 1,
    "label": "Total Finals"
   },
   {
@@ -285,6 +288,7 @@
   {
    "fieldname": "designer_item_code",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Designer Item Code"
   },
   {
@@ -361,20 +365,48 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "\nUnder design\nUnder review (DU)\nReady for Purchase\nQuoted\nSent to Payment\nPaid\nUnder fabrication\nOut of Stock\nDelivered WH\nOld Stock"
   },
   {
    "fieldname": "date_of_packge",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Date of Packge",
    "options": "\nUnder design\nUnder review (DU)\nReady for Purchase\nQuoted\nSent to Payment\nPaid\nUnder fabrication\nOut of Stock\nDelivered WH\nOld Stock"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fetch_from": "product_name.is_component",
+   "fieldname": "is_component",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Item Type",
+   "options": "Item Coding"
+  },
+  {
+   "columns": 1,
+   "fetch_from": "product_name.code",
+   "fieldname": "base_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "base_code"
+  },
+  {
+   "columns": 1,
+   "fieldname": "parent_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Parent Item",
+   "options": "Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-12 22:16:12.253486",
+ "modified": "2024-10-17 23:02:14.661887",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
