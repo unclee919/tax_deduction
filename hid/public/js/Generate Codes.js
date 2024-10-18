@@ -195,6 +195,7 @@ async function createItemsFromBoQ(frm) {
 function createItemData(row, frm) {
     return {
         item_code: row.hid_code,
+        custom_hid_code: row.hid_code,
         item_name: row.product_name,
         stock_uom: row.uom,
         item_group: row.product_code_category,
@@ -217,7 +218,11 @@ function createItemData(row, frm) {
         custom_attach: row.attach_secondary_image,
         custom_date_of_pacage: row.date_of_packge,
         custom_status: row.status,
-        custom_boq_item: row.name
+        custom_boq_item: row.name,
+        custom_item_coding: row.product_name,
+        custom_is_component: row.is_component,
+        custom_base_code: row.base_code,
+        custom_parent_item:row.parent_item
     };
 }
 
