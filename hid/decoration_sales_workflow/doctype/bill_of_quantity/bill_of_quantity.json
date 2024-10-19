@@ -14,9 +14,13 @@
   "room_number",
   "product_code_category",
   "diemensions",
+  "confirm_dimension",
   "qty",
   "uom",
   "image_give",
+  "manufacture_notes",
+  "manufacture_notes_copy",
+  "reselected_item_part_no",
   "column_break_cepk",
   "hid_code",
   "designer_item_code",
@@ -68,7 +72,7 @@
    "fieldname": "product_name",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Item Name",
+   "label": "Item",
    "options": "Item Coding"
   },
   {
@@ -366,7 +370,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Status",
+   "label": "Item Status",
    "options": "\nUnder design\nUnder review (DU)\nReady for Purchase\nQuoted\nSent to Payment\nPaid\nUnder fabrication\nOut of Stock\nDelivered WH\nOld Stock"
   },
   {
@@ -401,12 +405,33 @@
    "in_list_view": 1,
    "label": "Parent Item",
    "options": "Item"
+  },
+  {
+   "fieldname": "manufacture_notes",
+   "fieldtype": "Data",
+   "label": "Manufacturer Notes"
+  },
+  {
+   "fieldname": "confirm_dimension",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Confirm Dimension"
+  },
+  {
+   "fieldname": "manufacture_notes_copy",
+   "fieldtype": "Attach",
+   "label": "Reselected Item Picture"
+  },
+  {
+   "fieldname": "reselected_item_part_no",
+   "fieldtype": "Data",
+   "label": "Reselected Item Part NO"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-17 23:02:14.661887",
+ "modified": "2024-10-19 22:25:35.927911",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",

@@ -88,7 +88,7 @@ async function createItemsFromBoQ(frm) {
                         lastMainProductCode = row.hid_code; // Use the existing main product code
                     }
     
-                    lastMainProductProductCode = row.hid_code; // Capture the main product's product_code
+                    lastMainProductProductCode = row.product_code; // Capture the main product's product_code
                     currentSuffix = 'A'; // Reset suffix for components
     
                 } else if (row.is_component == 1 && lastMainProductCode && lastMainProductProductCode) {
