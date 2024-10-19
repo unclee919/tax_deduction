@@ -21,6 +21,7 @@
   "manufacture_notes",
   "manufacture_notes_copy",
   "reselected_item_part_no",
+  "to_data",
   "column_break_cepk",
   "hid_code",
   "designer_item_code",
@@ -426,12 +427,17 @@
    "fieldname": "reselected_item_part_no",
    "fieldtype": "Data",
    "label": "Reselected Item Part NO"
+  },
+  {
+   "fieldname": "to_data",
+   "fieldtype": "Data",
+   "label": "To Budget"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-19 22:25:35.927911",
+ "modified": "2024-10-19 22:38:49.426055",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
