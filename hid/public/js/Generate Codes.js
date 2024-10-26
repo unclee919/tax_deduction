@@ -105,7 +105,7 @@ async function createItemsFromBoQ(frm) {
                 } else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode) {
                     let componentHidCode = generateHidCode(lastMainProductCode, currentSuffix);
                     await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
-                    await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
+                    // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
                 //     await frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level);
                 //     await frappe.model.set_value(row.doctype, row.name, 'room_number', room_number);
                 //    await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
