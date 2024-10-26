@@ -22,6 +22,7 @@
   "manufacture_notes_copy",
   "reselected_item_part_no",
   "to_data",
+  "reselection_status",
   "column_break_cepk",
   "hid_code",
   "designer_item_code",
@@ -74,6 +75,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Item",
+   "link_filters": "[[\"Item Coding\",\"document\",\"=\",\"eval:doc.product_code_category\"]]",
    "options": "Item Coding"
   },
   {
@@ -430,14 +432,21 @@
   },
   {
    "fieldname": "to_data",
-   "fieldtype": "Data",
-   "label": "To Budget"
+   "fieldtype": "Select",
+   "label": "To Budget",
+   "options": "\nOverbudget\nWithin budget\nOverbudget"
+  },
+  {
+   "fieldname": "reselection_status",
+   "fieldtype": "Select",
+   "label": "Reselection Status",
+   "options": "Original\nPending\nApproved\nRejected"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-19 22:38:49.426055",
+ "modified": "2024-10-26 04:06:48.024716",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",

@@ -1,25 +1,29 @@
-
-
-
 async function createItemsFromBoQ(frm) {
     console.log("createItemsFromBoQ function called");
     let itemsCreated = 0;
     let itemsSkipped = 0;
     let itemsUpdated = 0;
     const processedItemCodes = new Set();
-    
     const productCountMap = new Map();
 
     async function checkItemExists(product_code) {
+        if (!product_code) {
+            console.error("Invalid product_code for checkItemExists.");
+            return false;
+        }
         try {
             return await frappe.db.exists('Item', product_code);
         } catch (err) {
-            console.error(`Error checking item existence with hid_code "${hid_code}":`, err);
+            console.error(`Error checking item existence for "${product_code}":`, err);
             throw err;
         }
     }
 
     async function getItem(product_code) {
+        if (!product_code) {
+            console.error("Invalid product_code for getItem.");
+            return null;
+        }
         try {
             return await frappe.db.get_doc('Item', product_code);
         } catch (err) {
@@ -43,12 +47,12 @@ async function createItemsFromBoQ(frm) {
             if (!response.exc) {
                 itemsUpdated++;
                 processedItemCodes.add(item_code);
-                updateRowInForm(frm, item_code);
+                await updateRowInForm(frm, item_code);
             } else {
-                handleError(`Error updating item with hid_code "${item_code}":`, response.message);
+                console.error(`Error updating item with product_code "${item_code}":`, response.message);
             }
         } catch (err) {
-            handleError(`Error updating item with hid_code "${item_code}":`, err);
+            console.error(`Error updating item with product_code "${item_code}":`, err);
         }
     }
 
@@ -61,82 +65,88 @@ async function createItemsFromBoQ(frm) {
             const new_item = await frappe.db.insert(item_doc);
             itemsCreated++;
             processedItemCodes.add(itemData.item_code);
-            updateRowInForm(frm, new_item.item_code);
+            await updateRowInForm(frm, new_item.item_code);
         } catch (err) {
-            console.error(`Error creating item with hid_code "${itemData.item_code}":`, err);
+            console.error(`Error creating item with product_code "${itemData.item_code}":`, err);
             itemsSkipped++;
-            frappe.msgprint(`Error creating item with hid_code "${itemData.item_code}": ${err.message || 'Unknown error'}`);
+            frappe.msgprint(`Error creating item with product_code "${itemData.item_code}": ${err.message || 'Unknown error'}`);
         }
     }
 
+    function generateHidCode(baseCode, suffix = '') {
+        return suffix ? `${baseCode}-${suffix}` : baseCode;
+    }
+
     async function generateComponentHidCode(frm) {
-        let lastMainProductCode = null; // Store the most recent base code for is_component == 0
-        let lastMainProductProductCode = null; // Store the corresponding product code for is_component == 0
-        let currentSuffix = 'A'; // Initialize the suffix for components
-    
+        let lastMainProductCode = null;
+        let lastMainProductProductCode = null;
+        let currentSuffix = 'A';
+        let floor_level = null;
+        let room_number = null;
+        let room_name = null;
+        let area = null;
+        let building_number = null;
+
+
         try {
-            // Loop through all rows to generate HID codes
             for (let idx = 0; idx < frm.doc.custom_bill_of_quantity.length; idx++) {
                 let row = frm.doc.custom_bill_of_quantity[idx];
-    
-                if (row.is_component == 0) {
-                    // It's a main product
+
+                if (row.is_component === 0) {
                     if (!row.hid_code) {
-                        lastMainProductCode = generateNewBaseCode(frm); // Generate the main product code
-                        await frappe.model.set_value(row.doctype, row.name, 'hid_code', lastMainProductCode); // Update HID code in the grid
+                        lastMainProductCode = generateNewBaseCode(frm);
+                        await frappe.model.set_value(row.doctype, row.name, 'hid_code', lastMainProductCode);
                     } else {
-                        lastMainProductCode = row.hid_code; // Use the existing main product code
+                        lastMainProductCode = row.hid_code;
                     }
-    
-                    lastMainProductProductCode = row.product_code; // Capture the main product's product_code
-                    currentSuffix = 'A'; // Reset suffix for components
-    
-                } else if (row.is_component == 1 && lastMainProductCode && lastMainProductProductCode) {
-                    // It's a component
-                    let componentHidCode = `${lastMainProductCode}-${currentSuffix}`;
-                    await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode); // Update HID code in the grid
-    
-                    // Update the parent_item field with the product_code of the corresponding main product
-                    await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode); // Set the parent_item field
-    
-                    // Increment the suffix for the next component
+
+                    lastMainProductProductCode = row.product_code;
+                    currentSuffix = 'A';
+                } else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode) {
+                    let componentHidCode = generateHidCode(lastMainProductCode, currentSuffix);
+                    await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
+                    await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
+                    await frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level);
+                    await frappe.model.set_value(row.doctype, row.name, 'room_number', room_number);
+                    await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
+                    await frappe.model.set_value(row.doctype, row.name, 'area', area);
+                    await frappe.model.set_value(row.doctype, row.name, 'building_number', building_number);
+                    // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
+                    // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
                     currentSuffix = String.fromCharCode(currentSuffix.charCodeAt(0) + 1);
                 }
             }
-    
-            // Refresh the form only after all updates have been applied
+
             frm.refresh_field('custom_bill_of_quantity');
-    
         } catch (error) {
             console.error("Error processing HID code generation:", error);
         }
     }
-    
-    
-    // Helper function to generate a new base code for the main product
+
     function generateNewBaseCode(frm) {
         const mainProductCodes = frm.doc.custom_bill_of_quantity
-            .filter(row => row.is_component == 0 && row.hid_code)
+            .filter(row => row.is_component === 0 && row.hid_code)
             .map(row => row.hid_code);
     
+        // If there are no existing codes, start from 'base_code-001'
         if (mainProductCodes.length === 0) {
-            return 'SS-001'; // Starting base code
+            return 'base_code-001';
         }
     
+        // Extract the numeric part from the last code
         const lastCode = mainProductCodes.sort().pop();
         const [prefix, number] = lastCode.split('-');
-        const newNumber = String(parseInt(number) + 1).padStart(3, '0');
+    
+        // Increment the number part and format it to three digits
+        const newNumber = String(parseInt(number, 10) + 1).padStart(3, '0');
+    
         return `${prefix}-${newNumber}`;
     }
-
-    // Generate HID code function
-    function generateHidCode(base_code, index) {
-        // Generate a unique HID code based on the base code and index
-        return `${base_code}-${index}`;
-    }
     
-    // Main loop to process all rows in custom_bill_of_quantity
+    
+
     for (const row of frm.doc.custom_bill_of_quantity) {
+        console.log("Processing row:", row); 
         if (row.product_name && row.uom) {
             if (!productCountMap.has(row.product_name)) {
                 productCountMap.set(row.product_name, 0);
@@ -145,27 +155,26 @@ async function createItemsFromBoQ(frm) {
             const index = productCountMap.get(row.product_name) + 1;
             productCountMap.set(row.product_name, index);
 
-            // Generate HID code
             if (row.is_component) {
                 await generateComponentHidCode(frm);
             } else {
-                // Check if the form is in edit mode
-                const base_code = frm.is_new() ? row.product_name : row.base_code; // Use base_code if editing
-                row.hid_code = generateHidCode(base_code, index);
+                const base_code = frm.is_new() ? row.product_name : row.base_code;
+                const formatindex = String(index).padStart(3,'0');
+                row.hid_code = generateHidCode(base_code, formatindex );
             }
 
             if (processedItemCodes.has(row.hid_code)) {
                 itemsSkipped++;
                 continue;
             }
-
+        if (row.product_code) {
             try {
                 const exists = await checkItemExists(row.product_code);
-                const itemData = createItemData(row, frm); 
+                const itemData = createItemData(row, frm);
 
                 if (exists) {
                     const existingItem = await getItem(row.product_code);
-                    if (hasDifferences(existingItem, itemData)) {
+                    if (existingItem && hasDifferences(existingItem, itemData)) {
                         await updateItem(row.product_code, itemData);
                     } else {
                         itemsSkipped++;
@@ -178,10 +187,12 @@ async function createItemsFromBoQ(frm) {
                 console.error(`Error processing item with product_code "${row.product_code}":`, err);
                 itemsSkipped++;
             }
+        } else {
+            console.error(`Invalid product_code for row:`, row); // Log invalid product codes    
         }
     }
+    }    
 
-    // Save the document after processing all items
     try {
         await frm.save();
         frappe.msgprint(`Items creation process completed. Created: ${itemsCreated}, Updated: ${itemsUpdated}, Skipped: ${itemsSkipped}`);
@@ -191,7 +202,6 @@ async function createItemsFromBoQ(frm) {
     }
 }
 
-// Helper function to create item data
 function createItemData(row, frm) {
     return {
         item_code: row.hid_code,
@@ -222,37 +232,53 @@ function createItemData(row, frm) {
         custom_item_coding: row.product_name,
         custom_is_component: row.is_component,
         custom_base_code: row.base_code,
-        custom_parent_item:row.parent_item
+        custom_parent_item: row.parent_item
     };
 }
 
-// Function to check differences between existing item and new data
 function hasDifferences(existingItem, newData) {
     return Object.keys(newData).some(key => existingItem[key] !== newData[key]);
 }
 
 async function updateRowInForm(frm, item_code) {
-     async function getItem(product_code) {
+    if (!item_code) {
+        console.error("Invalid item_code in updateRowInForm.");
+        return;
+    }
+
+    // Integrated getItem function directly within updateRowInForm
+    async function getItem(item_code) {
+        if (!item_code) {
+            console.error("Invalid item_code for getItem in updateRowInForm.");
+            return null;
+        }
         try {
-            return await frappe.db.get_doc('Item', product_code);
+            return await frappe.db.get_doc('Item', item_code);
         } catch (err) {
-            console.error(`Error retrieving item with product_code "${product_code}":`, err);
+            console.error(`Error retrieving item with item_code "${item_code}" in updateRowInForm:`, err);
             throw err;
         }
     }
-    // Retrieve the item data for the created or updated item
-    const existingItem = await getItem(item_code);
 
-    // Update each row in the custom_bill_of_quantity with the new values
-    for (let idx = 0; idx < frm.doc.custom_bill_of_quantity.length; idx++) {
-        const row = frm.doc.custom_bill_of_quantity[idx];
-        if (row.name === existingItem.custom_boq_item) {
-            frappe.model.set_value(row.doctype, row.name, 'product_code', existingItem.item_code); // Set the product_code
-            frappe.model.set_value(row.doctype, row.name, 'is_created', 1); // Set is_created to 1
-            break; // Exit the loop after updating the matching row
+    try {
+        const existingItem = await getItem(item_code);
+        if (!existingItem) return;
+
+        for (let idx = 0; idx < frm.doc.custom_bill_of_quantity.length; idx++) {
+            const row = frm.doc.custom_bill_of_quantity[idx];
+            if (row.name === existingItem.custom_boq_item) {
+                frappe.model.set_value(row.doctype, row.name, 'product_code', existingItem.item_code);
+                frappe.model.set_value(row.doctype, row.name, 'is_created', 1);
+                break;
+            }
         }
+    } catch (err) {
+        console.error("Error updating row in form:", err);
     }
 }
+
+
+
 
 // async function createItemsFromBoQ(frm) {
 //     console.log("createItemsFromBoQ function called");
@@ -263,20 +289,20 @@ async function updateRowInForm(frm, item_code) {
     
 //     const productCountMap = new Map();
 
-//     async function checkItemExists(hid_code) {
+//     async function checkItemExists(product_code) {
 //         try {
-//             return await frappe.db.exists('Item', hid_code);
+//             return await frappe.db.exists('Item', product_code);
 //         } catch (err) {
 //             console.error(`Error checking item existence with hid_code "${hid_code}":`, err);
 //             throw err;
 //         }
 //     }
 
-//     async function getItem(hid_code) {
+//     async function getItem(product_code) {
 //         try {
-//             return await frappe.db.get_doc('Item', hid_code);
+//             return await frappe.db.get_doc('Item', product_code);
 //         } catch (err) {
-//             console.error(`Error retrieving item with hid_code "${hid_code}":`, err);
+//             console.error(`Error retrieving item with product_code "${product_code}":`, err);
 //             throw err;
 //         }
 //     }
@@ -341,7 +367,7 @@ async function updateRowInForm(frm, item_code) {
 //                         lastMainProductCode = row.hid_code; // Use the existing main product code
 //                     }
     
-//                     lastMainProductProductCode = row.hid_code; // Capture the main product's product_code
+//                     lastMainProductProductCode = row.product_code; // Capture the main product's product_code
 //                     currentSuffix = 'A'; // Reset suffix for components
     
 //                 } else if (row.is_component == 1 && lastMainProductCode && lastMainProductProductCode) {
@@ -413,22 +439,22 @@ async function updateRowInForm(frm, item_code) {
 //             }
 
 //             try {
-//                 const exists = await checkItemExists(row.hid_code);
+//                 const exists = await checkItemExists(row.product_code);
 //                 const itemData = createItemData(row, frm); 
 
 //                 if (exists) {
-//                     const existingItem = await getItem(row.hid_code);
+//                     const existingItem = await getItem(row.product_code);
 //                     if (hasDifferences(existingItem, itemData)) {
-//                         await updateItem(row.hid_code, itemData);
+//                         await updateItem(row.product_code, itemData);
 //                     } else {
 //                         itemsSkipped++;
-//                         console.log(`No changes detected for item with hid_code "${row.hid_code}".`);
+//                         console.log(`No changes detected for item with product_code "${row.product_code}".`);
 //                     }
 //                 } else {
 //                     await createItem(itemData);
 //                 }
 //             } catch (err) {
-//                 console.error(`Error processing item with hid_code "${row.hid_code}":`, err);
+//                 console.error(`Error processing item with product_code "${row.product_code}":`, err);
 //                 itemsSkipped++;
 //             }
 //         }
@@ -448,6 +474,7 @@ async function updateRowInForm(frm, item_code) {
 // function createItemData(row, frm) {
 //     return {
 //         item_code: row.hid_code,
+//         custom_hid_code: row.hid_code,
 //         item_name: row.product_name,
 //         stock_uom: row.uom,
 //         item_group: row.product_code_category,
@@ -470,7 +497,11 @@ async function updateRowInForm(frm, item_code) {
 //         custom_attach: row.attach_secondary_image,
 //         custom_date_of_pacage: row.date_of_packge,
 //         custom_status: row.status,
-//         custom_boq_item: row.name
+//         custom_boq_item: row.name,
+//         custom_item_coding: row.product_name,
+//         custom_is_component: row.is_component,
+//         custom_base_code: row.base_code,
+//         custom_parent_item:row.parent_item
 //     };
 // }
 
@@ -479,20 +510,28 @@ async function updateRowInForm(frm, item_code) {
 //     return Object.keys(newData).some(key => existingItem[key] !== newData[key]);
 // }
 
-// // Update row in the form
-// function updateRowInForm(frm, item_code) {
-//     frm.doc.custom_bill_of_quantity.forEach(row => {
-//         if (row.hid_code === item_code) {
-//             frappe.model.set_value(row.doctype, row.name, 'product_code', item);
-//             frappe.model.set_value(row.doctype, row.name, 'is_created', 1);
+// async function updateRowInForm(frm, item_code) {
+//      async function getItem(product_code) {
+//         try {
+//             return await frappe.db.get_doc('Item', product_code);
+//         } catch (err) {
+//             console.error(`Error retrieving item with product_code "${product_code}":`, err);
+//             throw err;
 //         }
-//     });
+//     }
+//     // Retrieve the item data for the created or updated item
+//     const existingItem = await getItem(item_code);
+
+//     // Update each row in the custom_bill_of_quantity with the new values
+//     for (let idx = 0; idx < frm.doc.custom_bill_of_quantity.length; idx++) {
+//         const row = frm.doc.custom_bill_of_quantity[idx];
+//         if (row.name === existingItem.custom_boq_item) {
+//             frappe.model.set_value(row.doctype, row.name, 'product_code', existingItem.item_code); // Set the product_code
+//             frappe.model.set_value(row.doctype, row.name, 'is_created', 1); // Set is_created to 1
+//             break; // Exit the loop after updating the matching row
+//         }
+//     }
 // }
-
-
-
-
-
 // Function to create a Material Request
 async function createMaterialRequest(frm) {
     console.log("createMaterialRequest function called");
