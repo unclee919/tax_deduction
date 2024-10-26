@@ -106,11 +106,11 @@ async function createItemsFromBoQ(frm) {
                     let componentHidCode = generateHidCode(lastMainProductCode, currentSuffix);
                     await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
                     await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
-                    await frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level);
-                    await frappe.model.set_value(row.doctype, row.name, 'room_number', room_number);
-                    await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
-                    await frappe.model.set_value(row.doctype, row.name, 'area', area);
-                    await frappe.model.set_value(row.doctype, row.name, 'building_number', building_number);
+                //     await frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level);
+                //     await frappe.model.set_value(row.doctype, row.name, 'room_number', room_number);
+                //    await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
+                //     await frappe.model.set_value(row.doctype, row.name, 'area', area);
+                //     await frappe.model.set_value(row.doctype, row.name, 'building_number', building_number);
                     // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
                     // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
                     currentSuffix = String.fromCharCode(currentSuffix.charCodeAt(0) + 1);
