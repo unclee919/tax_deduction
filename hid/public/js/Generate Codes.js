@@ -209,64 +209,7 @@ async function createItemsFromBoQ(frm) {
         console.error('Error saving document:', err);
         frappe.msgprint('There was an issue saving the document.');
     }
-}      
-
-//     for (const row of frm.doc.custom_bill_of_quantity) {
-//         console.log("Processing row:", row); 
-//         if (row.product_name && row.uom) {
-//             if (!productCountMap.has(row.product_name)) {
-//                 productCountMap.set(row.product_name, 0);
-//             }
-
-//             const index = productCountMap.get(row.product_name) + 1;
-//             productCountMap.set(row.product_name, index);
-
-//             if (row.is_component) {
-//                 await generateComponentHidCode(frm);
-//             } else {
-//                 const base_code = frm.is_new() ? row.product_name : row.base_code;
-//                 const formatindex = String(index).padStart(3,'0');
-//                 row.hid_code = generateHidCode(base_code, formatindex );
-//             }
-
-//             if (processedItemCodes.has(row.hid_code)) {
-//                 itemsSkipped++;
-//                 continue;
-//             }
-//         if (row.product_code) {
-//             try {
-//                 const exists = await checkItemExists(row.product_code);
-//                 const itemData = createItemData(row, frm);
-
-//                 if (exists) {
-//                     const existingItem = await getItem(row.product_code);
-//                     if (existingItem && hasDifferences(existingItem, itemData)) {
-//                         await updateItem(row.product_code, itemData);
-//                     } else {
-//                         itemsSkipped++;
-//                         console.log(`No changes detected for item with product_code "${row.product_code}".`);
-//                     }
-//                 } else {
-//                     await createItem(itemData);
-//                 }
-//             } catch (err) {
-//                 console.error(`Error processing item with product_code "${row.product_code}":`, err);
-//                 itemsSkipped++;
-//             }
-//         } else {
-//             console.error(`Invalid product_code for row:`, row); // Log invalid product codes    
-//         }
-//     }
-//     }    
-
-//     try {
-//         await frm.save();
-//         frappe.msgprint(`Items creation process completed. Created: ${itemsCreated}, Updated: ${itemsUpdated}, Skipped: ${itemsSkipped}`);
-//     } catch (err) {
-//         console.error('Error saving document:', err);
-//         frappe.msgprint('There was an issue saving the document.');
-//     }
-// }
+}    
 
 function createItemData(row, frm) {
     return {
