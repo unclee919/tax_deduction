@@ -201,13 +201,13 @@
   },
   {
    "fieldname": "supplier_part_number",
-   "fieldtype": "Text",
+   "fieldtype": "Text Editor",
    "in_list_view": 1,
    "label": "Supplier Part No"
   },
   {
    "fieldname": "diemensions",
-   "fieldtype": "Data",
+   "fieldtype": "Text Editor",
    "in_list_view": 1,
    "label": "Dimension"
   },
@@ -431,7 +431,7 @@
   },
   {
    "fieldname": "manufacture_notes",
-   "fieldtype": "Data",
+   "fieldtype": "Text Editor",
    "label": "Manufacturer Notes"
   },
   {
@@ -544,7 +544,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-28 10:14:43.051574",
+ "modified": "2024-11-04 10:06:54.628790",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
