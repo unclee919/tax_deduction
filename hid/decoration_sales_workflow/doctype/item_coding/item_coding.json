@@ -24,7 +24,8 @@
    "in_list_view": 1,
    "in_preview": 1,
    "in_standard_filter": 1,
-   "label": "Code"
+   "label": "Code",
+   "mandatory_depends_on": "eval:doc.is_component == 0"
   },
   {
    "allow_in_quick_entry": 1,
@@ -68,15 +69,20 @@
    "options": "Item Coding"
   },
   {
+   "allow_in_quick_entry": 1,
    "default": "0",
    "fieldname": "is_component",
    "fieldtype": "Check",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
    "label": "is Component"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-04 20:36:02.274238",
+ "modified": "2024-11-05 23:10:14.743280",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Item Coding",
@@ -96,11 +102,13 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "search_fields": "name1,code,related_item,document,is_component",
  "show_name_in_global_search": 1,
  "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "name1"
+ "title_field": "name1",
+ "track_changes": 1
 }
