@@ -107,7 +107,7 @@ async function createItemsFromBoQ(frm) {
                     area = row.area;
                     building_number = row.building_number;
                     currentSuffix = 'A';
-                } else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode) {
+                } else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode && !row.hid_code) {
                     let componentHidCode = generateHidCode(lastMainProductCode, currentSuffix);
                     await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
                     await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
@@ -165,7 +165,8 @@ async function createItemsFromBoQ(frm) {
             } else {
                 const base_code = frm.is_new() ? row.base_code : row.base_code;
                 const formatindex = String(index).padStart(3, '0');
-                row.hid_code = generateHidCode(base_code, formatindex);
+                if (!row.hid_code) {row.hid_code = generateHidCode(base_code, formatindex);}
+                // row.hid_code = generateHidCode(base_code, formatindex);
             }
     
             try {
@@ -209,6 +210,8 @@ async function createItemsFromBoQ(frm) {
         frappe.msgprint('There was an issue saving the document.');
     }
 }    
+
+
 
 //     function generateHidCode(baseCode, suffix = '') {
 //         return suffix ? `${baseCode}-${suffix}` : baseCode;
@@ -662,3 +665,18 @@ frappe.ui.form.on('Lead', {
     }
 });
 
+frappe.ui.form.on("Bill of Quantity",{
+    before_custom_bill_of_quantity_remove(frm,cdt,cdn) {
+        console.log("hi")
+        let row = locals[cdt][cdn]
+        if(row.is_component) {return}
+        for (let i of frm.doc.custom_bill_of_quantity) {
+            if (row.name === i.name) {continue} 
+            if (i.parent_item === row.product_code && i.is_component) {
+                frappe.model.clear_doc(i.doctype,i.name)
+            }
+        }
+        frm.refresh_field("custom_bill_of_quantity")
+        // frm.save()
+    }
+})
