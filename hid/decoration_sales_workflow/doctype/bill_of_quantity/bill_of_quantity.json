@@ -97,8 +97,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "HID Item Code",
-   "no_copy": 1,
-   "read_only": 1
+   "no_copy": 1
   },
   {
    "fieldname": "product_code",
@@ -555,7 +554,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-05 23:07:48.186426",
+ "modified": "2024-11-07 15:18:58.456849",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
