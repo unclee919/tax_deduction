@@ -27,3 +27,12 @@ doctype_js = {
     # Add other Doctypes and their corresponding JS files if needed
     # Example: "Your Doctype": "public/js/YourScript.js"
 }
+# YourApp/hooks.py
+
+scheduler_events = {
+    "cron": {
+        "*/15 * * * *": [
+            "auto_save.auto_save_documents"  # Ensure the correct module and method paths
+        ]
+    }
+}

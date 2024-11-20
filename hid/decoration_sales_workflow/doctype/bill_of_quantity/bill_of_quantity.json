@@ -24,6 +24,7 @@
   "area",
   "designer_item_code",
   "product_code_category",
+  "category",
   "item_link",
   "supplier",
   "reselected_item_part_no",
@@ -214,7 +215,7 @@
   },
   {
    "fieldname": "descripition",
-   "fieldtype": "Data",
+   "fieldtype": "Text",
    "label": "Descripition"
   },
   {
@@ -320,7 +321,7 @@
   },
   {
    "fieldname": "specification_details",
-   "fieldtype": "Data",
+   "fieldtype": "Text",
    "label": "Specification Details"
   },
   {
@@ -549,12 +550,26 @@
   {
    "fieldname": "column_break_ih58",
    "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "columns": 1,
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Category",
+   "options": "Category",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-07 15:35:01.692524",
+ "modified": "2024-11-20 19:41:39.980232",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
