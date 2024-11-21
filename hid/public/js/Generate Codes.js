@@ -204,7 +204,7 @@ async function createItemsFromBoQ(frm) {
     // Attempt to save the form and display results
     try {
         await frm.save();
-        frappe.msgprint(`Items creation process completed. Created: ${itemsCreated}, Updated: ${itemsUpdated}, Skipped: ${itemsSkipped}`);
+        // frappe.msgprint(`Items creation process completed. Created: ${itemsCreated}, Updated: ${itemsUpdated}, Skipped: ${itemsSkipped}`);
     } catch (err) {
         console.error('Error saving document:', err);
         frappe.msgprint('There was an issue saving the document.');
