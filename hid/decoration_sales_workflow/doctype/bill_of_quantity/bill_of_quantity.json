@@ -562,14 +562,14 @@
    "in_preview": 1,
    "in_standard_filter": 1,
    "label": "Category",
-   "options": "Category",
+   "options": "ID Batch",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-20 19:41:39.980232",
+ "modified": "2024-11-24 02:30:09.583032",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",

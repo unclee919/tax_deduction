@@ -288,7 +288,23 @@ async function updateRowInForm(frm, item_code) {
 
 async function createMaterialRequest(frm) {
     console.log("createMaterialRequest function called");
+
     try {
+        // Validate that all rows in custom_bill_of_quantity have a valid supplier
+        for (const row of frm.doc.custom_bill_of_quantity) {
+            if (!row.supplier) {
+                frappe.msgprint(__(`The supplier in row number'${row.idx}' is invalid or disabled. Please correct it.`));
+                throw new Error('Validation failed: Missing supplier.');
+            }
+
+            const supplier_doc = await frappe.db.get_doc('Supplier', row.supplier);
+            if (!supplier_doc || supplier_doc.disabled) {
+                frappe.msgprint(__(`The supplier name '${row.supplier}',in row number'${row.idx}' is invalid or disabled. Please correct it.`));
+                throw new Error(`Validation failed: Supplier '${row.supplier}' is invalid or disabled.`);
+            }
+        }
+
+        // Proceed with Material Request creation
         const new_doc = frappe.model.get_new_doc('Material Request');
         new_doc.material_request_type = 'Purchase';
         new_doc.transaction_date = frappe.datetime.nowdate();
@@ -328,10 +344,10 @@ async function createMaterialRequest(frm) {
 
         const doc = await frappe.db.insert(new_doc);
         frappe.set_route('Form', 'Material Request', doc.name);
+
         // Update Lead Doctype with new stage
         frm.set_value('custom_lead_stage', 'Procurment Stage');
         await frm.save();
-
     } catch (err) {
         console.error('Error creating Material Request:', err);
         frappe.msgprint(__('There was an issue creating the Material Request.'));
@@ -541,6 +557,26 @@ frappe.ui.form.on("Bill of Quantity",{
         // frm.save()
     }
 })
+frappe.ui.form.on("Lead", {
+    refresh(frm) {
+        if (frappe.user.has_role('ID Role')) {
+            console.log("ID Role detected");
+
+            // Ensure custom_bill_of_quantity is the correct fieldname of your child table
+            if (frm.fields_dict.custom_bill_of_quantity) {
+                frm.fields_dict['custom_bill_of_quantity'].grid.update_docfield_property('hid_code', 'label', 'Item Ref');
+                frm.fields_dict['custom_bill_of_quantity'].grid.update_docfield_property('product_code_category', 'label', 'Batch');
+
+                frm.refresh_field('custom_bill_of_quantity'); // Refresh the child table to reflect changes
+            } else {
+                console.error("Child table 'custom_bill_of_quantity' not found in the form.");
+            }
+        }
+    }
+});
+
+
+
 
 frappe.ui.form.on('Lead', {
     refresh: function (frm) {
@@ -594,5 +630,149 @@ frappe.ui.form.on('Lead', {
 });
 
 
+frappe.ui.form.on('Lead', {
+    refresh: function (frm) {
+        frm.add_custom_button(('Auto Fill'), function () {
+            // Collect selected rows from the child table
+            const selected_rows = frm.fields_dict.custom_bill_of_quantity.grid.get_selected();
+            console.log("Selected rows:", selected_rows);
+
+            if (selected_rows.length === 0) {
+                frappe.msgprint(('Please select rows in the table'));
+                return;
+            }
+
+            // Get the list of fields in the child table
+            const child_fields = Object.keys(frm.fields_dict.custom_bill_of_quantity.grid.fields_map);
+            console.log("Available child fields:", child_fields);
+
+            // Create the dialog
+            var me = frm;
+            const dialog = new frappe.ui.Dialog({
+                title: __('Auto Fill Rows'),
+                fields: [
+                    {
+                        fieldname: 'field_to_update',
+                        label: 'Field to Update',
+                        fieldtype: 'Select',
+                        options: child_fields.join('\n'),
+                        reqd: 1,
+                        onchange: () => {
+                            set_value_field(dialog, me);
+                        },
+                    },
+                    {
+                        fieldname: 'value',
+                        label: 'Value',
+                        fieldtype: 'Data', // Default type (will dynamically change)
+                        reqd: 1,
+                    },
+                ],
+                primary_action_label: __('Apply'),
+                primary_action: (values) => {
+                    console.log("Field to update:", values.field_to_update);
+                    console.log("Value to apply:", values.value);
+
+                    let changes_applied = false;
+
+                    // Loop through the selected rows and apply the value to the specified field
+                    selected_rows.forEach((row) => {
+                        // Ensure the row exists in the child table and matches the selected ones
+                        const row_name = row.name;
+                        console.log("Attempting to update row:", row_name);
+
+                        const field_definition = frm.fields_dict.custom_bill_of_quantity.grid.fields_map[values.field_to_update];
+                        const field_type = field_definition.fieldtype || 'Data'; // Default to 'Data' if no fieldtype is defined
+                        console.log("Field type for value update:", field_type);
+
+                        // Handle Link and Select fields correctly
+                        let value_to_apply = values.value;
+
+                        if (field_type === 'Link') {
+                            // For Link field, apply the link value to the respective field
+                            if (!frappe.get_doc(field_definition.options, value_to_apply)) {
+                                frappe.msgprint(('Please provide a valid Link value.'));
+                                return;
+                            }
+                        }
+
+                        // Apply the value to the row
+                        frappe.model.set_value(row.doctype, row_name, values.field_to_update, value_to_apply);
+                        changes_applied = true;
+                    });
+
+                    if (changes_applied) {
+                        frm.refresh_field('custom_bill_of_quantity');
+                        frm.save().then(() => {
+                            frappe.msgprint(('Rows updated and form saved successfully.'));
+                        });
+                    } else {
+                        frappe.msgprint(('No rows were updated. Please check field names.'));
+                    }
+
+                    dialog.hide();
+                },
+            });
+
+            // Dynamically update the Value field's type and options based on the selected field
+            dialog.fields_dict.field_to_update.$input.on('change', function () {
+                const selected_field = dialog.get_value('field_to_update');
+                console.log("Selected field:", selected_field);
+
+                // Retrieve the field definition and determine the fieldtype and options
+                const field_definition = frm.fields_dict.custom_bill_of_quantity.grid.fields_map[selected_field];
+                if (field_definition) {
+                    const field_type = field_definition.fieldtype || 'Data';
+                    const options = field_definition.options || '';
+
+                    console.log("Updating Value field type:", field_type);
+
+                    // Dynamically change the Value field type based on the selected field
+                    dialog.fields_dict.value.df.fieldtype = field_type;
+
+                    // Handle field types accordingly
+                    if (field_type === 'Select') {
+                        dialog.fields_dict.value.df.options = options;
+                    } else if (field_type === 'Link') {
+                        // For Link fields, set the link's doctype as options
+                        dialog.fields_dict.value.df.options = options; // This is the target Doctype for Link fields
+                    }
+
+                    // Refresh the dialog to apply the new fieldtype and options
+                    dialog.fields_dict.value.refresh();
+                }
+            });
+
+            dialog.show();
+        });
+    },
+});
 
 
+function set_value_field(dialogObj, frm) {
+    const status_regex = /status/i;
+    let field_mappings = frm.fields_dict.custom_bill_of_quantity.grid.fields_map;
+    console.log(field_mappings);
+    const new_df = Object.assign({}, field_mappings[dialogObj.get_value("field_to_update")]);
+    console.log(new_df);
+    /* if the field label has status in it and
+    if it has select fieldtype with no default value then
+    set a default value from the available option. */
+    if (
+        new_df.label.match(status_regex) &&
+        new_df.fieldtype === "Select" &&
+        !new_df.default
+    ) {
+        let options = [];
+        if (typeof new_df.options === "string") {
+            options = new_df.options.split("\n");
+        }
+        //set second option as default if first option is an empty string
+        new_df.default = options[0] || options[1];
+    }
+    new_df.label = __("Value");
+
+    delete new_df.depends_on;
+    dialogObj.replace_field("value", new_df);
+    dialogObj.refresh(dialogObj);
+}

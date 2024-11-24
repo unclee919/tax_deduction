@@ -1,0 +1,564 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-11-24 02:22:19.328084",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "hid_code",
+  "product_name",
+  "building_number",
+  "floor_level",
+  "room_name",
+  "room_number",
+  "is_component",
+  "parent_item",
+  "base_code",
+  "qty",
+  "uom",
+  "product_code",
+  "secondary_image",
+  "column_break_cepk",
+  "area",
+  "designer_item_code",
+  "product_code_category",
+  "item_link",
+  "supplier",
+  "reselected_item_part_no",
+  "manufacture_notes",
+  "date_of_packge",
+  "is_created",
+  "confirm_dimension",
+  "specification_details",
+  "supplier_part_number",
+  "reference_document",
+  "descripition",
+  "diemensions",
+  "attach_image_wjpb",
+  "attach_secondary_image",
+  "image_give",
+  "manufacture_notes_copy",
+  "custom_primary_picture_copy",
+  "status_section_section",
+  "status",
+  "logisitic_status",
+  "delivered_status",
+  "coordination_status",
+  "customizatio",
+  "to_data",
+  "column_break_ih58",
+  "qaqc",
+  "samples_situation",
+  "qaqc_mir_status",
+  "site_delivery_note",
+  "qaqc_wir_status",
+  "reselection_status",
+  "paid_by",
+  "section_break_lytz",
+  "currency",
+  "exchange_rate",
+  "document",
+  "column_break_htcg",
+  "budgting_costing_section",
+  "initial_cost_in_product_currency",
+  "initial_cost_per_unit",
+  "initial_cost",
+  "cost_before_margin",
+  "total_before_margins",
+  "final_rate",
+  "total_finals",
+  "cost_get",
+  "column_break_exnx",
+  "custom_and_clearnce",
+  "oh",
+  "logisitics",
+  "shipping",
+  "additional_cost",
+  "customiziation",
+  "stocking",
+  "installation",
+  "profit_margin"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "columns": 1,
+   "fieldname": "hid_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Ref",
+   "no_copy": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "product_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "link_filters": "[]",
+   "options": "ID Item"
+  },
+  {
+   "columns": 1,
+   "fieldname": "building_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Building"
+  },
+  {
+   "columns": 1,
+   "fieldname": "floor_level",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Floor Level"
+  },
+  {
+   "columns": 1,
+   "fieldname": "room_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Room Name"
+  },
+  {
+   "columns": 1,
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Room No."
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fetch_from": "product_name.is_component",
+   "fieldname": "is_component",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Item Type",
+   "no_copy": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "parent_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Parent Item",
+   "no_copy": 1,
+   "options": "Item"
+  },
+  {
+   "columns": 1,
+   "fetch_from": "product_name.code",
+   "fieldname": "base_code",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "base_code",
+   "no_copy": 1
+  },
+  {
+   "columns": 1,
+   "default": "1",
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit",
+   "options": "UOM",
+   "reqd": 1
+  },
+  {
+   "fieldname": "product_code",
+   "fieldtype": "Link",
+   "label": "Product Code",
+   "no_copy": 1,
+   "options": "Item"
+  },
+  {
+   "fieldname": "secondary_image",
+   "fieldtype": "Image",
+   "label": "Secondary Picture",
+   "options": "attach_secondary_image"
+  },
+  {
+   "fieldname": "column_break_cepk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 1,
+   "fieldname": "area",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Area"
+  },
+  {
+   "fieldname": "designer_item_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Designer Item Code"
+  },
+  {
+   "columns": 1,
+   "fieldname": "product_code_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Batch",
+   "options": "Item Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_link",
+   "fieldtype": "Data",
+   "label": "Item Link"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "reselected_item_part_no",
+   "fieldtype": "Data",
+   "label": "Reselected Item Part NO"
+  },
+  {
+   "fieldname": "manufacture_notes",
+   "fieldtype": "Text Editor",
+   "label": "Manufacturer Notes"
+  },
+  {
+   "fieldname": "date_of_packge",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Date of Packge"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_created",
+   "fieldtype": "Check",
+   "label": "Is Created",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "confirm_dimension",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Confirm Dimension"
+  },
+  {
+   "fieldname": "specification_details",
+   "fieldtype": "Text",
+   "label": "Specification Details"
+  },
+  {
+   "fieldname": "supplier_part_number",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Supplier Part No"
+  },
+  {
+   "fieldname": "reference_document",
+   "fieldtype": "Data",
+   "label": "Reference Document"
+  },
+  {
+   "fieldname": "descripition",
+   "fieldtype": "Text",
+   "label": "Descripition"
+  },
+  {
+   "fieldname": "diemensions",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Dimension"
+  },
+  {
+   "fieldname": "attach_image_wjpb",
+   "fieldtype": "Attach Image",
+   "label": "Primary Picture"
+  },
+  {
+   "fieldname": "attach_secondary_image",
+   "fieldtype": "Attach Image",
+   "label": "Secondary Picture"
+  },
+  {
+   "columns": 1,
+   "fieldname": "image_give",
+   "fieldtype": "Image",
+   "in_preview": 1,
+   "label": "Primary Picture",
+   "options": "attach_image_wjpb"
+  },
+  {
+   "fieldname": "manufacture_notes_copy",
+   "fieldtype": "Attach",
+   "label": "Reselected Item Picture"
+  },
+  {
+   "columns": 1,
+   "fieldname": "custom_primary_picture_copy",
+   "fieldtype": "Code",
+   "in_preview": 1,
+   "label": "Primary Picture Copy",
+   "options": "CONCAT('') "
+  },
+  {
+   "fieldname": "status_section_section",
+   "fieldtype": "Section Break",
+   "label": "Status Section"
+  },
+  {
+   "default": "Under design",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Item Status",
+   "options": "\nUnder design\nUnder review (DU)\nReady for Purchase\nQuoted\nSent to Payment\nPaid\nUnder fabrication\nOut of Stock\nDelivered WH\nOld Stock"
+  },
+  {
+   "fieldname": "logisitic_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Logisitic Status",
+   "options": "\nUnder fabrication\nPicked-up\nHolding At Carrier\nShipped\nCustoms KSA\nOut For Delivery KSA\nDelivered WH"
+  },
+  {
+   "fieldname": "delivered_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Delivered Status",
+   "options": "\nDelivered - WH\nDelivered- Site\nStock\nPartial - Delivered - WH\nPartial - Delivered - Site"
+  },
+  {
+   "fieldname": "coordination_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Coordination Status",
+   "options": "\nUnder Design\nUnder Coordination\nUnder Procurement\nUnder Fabrication\nShipping\nDelivered - WH\nDelivered - Site\nInstalled At Site"
+  },
+  {
+   "fieldname": "customizatio",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Customization",
+   "options": "\nBespoke item\nCustomized catalogue item\nCatalogue item"
+  },
+  {
+   "fieldname": "to_data",
+   "fieldtype": "Select",
+   "label": "To Budget",
+   "options": "\nOverbudget\nWithin budget\nOverbudget"
+  },
+  {
+   "fieldname": "column_break_ih58",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "qaqc",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "QA/QC",
+   "options": "\nChecked\nChange\nCancelled"
+  },
+  {
+   "fieldname": "samples_situation",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Samples situation",
+   "options": "\nRequested\nOrdered\nDelivered to UK\nApproved"
+  },
+  {
+   "fieldname": "qaqc_mir_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "QA/QC MIR Status",
+   "options": "\nApproved\nNot Approved\nPending Approval\nRejected"
+  },
+  {
+   "fieldname": "site_delivery_note",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Site Delivery Note",
+   "options": "\nYES\nNO"
+  },
+  {
+   "fieldname": "qaqc_wir_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "QA/QC WIR Status",
+   "options": "\nApproved\nNot Approved\nPending Approval\nRejected"
+  },
+  {
+   "fieldname": "reselection_status",
+   "fieldtype": "Select",
+   "label": "Reselection Status",
+   "options": "Original\nPending\nApproved\nRejected"
+  },
+  {
+   "fieldname": "paid_by",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Paid By",
+   "options": "\nKSA Team\nUS Team\nSpain Team"
+  },
+  {
+   "fieldname": "section_break_lytz",
+   "fieldtype": "Section Break",
+   "label": "Product Info"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "default": "1",
+   "fieldname": "exchange_rate",
+   "fieldtype": "Float",
+   "label": "Exchange Rate"
+  },
+  {
+   "columns": 1,
+   "fieldname": "document",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Documents"
+  },
+  {
+   "fieldname": "column_break_htcg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "budgting_costing_section",
+   "fieldtype": "Section Break",
+   "label": "Budgting & Costing"
+  },
+  {
+   "default": "0",
+   "fieldname": "initial_cost_in_product_currency",
+   "fieldtype": "Currency",
+   "label": "Hard Cost in Product Currency"
+  },
+  {
+   "default": "0",
+   "fieldname": "initial_cost_per_unit",
+   "fieldtype": "Currency",
+   "label": "Hard Cost per Unit (Company Currency)"
+  },
+  {
+   "default": "0",
+   "fieldname": "initial_cost",
+   "fieldtype": "Currency",
+   "label": "Total Hard Cost"
+  },
+  {
+   "fieldname": "cost_before_margin",
+   "fieldtype": "Currency",
+   "label": "Cost Before Margin"
+  },
+  {
+   "fieldname": "total_before_margins",
+   "fieldtype": "Currency",
+   "label": "Total Before Margins"
+  },
+  {
+   "columns": 1,
+   "fieldname": "final_rate",
+   "fieldtype": "Currency",
+   "label": "Final Rate"
+  },
+  {
+   "columns": 1,
+   "fieldname": "total_finals",
+   "fieldtype": "Currency",
+   "label": "Total Finals"
+  },
+  {
+   "default": "0",
+   "fieldname": "cost_get",
+   "fieldtype": "Check",
+   "label": "Cost Get",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_exnx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "custom_and_clearnce",
+   "fieldtype": "Percent",
+   "label": "Custom and Clearnce"
+  },
+  {
+   "fieldname": "oh",
+   "fieldtype": "Percent",
+   "label": "OH"
+  },
+  {
+   "fieldname": "logisitics",
+   "fieldtype": "Percent",
+   "label": "Logisitics"
+  },
+  {
+   "fieldname": "shipping",
+   "fieldtype": "Percent",
+   "label": "Shipping"
+  },
+  {
+   "fieldname": "additional_cost",
+   "fieldtype": "Percent",
+   "label": "Additional Cost"
+  },
+  {
+   "fieldname": "customiziation",
+   "fieldtype": "Percent",
+   "label": "Customization"
+  },
+  {
+   "fieldname": "stocking",
+   "fieldtype": "Percent",
+   "label": "Stocking"
+  },
+  {
+   "fieldname": "installation",
+   "fieldtype": "Percent",
+   "label": "Installation"
+  },
+  {
+   "fieldname": "profit_margin",
+   "fieldtype": "Percent",
+   "label": "Profit Margin"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-11-24 02:37:10.812254",
+ "modified_by": "Administrator",
+ "module": "decoration sales workflow",
+ "name": "Bill of Quantity ID",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

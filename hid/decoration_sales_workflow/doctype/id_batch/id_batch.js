@@ -1,7 +1,7 @@
 // Copyright (c) 2024, unclee919@gmail.com and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Category", {
+// frappe.ui.form.on("ID Batch", {
 // 	refresh(frm) {
 
 // 	},
