@@ -27,6 +27,7 @@
   "category",
   "item_link",
   "supplier",
+  "supplier_frozen_check",
   "reselected_item_part_no",
   "manufacture_notes",
   "date_of_packge",
@@ -563,12 +564,20 @@
    "in_standard_filter": 1,
    "label": "Category",
    "options": "ID Batch"
+  },
+  {
+   "default": "0",
+   "fetch_from": "supplier.is_frozen",
+   "fieldname": "supplier_frozen_check",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Supplier Frozen Check"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-25 10:17:59.258307",
+ "modified": "2024-11-25 23:22:38.886092",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",

@@ -26,6 +26,7 @@
   "product_code_category",
   "item_link",
   "supplier",
+  "supplier_frozen_check",
   "reselected_item_part_no",
   "manufacture_notes",
   "date_of_packge",
@@ -547,12 +548,20 @@
    "fieldname": "profit_margin",
    "fieldtype": "Percent",
    "label": "Profit Margin"
+  },
+  {
+   "default": "0",
+   "fetch_from": "supplier.is_frozen",
+   "fieldname": "supplier_frozen_check",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Supplier Frozen Check"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-25 10:25:28.871591",
+ "modified": "2024-11-25 23:21:47.922819",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity ID",
