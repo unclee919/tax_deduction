@@ -23,7 +23,7 @@
   {
    "allow_in_quick_entry": 1,
    "bold": 1,
-   "depends_on": "eval:doc.is_component == 1",
+   "depends_on": "eval:doc.is_component == 0",
    "fieldname": "code",
    "fieldtype": "Data",
    "in_filter": 1,
@@ -77,7 +77,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-24 02:32:41.342902",
+ "modified": "2024-11-25 10:26:52.229165",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "ID Item",
