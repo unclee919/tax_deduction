@@ -336,6 +336,11 @@ async function createMaterialRequest(frm) {
             item.final_rate = row.final_rate;
             item.custom_from_bill_of_quantity = frm.doc.name;
             item.custom_from_bill_of_quantity_item = row.name;
+            item.image = row.attach_image_wjpb,
+            item.custom_primary_image = row.image_give,
+            item.custom_supplier_part_no = row.supplier_part_number,
+            item.custom_dimension = row.diemensions,
+            itemcustom_item_link = row.item_link,
 
             // Add additional fields here
             item.custom_field_1 = row.custom_field_1; // Example of additional field
@@ -680,100 +685,3 @@ frappe.ui.form.on('Lead', {
 });
 
 
-// frappe.ui.form.on('Lead', {
-//     refresh: function (frm) {
-//         frm.add_custom_button(('Auto Fill'), function () {
-//             // Retrieve detailed data of selected rows
-//             const selected_rows = frm.fields_dict.custom_bill_of_quantity.grid.get_selected_children();
-
-//             if (selected_rows.length === 0) {
-//                 frappe.msgprint(('Please select rows in the table.'));
-//                 return;
-//             }
-
-//             const child_fields = Object.keys(frm.fields_dict.custom_bill_of_quantity.grid.fields_map);
-//             const dialog = new frappe.ui.Dialog({
-//                 title: __('Auto Fill Rows'),
-//                 fields: [
-//                     {
-//                         fieldname: 'field_to_update',
-//                         label: 'Field to Update',
-//                         fieldtype: 'Select',
-//                         options: child_fields.join('\n'),
-//                         reqd: 1,
-//                     },
-//                     {
-//                         fieldname: 'value',
-//                         label: 'Value',
-//                         fieldtype: 'Data', // Default
-//                         reqd: 1,
-//                     },
-//                 ],
-//                 primary_action_label: __('Apply'),
-//                 primary_action: (values) => {
-//                     console.log("Selected field to update:", values.field_to_update);
-//                     console.log("Value to apply:", values.value);
-
-//                     let changes_applied = false;
-
-//                     // Iterate over selected rows
-//                     selected_rows.forEach((row) => {
-//                         if (row && row.name) {
-//                             console.log("Processing row:", row.name);
-
-//                             frappe.model.set_value(row.doctype, row.name, values.field_to_update, values.value)
-//                                 .then(() => {
-//                                     changes_applied = true;
-//                                     console.log(`Updated row ${row.name} - Field: ${values.field_to_update}, Value: ${values.value}`);
-//                                 })
-//                                 .catch((err) => {
-//                                     console.error(`Failed to update row ${row.name}:`, err);
-//                                 });
-//                         } else {
-//                             console.warn("Row data is missing or incomplete:", row);
-//                         }
-//                     });
-
-//                     if (changes_applied) {
-//                         frm.refresh_field('custom_bill_of_quantity');
-//                         frm.save()
-//                             .then(() => {
-//                                 frappe.msgprint(__('Rows updated and form saved successfully.'));
-//                             })
-//                             .catch((err) => {
-//                                 console.error('Failed to save the form:', err);
-//                                 frappe.msgprint(__('Failed to save the form. Check the console for errors.'));
-//                             });
-//                     } else {
-//                         frappe.msgprint(__('No rows were updated. Ensure selected fields are valid.'));
-//                     }
-
-//                     dialog.hide();
-//                 },
-//             });
-
-//             dialog.fields_dict.field_to_update.$input.on('change', function () {
-//                 const selected_field = dialog.get_value('field_to_update');
-//                 console.log("Selected field:", selected_field);
-
-//                 const field_definition = frm.fields_dict.custom_bill_of_quantity.grid.fields_map[selected_field];
-//                 if (field_definition) {
-//                     const field_type = field_definition.fieldtype || 'Data';
-//                     const options = field_definition.options || '';
-
-//                     dialog.fields_dict.value.df.fieldtype = field_type;
-
-//                     if (field_type === 'Select') {
-//                         dialog.fields_dict.value.df.options = options;
-//                     } else if (field_type === 'Link') {
-//                         dialog.fields_dict.value.df.options = field_definition.options;
-//                     }
-
-//                     dialog.fields_dict.value.refresh();
-//                 }
-//             });
-
-//             dialog.show();
-//         });
-//     },
-// });

@@ -336,7 +336,11 @@ async function createMaterialRequest(frm) {
             item.final_rate = row.final_rate;
             item.custom_from_bill_of_quantity = frm.doc.name;
             item.custom_from_bill_of_quantity_item = row.name;
-
+            item.image = row.attach_image_wjpb,
+            item.custom_primary_image = row.image_give,
+            item.custom_supplier_part_no = row.supplier_part_number,
+            item.custom_dimension = row.diemensions,
+            itemcustom_item_link = row.item_link,
             // Add additional fields here
             item.custom_field_1 = row.custom_field_1; // Example of additional field
             item.custom_field_2 = row.custom_field_2; // Example of additional field
