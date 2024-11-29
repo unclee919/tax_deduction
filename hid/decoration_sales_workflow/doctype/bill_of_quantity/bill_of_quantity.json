@@ -27,6 +27,7 @@
   "category",
   "item_link",
   "supplier",
+  "supplier_name",
   "supplier_frozen_check",
   "reselected_item_part_no",
   "manufacture_notes",
@@ -569,12 +570,20 @@
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "Supplier Frozen Check"
+  },
+  {
+   "bold": 1,
+   "fetch_from": "supplier.supplier_name",
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Supplier Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-30 00:34:18.965929",
+ "modified": "2024-11-30 00:38:37.774472",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
