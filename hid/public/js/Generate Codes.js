@@ -340,7 +340,9 @@ async function createMaterialRequest(frm) {
             item.custom_primary_image = row.image_give,
             item.custom_supplier_part_no = row.supplier_part_number,
             item.custom_dimension = row.diemensions,
-            itemcustom_item_link = row.item_link,
+            item.custom_item_link = row.item_link,
+            item.custom_supplier_name = row.supplier_name,
+
 
             // Add additional fields here
             item.custom_field_1 = row.custom_field_1; // Example of additional field
@@ -684,4 +686,35 @@ frappe.ui.form.on('Lead', {
     },
 });
 
+frappe.ui.form.on('Lead', {
+    refresh: function (frm) {
+        // Customize the Add Row button
+        frm.fields_dict['custom_bill_of_quantity'].grid.add_custom_button('Add Multiple Rows', function () {
+            frappe.prompt(
+                [
+                    {
+                        fieldname: 'number_of_rows',
+                        fieldtype: 'Int',
+                        label: 'Number of Rows',
+                        reqd: 1
+                    }
+                ],
+                function (data) {
+                    if (data.number_of_rows > 0) {
+                        for (let i = 0; i < data.number_of_rows; i++) {
+                            let new_row = frm.add_child('custom_bill_of_quantity');
+                            // Optional: Set default values for the new rows here
+                            new_row.some_field = "Default Value";
+                        }
+                        frm.refresh_field('custom_bill_of_quantity');
+                    } else {
+                        frappe.msgprint(__('Please enter a valid number greater than 0.'));
+                    }
+                },
+                __('Add Rows'),
+                __('Add')
+            );
+        });
+    }
+});
 

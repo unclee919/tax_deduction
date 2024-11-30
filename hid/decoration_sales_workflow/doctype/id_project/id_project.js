@@ -613,7 +613,7 @@ frappe.ui.form.on('ID Project', {
 });
 
 
-frappe.ui.form.on('Lead', {
+frappe.ui.form.on('ID Project', {
     refresh: function (frm) {
         frm.add_custom_button(('Auto Fill'), function () {
             const selected_rows = frm.fields_dict.bill_of_quantity_id.grid.get_selected_children();
@@ -696,7 +696,37 @@ frappe.ui.form.on('Lead', {
         });
     },
 });
-
+frappe.ui.form.on('ID Project', {
+    refresh: function (frm) {
+        // Customize the Add Row button
+        frm.fields_dict['bill_of_quantity_id'].grid.add_custom_button('Add Multiple Rows', function () {
+            frappe.prompt(
+                [
+                    {
+                        fieldname: 'number_of_rows',
+                        fieldtype: 'Int',
+                        label: 'Number of Rows',
+                        reqd: 1
+                    }
+                ],
+                function (data) {
+                    if (data.number_of_rows > 0) {
+                        for (let i = 0; i < data.number_of_rows; i++) {
+                            let new_row = frm.add_child('bill_of_quantity_id');
+                            // Optional: Set default values for the new rows here
+                            new_row.some_field = "Default Value";
+                        }
+                        frm.refresh_field('bill_of_quantity_id');
+                    } else {
+                        frappe.msgprint(__('Please enter a valid number greater than 0.'));
+                    }
+                },
+                __('Add Rows'),
+                __('Add')
+            );
+        });
+    }
+});
 
 
 
