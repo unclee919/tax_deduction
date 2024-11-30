@@ -267,7 +267,7 @@ frappe.ui.form.on('Supplier Quotation', {
 frappe.ui.form.on('Material Request', {
     refresh: function (frm) {
         if (frm.doc.status !== "Draft" && frappe.user.has_role('Purchase User')) {
-            frm.add_custom_button(__('Create Quotations'), function () {
+            frm.add_custom_button(__('Initiate RFQ'), function () {
                 console.log('Create Quotations button clicked.');
 
                 // Fetch the Material Request document
