@@ -11,7 +11,8 @@ app_include_js = [
     # "/assets/hid/js/id.js", # Ensure this is the correct path for your new JS file
     "/assets/hid/js/Generate Codes.js",
     "/assets/hid/js/ROQ.js" ,
-    "/assets/hid/js/Supplier quotation.js"
+    "/assets/hid/js/Supplier quotation.js",
+    "/assets/hid/js/purchase_order.js"
     # "/assets/hid/js/id.js"#
 ]
 
@@ -19,6 +20,7 @@ web_include_js = [
     # "/assets/hid/js/id.js",
     "/assets/hid/js/Generate Codes.js",
     "/assets/hid/js/ROQ.js" , 
+    "/asses/hid/js/purchase_order.js"
     "/assets/js/Supplier quotation.js"# Ensure this is the correct path for your new JS file
     # "/assets/js/id.js"
 ]
@@ -27,7 +29,8 @@ web_include_js = [
 doctype_js = {
     # "ID Project": "public/js/id.js",
     "Lead": "public/js/Generate Codes.js",
-    "Material Request": "public/js/ROQ.js", 
+    "Material Request": "public/js/ROQ.js",
+    "Purchase Order": "public/js/purchase_order.js", 
     "Supplier Quotation": "public/js/ROQ.js" # Link ROQ.js to Material Request Doctype
     # "ID Project": "public/js/id.js"
     # Add other Doctypes and their corresponding JS files if needed
