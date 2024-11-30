@@ -334,6 +334,10 @@ frappe.ui.form.on('Material Request', {
                                 let new_item = frappe.model.add_child(rfq, 'items', 'items');
                                 new_item.item_code = item.item_code;
                                 new_item.qty = item.qty;
+                                new_item.item_name = item.item_name;
+                                new_item.supplier_part_no = item.custom_supplier_part_no;
+                                new_item.custom_item_link = item.custom_item_link;
+                                new_item.custom_dimension = item.custom_dimension;
                                 new_item.rate = item.rate;
                                 new_item.uom = item.uom;
                                 new_item.warehouse = item.warehouse; // Map warehouse field
