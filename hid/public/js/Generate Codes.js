@@ -721,17 +721,22 @@ frappe.ui.form.on('Lead', {
 
 frappe.ui.form.on('Purchase Order', {
     schedule_date: function (frm) {
-        // Get the new schedule_date value from the parent field
-        const new_schedule_date = frm.doc.schedule_date;
+        // Check if the schedule_date in the parent form is set
+        if (frm.doc.schedule_date) {
+            // Log for debugging
+            console.log('Updating schedule_date in child table rows to:', frm.doc.schedule_date);
 
-        // Loop through all rows in the "items" child table
-        frm.doc.items.forEach(row => {
-            // Update the schedule_date field in each row
-            frappe.model.set_value(row.doctype, row.name, 'schedule_date', new_schedule_date);
-        });
+            // Loop through each row in the "items" child table
+            (frm.doc.items || []).forEach(row => {
+                // Update the schedule_date for each child row
+                frappe.model.set_value(row.doctype, row.name, 'schedule_date', frm.doc.schedule_date);
+            });
 
-        // Refresh the "items" field to reflect changes in the child table
-        frm.refresh_field('items');
+            // Refresh the "items" field to display the updated values
+            frm.refresh_field('items');
+        } else {
+            frappe.msgprint(__('Please set a Schedule Date in the parent document.'));
+        }
     }
 });
 
