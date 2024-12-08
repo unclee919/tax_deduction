@@ -486,62 +486,7 @@ frappe.ui.form.on('SUb BOQ', {
     }
 });
 
-frappe.ui.form.on('Sub BOQ', {
-        refresh: function (frm) {
-            frm.add_custom_button(__('Map to BOQ'), async function () {
-                if (!frm.doc.project_name) {
-                    frappe.msgprint(__('Please enter a Project Name in the main document.'));
-                    return;
-                }
-    
-                // Fetch the Lead document
-                const lead = await frappe.db.get_value('Lead', { custom_project_name: frm.doc.project_name }, 'name');
-    
-                let leadDoc;
-                if (lead && lead.name) {
-                    // Fetch existing Lead document
-                    leadDoc = await frappe.model.with_doc('Lead', lead.name);
-                } else {
-                    // Create a new Lead document
-                    leadDoc = frappe.model.get_new_doc('Lead');
-                    leadDoc.custom_project_name = frm.doc.project_name;
-                    leadDoc.lead_name = `Project - ${frm.doc.project_name}`;
-                }
-    
-                // Map BOQ rows
-                const boqMap = leadDoc.custom_bill_of_quantity.reduce((map, row) => {
-                    map[row.name] = row;
-                    return map;
-                }, {});
-    
-                frm.doc.bill_of_quantity.forEach(mainRow => {
-                    if (mainRow.name in boqMap) {
-                        // Update existing row
-                        const leadRow = boqMap[mainRow.name];
-                        Object.keys(mainRow).forEach(key => {
-                            if (key in leadRow) {
-                                leadRow[key] = mainRow[key];
-                            }
-                        });
-                    } else {
-                        // Add new row
-                        const newRow = frappe.model.add_child(leadDoc, 'custom_bill_of_quantity');
-                        Object.assign(newRow, mainRow);
-                    }
-                });
-    
-                try {
-                    // Save the updated Lead document
-                    await frappe.db.save_doc(leadDoc);
-                    frappe.msgprint(__('BOQ mapping process completed successfully.'));
-                } catch (error) {
-                    console.error('Error saving Lead document:', error);
-                    frappe.msgprint(__('There was an issue saving the Lead document.'));
-                }
-            });
-        }
-    });
-    
+
 
 
 
