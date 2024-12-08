@@ -487,7 +487,7 @@ frappe.ui.form.on('SUb BOQ', {
 });
 
 
-frappe.ui.form.on('Sub BOQ', {
+frappe.ui.form.on('Main Doctype', {
     refresh: function (frm) {
         // Add custom button to trigger mapping
         frm.add_custom_button(__('Map to BOQ'), async function () {
@@ -502,13 +502,19 @@ frappe.ui.form.on('Sub BOQ', {
 
                 let leadDoc;
                 if (leadData && leadData.name) {
-                    // Fetch the Lead document if it exists
+                    // Fetch the existing Lead document
                     leadDoc = await frappe.model.with_doc('Lead', leadData.name);
                 } else {
                     // Create a new Lead document if not found
                     leadDoc = frappe.model.get_new_doc('Lead');
                     leadDoc.custom_project_name = frm.doc.project_name;
                     leadDoc.lead_name = `Project - ${frm.doc.project_name}`;
+                    leadDoc.custom_bill_of_quantity = []; // Initialize child table
+                }
+
+                // Ensure child table exists
+                if (!leadDoc.custom_bill_of_quantity) {
+                    leadDoc.custom_bill_of_quantity = [];
                 }
 
                 // Map BOQ data from Main Doctype to Lead
