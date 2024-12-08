@@ -487,6 +487,63 @@ frappe.ui.form.on('SUb BOQ', {
 });
 
 
+frappe.ui.form.on('Sub BOQ', {
+    refresh: function (frm) {
+        // Add custom button to trigger mapping
+        frm.add_custom_button(__('Map to BOQ'), async function () {
+            if (!frm.doc.project_name) {
+                frappe.msgprint(__('Please enter a Project Name in the main document.'));
+                return;
+            }
+
+            try {
+                // Fetch the Lead document based on project_name
+                const leadData = await frappe.db.get_value('Lead', { custom_project_name: frm.doc.project_name }, 'name');
+
+                let leadDoc;
+                if (leadData && leadData.name) {
+                    // Fetch the Lead document if it exists
+                    leadDoc = await frappe.model.with_doc('Lead', leadData.name);
+                } else {
+                    // Create a new Lead document if not found
+                    leadDoc = frappe.model.get_new_doc('Lead');
+                    leadDoc.custom_project_name = frm.doc.project_name;
+                    leadDoc.lead_name = `Project - ${frm.doc.project_name}`;
+                }
+
+                // Map BOQ data from Main Doctype to Lead
+                const leadBOQMap = {};
+                leadDoc.custom_bill_of_quantity.forEach(row => {
+                    leadBOQMap[row.name] = row;
+                });
+
+                frm.doc.bill_of_quantity.forEach(mainRow => {
+                    let leadRow = Object.values(leadBOQMap).find(row => row.row_name === mainRow.row_name);
+
+                    if (leadRow) {
+                        // Update existing row in Lead BOQ
+                        Object.keys(mainRow).forEach(key => {
+                            if (key in leadRow) {
+                                leadRow[key] = mainRow[key];
+                            }
+                        });
+                    } else {
+                        // Insert a new row in Lead BOQ
+                        const newRow = frappe.model.add_child(leadDoc, 'custom_bill_of_quantity');
+                        Object.assign(newRow, mainRow);
+                    }
+                });
+
+                // Save the updated Lead document
+                await frappe.db.save_doc(leadDoc);
+                frappe.msgprint(__('BOQ mapping completed successfully.'));
+            } catch (error) {
+                console.error('Error during BOQ mapping:', error);
+                frappe.msgprint(__('An error occurred while mapping BOQ.'));
+            }
+        });
+    }
+});
 
 
 
