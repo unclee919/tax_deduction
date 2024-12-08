@@ -135,8 +135,8 @@ async function createItemsFromBoQ(frm) {
         }
     
         let code = '';
-        if (floorLevel) code += `${floorLevel}`;
-        if (roomNumber) code += `${roomNumber}`;
+        if (floorLevel) code += `FL${floorLevel}`;
+        if (roomNumber) code += `-RM${roomNumber}`;
         code += `-${baseCode}`;
         return code;
     }
@@ -455,77 +455,6 @@ frappe.ui.form.on('Sub BOQ', {
     },
 });
 
-// frappe.ui.form.on('Sub BOQ', {
-//     refresh: function (frm) {
-//         console.log('Sub BOQ refresh triggered');
-//         // Add custom button to trigger mapping
-//         frm.add_custom_button(__('Map to BOQ'), async function () {
-//             console.log('Map to BOQ button clicked');
-            
-//             if (!frm.doc.project_name) {
-//                 frappe.msgprint(__('Please enter a Project Name in the main document.'));
-//                 console.log('Missing Project Name');
-//                 return;
-//             }
-
-//             try {
-//                 console.log('Fetching Lead document');
-//                 const leadData = await frappe.db.get_value('Lead', { custom_project_name: frm.doc.project_name }, 'name');
-//                 console.log('Lead data fetched:', leadData);
-
-//                 let leadDoc;
-//                 if (leadData && leadData.name) {
-//                     leadDoc = await frappe.model.with_doc('Lead', leadData.name);
-//                 } else {
-//                     leadDoc = frappe.model.get_new_doc('Lead');
-//                     leadDoc.custom_project_name = frm.doc.project_name;
-//                     leadDoc.lead_name = `Project - ${frm.doc.project_name}`;
-//                 }
-
-//                 if (!leadDoc.custom_bill_of_quantity) {
-//                     leadDoc.custom_bill_of_quantity = [];
-//                 }
-
-//                 const leadBOQMap = {};
-//                 leadDoc.custom_bill_of_quantity.forEach(row => {
-//                     leadBOQMap[row.row_name] = row;
-//                 });
-
-//                 frm.doc.bill_of_quantity.forEach(mainRow => {
-//                     const leadRow = leadBOQMap[mainRow.row_name];
-//                     if (leadRow) {
-//                         Object.keys(mainRow).forEach(key => {
-//                             if (key in leadRow) {
-//                                 leadRow[key] = mainRow[key];
-//                             }
-//                         });
-//                     } else {
-//                         const newRow = frappe.model.add_child(leadDoc, 'custom_bill_of_quantity', 'custom_bill_of_quantity');
-//                         Object.assign(newRow, mainRow);
-//                         newRow.row_name = mainRow.row_name;
-//                     }
-//                 });
-
-//                 console.log('Saving updated Lead document');
-//                 await frappe.call({
-//                     method: 'frappe.client.save',
-//                     args: { doc: leadDoc },
-//                     callback: function (r) {
-//                         if (!r.exc) {
-//                             frappe.msgprint(__('BOQ mapping completed successfully.'));
-//                         } else {
-//                             console.error('Error during save:', r.exc);
-//                         }
-//                     }
-//                 });
-//             } catch (error) {
-//                 console.error('Error during BOQ mapping:', error);
-//                 frappe.msgprint(__('An error occurred while mapping BOQ. Please check the console for details.'));
-//             }
-//         });
-//     }
-// });
-
 frappe.ui.form.on('Sub BOQ', {
     refresh: function (frm) {
         console.log('Sub BOQ refresh triggered');
@@ -546,10 +475,8 @@ frappe.ui.form.on('Sub BOQ', {
 
                 let leadDoc;
                 if (leadData && leadData.name) {
-                    // Fetch existing Lead document if it exists
                     leadDoc = await frappe.model.with_doc('Lead', leadData.name);
                 } else {
-                    // Create a new Lead document if it doesn't exist
                     leadDoc = frappe.model.get_new_doc('Lead');
                     leadDoc.custom_project_name = frm.doc.project_name;
                     leadDoc.lead_name = `Project - ${frm.doc.project_name}`;
@@ -564,18 +491,15 @@ frappe.ui.form.on('Sub BOQ', {
                     leadBOQMap[row.row_name] = row;
                 });
 
-                // Loop through the rows in the Sub BOQ's bill_of_quantity field
                 frm.doc.bill_of_quantity.forEach(mainRow => {
                     const leadRow = leadBOQMap[mainRow.row_name];
                     if (leadRow) {
-                        // If row exists, update it
                         Object.keys(mainRow).forEach(key => {
                             if (key in leadRow) {
                                 leadRow[key] = mainRow[key];
                             }
                         });
                     } else {
-                        // If row doesn't exist, create a new row
                         const newRow = frappe.model.add_child(leadDoc, 'custom_bill_of_quantity', 'custom_bill_of_quantity');
                         Object.assign(newRow, mainRow);
                         newRow.row_name = mainRow.row_name;
@@ -601,20 +525,18 @@ frappe.ui.form.on('Sub BOQ', {
         });
     }
 });
-
 frappe.ui.form.on('Sub BOQ', {
     refresh: function(frm) {
-        // Trigger this when adding a new row in the 'bill_of_quantity' child table
-        frm.fields_dict['bill_of_quantity'].grid.add_custom_button(__('Add Row with Parent Values'), function() {
+        frm.fields_dict['bill_of_quantity'].grid.get_field('add_row').on('click', function() {
             // Check if the parent fields have values
-            var field1_value = frm.doc.floor_level;  // Replace with your actual parent field name
-            var field2_value = frm.doc.room_name;   // Replace with your actual parent field name
+            var field1_value = frm.doc.floor_level;  // Replace field1 with your actual field name
+            var field2_value = frm.doc.room_name;  // Replace field2 with your actual field name
             
             // If both fields have values, add those to the new row in the child table
             if (field1_value && field2_value) {
                 let child_row = frm.add_child('bill_of_quantity');
-                child_row.floor_level = field1_value;   // Map the value of floor_level from parent to child
-                child_row.room_number = field2_value;  // Map the value of room_name from parent to child
+                child_row.floor_level = field1_value;  // Map the value of field1 to child field1
+                child_row.room_number = field2_value;  // Map the value of field2 to child field2
                 frm.refresh_field('bill_of_quantity');
             } else {
                 frappe.msgprint(__('Please fill both parent fields before adding a row.'));
