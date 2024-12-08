@@ -1,16 +1,18 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:Sub-BOQ-{####}",
  "creation": "2024-12-07 22:17:00.581336",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "details_section",
   "project_name",
+  "project_names",
   "project_number",
   "column_break_emkz",
-  "area",
   "floor_level",
+  "room_name",
   "requirment_tab",
   "products_section",
   "bill_of_quantity"
@@ -24,7 +26,7 @@
   {
    "fieldname": "project_name",
    "fieldtype": "Link",
-   "label": "Project Name",
+   "label": "Project Code",
    "options": "Project"
   },
   {
@@ -53,22 +55,37 @@
    "options": "Bill of Quantity"
   },
   {
-   "fieldname": "area",
-   "fieldtype": "Data",
-   "label": "Area"
-  },
-  {
    "fieldname": "floor_level",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Floor Level"
+  },
+  {
+   "fetch_from": "project_name.project_name",
+   "fieldname": "project_names",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Project Name",
+   "options": "Project"
+  },
+  {
+   "fieldname": "room_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room Number"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-08 02:00:39.528046",
+ "modified": "2024-12-08 20:47:57.270284",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Sub BOQ",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
