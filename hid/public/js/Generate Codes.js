@@ -134,9 +134,9 @@ async function createItemsFromBoQ(frm) {
             .map(row => row.hid_code);
     
         // If there are no existing codes, start from 'base_code-001'
-        if (mainProductCodes.length === 0) {
-            return 'base_code-001';
-        }
+        // if (mainProductCodes.length === 0) {
+        //     return 'base_code-001';
+        // }
     
         // Extract the numeric part from the last code
         const lastCode = mainProductCodes.sort().pop();
@@ -210,6 +210,144 @@ async function createItemsFromBoQ(frm) {
         frappe.msgprint('There was an issue saving the document.');
     }
 }    
+
+//     function generateHidCode(baseCode, suffix = '') {
+//         return suffix ? `${baseCode}-${suffix}` : baseCode;
+//     }
+
+//     async function generateComponentHidCode(frm) {
+//         let lastMainProductCode = null;
+//         let lastMainProductProductCode = null;
+//         let currentSuffix = 'A';
+//         let floor_level = null;
+//         let room_number = null;
+//         let room_name = null;
+//         let area = null;
+//         let building_number = null;
+
+
+//         try {
+//             for (let idx = 0; idx < frm.doc.custom_bill_of_quantity.length; idx++) {
+//                 let row = frm.doc.custom_bill_of_quantity[idx];
+
+//                 if (row.is_component === 0) {
+//                     if (!row.hid_code) {
+//                         lastMainProductCode = generateNewBaseCode(frm);
+//                         await frappe.model.set_value(row.doctype, row.name, 'hid_code', lastMainProductCode);
+//                     } else {
+//                         lastMainProductCode = row.hid_code;
+//                     }
+
+//                     lastMainProductProductCode = row.product_code;
+//                     floor_level = row.floor_level;
+//                     room_number = row.room_number;
+//                     room_name = row.room_name;
+//                     area = row.area;
+//                     building_number = row.building_number;
+//                     currentSuffix = 'A';
+//                 } else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode && !row.hid_code) {
+//                     let componentHidCode = generateHidCode(lastMainProductCode, currentSuffix);
+//                     await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
+//                     await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
+//                     await frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level);
+//                     await frappe.model.set_value(row.doctype, row.name, 'room_number', room_number);
+//                    await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
+//                     await frappe.model.set_value(row.doctype, row.name, 'area', area);
+//                     await frappe.model.set_value(row.doctype, row.name, 'building_number', building_number);
+//                     // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
+//                     // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
+//                     currentSuffix = String.fromCharCode(currentSuffix.charCodeAt(0) + 1);
+//                 }
+//             }
+
+//             frm.refresh_field('custom_bill_of_quantity');
+//         } catch (error) {
+//             console.error("Error processing HID code generation:", error);
+//         }
+//     }
+
+//     function generateNewBaseCode(frm) {
+//         const mainProductCodes = frm.doc.custom_bill_of_quantity
+//             .filter(row => row.is_component === 0 && row.hid_code)
+//             .map(row => row.hid_code);
+    
+//         // If there are no existing codes, start from 'base_code-001'
+//         if (mainProductCodes.length === 0) {
+//             return 'base_code-001';
+//         }
+    
+//         // Extract the numeric part from the last code
+//         const lastCode = mainProductCodes.sort().pop();
+//         const [prefix, number] = lastCode.split('-');
+    
+//         // Increment the number part and format it to three digits
+//         const newNumber = String(parseInt(number, 10) + 1).padStart(3, '0');
+    
+//         return `${prefix}-${newNumber}`;
+//     }
+    
+//     for (const row of frm.doc.custom_bill_of_quantity) {
+//         console.log("Processing row:", row); 
+    
+//         // Ensure required fields for processing
+//         if (row.product_name && row.uom) {
+//             if (!productCountMap.has(row.base_code)) {
+//                 productCountMap.set(row.base_code, 0);
+//             }
+    
+//             const index = productCountMap.get(row.base_code) + 1;
+//             productCountMap.set(row.base_code, index);
+    
+//             if (row.is_component) {
+//                 await generateComponentHidCode(frm);
+//             } else {
+//                 const base_code = frm.is_new() ? row.base_code : row.base_code;
+//                 const formatindex = String(index).padStart(3, '0');
+//                 if (!row.hid_code) {row.hid_code = generateHidCode(base_code, formatindex);}
+//                 // row.hid_code = generateHidCode(base_code, formatindex);
+//             }
+    
+//             try {
+//                 const itemData = createItemData(row, frm);
+    
+//                 if (row.product_code) {
+//                     // Check if the item exists and update if needed
+//                     const exists = await checkItemExists(row.product_code);
+//                     if (exists) {
+//                         const existingItem = await getItem(row.product_code);
+//                         if (existingItem && hasDifferences(existingItem, itemData)) {
+//                             await updateItem(row.product_code, itemData);
+//                             itemsUpdated++;
+//                         } else {
+//                             itemsSkipped++;
+//                             console.log(`No changes detected for item with product_code "${row.product_code}".`);
+//                         }
+//                     } else {
+//                         await createItem(itemData); // Create item if it doesn't exist
+//                         itemsCreated++;
+//                     }
+//                 } else {
+//                     // Create a new item if product_code is missing
+//                     await createItem(itemData);
+//                     itemsCreated++;
+//                     console.log(`Created new item without product_code for row:`, row);
+//                 }
+//             } catch (err) {
+//                 console.error(`Error processing item:`, err);
+//                 itemsSkipped++;
+//             }
+//         }
+//     }    
+    
+//     // Attempt to save the form and display results
+//     try {
+//         await frm.save();
+//         // frappe.msgprint(`Items creation process completed. Created: ${itemsCreated}, Updated: ${itemsUpdated}, Skipped: ${itemsSkipped}`);
+//     } catch (err) {
+//         console.error('Error saving document:', err);
+//         frappe.msgprint('There was an issue saving the document.');
+//     }
+// }    
 
 function createItemData(row, frm) {
     return {

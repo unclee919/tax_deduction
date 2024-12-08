@@ -416,10 +416,8 @@
    "fetch_from": "product_name.code",
    "fieldname": "base_code",
    "fieldtype": "Data",
-   "hidden": 1,
    "in_list_view": 1,
-   "label": "base_code",
-   "no_copy": 1
+   "label": "base_code"
   },
   {
    "columns": 1,
@@ -583,7 +581,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-30 22:46:51.778505",
+ "modified": "2024-12-05 01:22:26.590669",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
