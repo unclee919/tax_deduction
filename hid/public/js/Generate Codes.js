@@ -458,6 +458,7 @@ async function createMaterialRequest(frm) {
             item.item_name = row.product_name;
             item.stock_uom = row.uom;
             item.qty = row.qty;
+            item.custom_hid_code = row.hid_code;
             item.schedule_date = frappe.datetime.nowdate();
             item.custom_supplier = row.supplier;
             item.warehouse = frm.doc.custom_warhouse;
