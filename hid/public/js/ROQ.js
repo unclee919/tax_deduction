@@ -478,6 +478,15 @@ frappe.ui.form.on('Material Request', {
                     }
                 });
             }
+            Promise.all(update_promises)
+            .then(() => {
+                console.log("All updates completed.");
+                frm.save(); // Save the form after updates
+                frm.refresh();
+            })
+            .catch(error => {
+                console.error("Error during updates:", error);
+            });
 
         });
     }
