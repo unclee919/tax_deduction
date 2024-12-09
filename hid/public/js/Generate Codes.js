@@ -455,6 +455,7 @@ async function createMaterialRequest(frm) {
         frm.doc.custom_bill_of_quantity.forEach(row => {
             const item = frappe.model.add_child(new_doc, 'Material Request Item', 'items');
             item.item_code = row.product_code;
+            // item.custom_hid_code = row.hid_code;
             item.item_name = row.product_name;
             item.stock_uom = row.uom;
             item.qty = row.qty;
