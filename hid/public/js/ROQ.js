@@ -321,7 +321,7 @@ frappe.ui.form.on('Material Request', {
                             // Create a new RFQ document
                             let rfq = frappe.model.get_new_doc('Request for Quotation');
                             rfq.transaction_date = frappe.datetime.now_date();
-                            rfq.supplier = item.custom_supplier;
+                            // rfq.supplier = item.custom_supplier;
                             rfq.status = 'Draft';
                             
                             rfq.message_for_supplier = "Please supply the specified items at the best possible rates";
