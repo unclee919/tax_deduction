@@ -130,10 +130,10 @@ async function createItemsFromBoQ(frm) {
     
         // Add floor level and room number first, with a hyphen between them if both are present
         if (floorLevel && roomNumber) {
-            code += `FL${floorLevel}-RM${roomNumber}`;
+            code += `${floorLevel}-${roomNumber}`;
         } else {
-            if (floorLevel) code += `FL${floorLevel}`;
-            if (roomNumber) code += `RM${roomNumber}`;
+            if (floorLevel) code += `${floorLevel}`;
+            if (roomNumber) code += `${roomNumber}`;
         }
     
         // Add base code next
@@ -210,8 +210,8 @@ async function createItemsFromBoQ(frm) {
         // If there are no existing codes, start from 'base_code-001'
         let baseCode = 'base_code-001';
         if (mainProductCodes.length === 0) {
-            if (floorLevel) baseCode += `-FL${floorLevel}`;
-            if (roomNumber) baseCode += `-RM${roomNumber}`;
+            if (floorLevel) baseCode += `-${floorLevel}`;
+            if (roomNumber) baseCode += `-${roomNumber}`;
             return baseCode;
         }
     
@@ -224,10 +224,10 @@ async function createItemsFromBoQ(frm) {
     
         baseCode = `${prefix}-${newNumber}`;
         if (floorLevel && roomNumber) {
-            baseCode = `-FL${floorLevel}-RM${roomNumber}` + baseCode;
+            baseCode = `-${floorLevel}-${roomNumber}` + baseCode;
         } else {
-            if (floorLevel) baseCode = `-FL${floorLevel}` + baseCode;
-            if (roomNumber) baseCode = `-RM${roomNumber}` + baseCode;
+            if (floorLevel) baseCode = `-${floorLevel}` + baseCode;
+            if (roomNumber) baseCode = `-${roomNumber}` + baseCode;
         }
         
     }
