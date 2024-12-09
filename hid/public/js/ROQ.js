@@ -323,6 +323,8 @@ frappe.ui.form.on('Material Request', {
                             rfq.transaction_date = frappe.datetime.now_date();
                             // rfq.supplier = item.custom_supplier;
                             rfq.status = 'Draft';
+                            rfq.custom_supplier = customSupplier; // Assign grouped supplier
+
                             
                             rfq.message_for_supplier = "Please supply the specified items at the best possible rates";
                             rfq.custom_material_request = frm.doc.name ;
