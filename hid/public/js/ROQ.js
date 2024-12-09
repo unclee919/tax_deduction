@@ -389,6 +389,7 @@ frappe.ui.form.on('Material Request', {
             });
         }
     },
+    
 
     on_submit: function(frm) {
         console.log('Material Request Submitted.');
@@ -475,6 +476,7 @@ frappe.ui.form.on('Material Request', {
                     }
                 });
             }
+
         });
     }
 });
