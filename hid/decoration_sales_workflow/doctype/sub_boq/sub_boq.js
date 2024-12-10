@@ -248,8 +248,10 @@ async function createItemsFromBoQ(frm) {
                 await generateComponentHidCode(frm);
             } else {
                 const base_code = frm.is_new() ? row.base_code : row.base_code;
+                const floorLevel = row.floor_level;
+                const roomNumber = row.room_name;
                 const formatindex = String(index).padStart(3, '0');
-                if (!row.hid_code) {row.hid_code = generateHidCode(base_code, formatindex);}
+                if (!row.hid_code) {row.hid_code = generateHidCode(floorLevel, roomNumber, base_code, formatindex);}
                 // row.hid_code = generateHidCode(base_code, formatindex);
             }
     
@@ -927,3 +929,33 @@ frappe.ui.form.on('Sub BOQ', {
         });
     }
 });
+
+frappe.ui.form.on('Sub BOQ', {
+    onload: function(frm) {
+        console.log('Onload Event Triggered');
+        console.log('Floor Level:', frm.doc.floor_level);
+        console.log('Room Name:', frm.doc.room_name);
+
+        // Use grid.on('row_created') to ensure values are set when a row is created
+        frm.fields_dict['bill_of_quantity'].grid.on('row_created', function(e, row) {
+            console.log('Row Created');
+            
+            // Ensure parent values are available
+            var parent_value_1 = frm.doc.floor_level; // Correct parent field
+            var parent_value_2 = frm.doc.room_name; // Correct parent field
+            console.log('Mapped Values:', parent_value_1, parent_value_2);
+            
+            // Set values in the newly created row
+            row.set_value('floor_level', parent_value_1); // Set child field value
+            row.set_value('child_field_2', parent_value_2); // Set child field value
+        });
+
+        // Also log whenever rows are inserted
+        frm.fields_dict['bill_of_quantity'].grid.on('row_inserted', function(e, row) {
+            console.log('Row Inserted');
+        });
+    }
+});
+
+
+

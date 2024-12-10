@@ -733,3 +733,191 @@ frappe.ui.form.on('ID Project', {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// frappe.ui.form.on('Sub BOQ', {
+//     refresh: function (frm) {
+//         frm.add_custom_button(('Auto Fill'), function () {
+//             const selected_rows = frm.fields_dict.bill_of_quantity.grid.get_selected_children();
+//             if (selected_rows.length === 0) {
+//                 frappe.msgprint(('Please select rows in the table.'));
+//                 return;
+//             }
+//             const child_fields = Object.keys(frm.fields_dict.bill_of_quantity.grid.fields_map);
+//             const dialog = new frappe.ui.Dialog({
+//                 title: __('Auto Fill Rows'),
+//                 fields: [
+//                     {
+//                         fieldname: 'field_to_update',
+//                         label: 'Field to Update',
+//                         fieldtype: 'Select',
+//                         options: child_fields.join('\n'),
+//                         reqd: 1,
+//                     },
+//                     {
+//                         fieldname: 'value',
+//                         label: 'Value',
+//                         fieldtype: 'Data', // Default
+//                         reqd: 1,
+//                     },
+//                 ],
+//                 primary_action_label: __('Apply'),
+//                 primary_action: async (values) => {
+//                     console.log("Selected field to update:", values.field_to_update);
+//                     console.log("Value to apply:", values.value);
+//                     let promises = [];
+//                     selected_rows.forEach((row) => {
+//                         if (row && row.name) {
+//                             console.log("Processing row:", row.name);
+//                             promises.push(
+//                                 frappe.model.set_value(row.doctype, row.name, values.field_to_update, values.value)
+//                             );
+//                         }
+//                     });
+//                     try {
+//                         await Promise.all(promises);
+//                         frm.refresh_field('bill_of_quantity');
+//                         await frm.save();
+//                         frappe.msgprint(__('Rows updated and form saved successfully.'));
+//                     } catch (err) {
+//                         console.error('Failed to update rows or save the form:', err);
+//                         frappe.msgprint(__('An error occurred. Check the console for details.'));
+//                     }
+//                     dialog.hide();
+//                 },
+//             });
+//             dialog.fields_dict.field_to_update.$input.on('change', function () {
+//                 const selected_field = dialog.get_value('field_to_update');
+//                 console.log("Selected field:", selected_field);
+//                 const field_definition = frm.fields_dict.bill_of_quantity.grid.fields_map[selected_field];
+//                 if (field_definition) {
+//                     const field_type = field_definition.fieldtype || 'Data';
+//                     const options = field_definition.options || '';
+//                     dialog.fields_dict.value.df.fieldtype = field_type;
+//                     if (field_type === 'Select') {
+//                         dialog.fields_dict.value.df.options = options;
+//                     } else if (field_type === 'Link') {
+//                         dialog.fields_dict.value.df.options = field_definition.options;
+//                     }
+//                     dialog.fields_dict.value.refresh();
+//                 }
+//             });
+//             dialog.show();
+//         });
+//     },
+// });
+// frappe.ui.form.on('Sub BOQ', {
+//     refresh: function (frm) {
+//         frm.fields_dict['bill_of_quantity'].grid.add_custom_button('Add Multiple Rows', function () {
+//             frappe.prompt(
+//                 [
+//                     {
+//                         fieldname: 'number_of_rows',
+//                         fieldtype: 'Int',
+//                         label: 'Number of Rows',
+//                         reqd: 1
+//                     }
+//                 ],
+//                 function (data) {
+//                     if (data.number_of_rows > 0) {
+//                         for (let i = 0; i < data.number_of_rows; i++) {
+//                             let new_row = frm.add_child('bill_of_quantity');
+//                             new_row.some_field = "Default Value";
+//                         }
+//                         frm.refresh_field('bill_of_quantity');
+//                     } else {
+//                         frappe.msgprint(__('Please enter a valid number greater than 0.'));
+//                     }
+//                 },
+//                 __('Add Rows'),
+//                 __('Add')
+//             );
+//         });
+//     }
+// });
+// frappe.ui.form.on('Sub BOQ', {
+//     refresh: function(frm) {
+//         frm.add_custom_button(__('Map to Lead'), function() {
+//             frm.trigger('map_to_lead'); // Trigger the mapping function
+//         });
+//         if (!frm.doc.project_name) {
+//             frm.remove_custom_button(__('Map to Lead'));
+//         }
+//     },
+//     map_to_lead: function(frm) {
+//         if (!frm.doc.project_name) {
+//             frappe.msgprint(__('Please ensure the Project Name is filled.'));
+//             return;
+//         }
+//         frappe.call({
+//             method: 'frappe.client.get_list',
+//             args: {
+//                 doctype: 'Lead',
+//                 filters: {
+//                     custom_project_name: frm.doc.project_name,  // Match with custom_project_name in Lead
+//                 },
+//                 fields: ['name', 'custom_bill_of_quantity']
+//             },
+//             callback: function(response) {
+//                 const lead_records = response.message;
+//                 if (lead_records.length === 0) {
+//                     frappe.msgprint(__('No Lead record found for the given Project Name.'));
+//                     return;
+//                 }
+//                 const lead_name = lead_records[0].name;
+//                 frappe.call({
+//                     method: 'frappe.client.get',
+//                     args: {
+//                         doctype: 'Lead',
+//                         name: lead_name
+//                     },
+//                     callback: function(lead_response) {
+//                         const lead_doc = lead_response.message;
+//                         const existing_rows = lead_doc.custom_bill_of_quantity || [];
+//                         const existing_product_codes = new Set(existing_rows.map(row => row.product_code));
+//                         frm.doc.bill_of_quantity.forEach(row => {
+//                             if (!existing_product_codes.has(row.product_code)) {
+//                                 const new_row = {};
+//                                 for (const field in row) {
+//                                     if (!['doctype', 'name', 'parent', 'parentfield', 'parenttype'].includes(field)) {
+//                                         new_row[field] = row[field];
+//                                     }
+//                                 }
+//                                 lead_doc.custom_bill_of_quantity.push(new_row);
+//                             }
+//                         });
+//                         frappe.call({
+//                             method: 'frappe.client.save',
+//                             args: {
+//                                 doc: lead_doc
+//                             },
+//                             callback: function(save_response) {
+//                                 frappe.msgprint(__('Data from Sub BOQ has been successfully mapped to Lead: ') + lead_doc.name);
+//                             },
+//                             error: function(err) {
+//                                 frappe.msgprint(__('An error occurred while saving the Lead.'));
+//                                 console.error(err);
+//                             }
+//                         });
+//                     }
+//                 });
+//             },
+//             error: function(err) {
+//                 frappe.msgprint(__('An error occurred while fetching the Lead.'));
+//                 console.error(err);
+//             }
+//         });
+//     }
+// });

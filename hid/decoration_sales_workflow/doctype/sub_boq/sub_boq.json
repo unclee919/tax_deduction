@@ -59,7 +59,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Floor Level"
+   "label": "Floor Level",
+   "options": "parent.floor_level"
   },
   {
    "fetch_from": "project_name.project_name",
@@ -81,7 +82,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-09 00:11:57.557085",
+ "modified": "2024-12-10 01:59:30.128152",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Sub BOQ",
