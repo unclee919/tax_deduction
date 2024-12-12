@@ -154,35 +154,43 @@ async function createItemsFromBoQ(frm) {
         let lastMainProductCode = null;
         let lastMainProductProductCode = null;
         let currentSuffix = 'A';
-        let floorLevel = null;
-        let roomNumber = null;
+        let floor_level = null;
+        let room_number = null;
+        let room_name = null;
+        let area = null;
+        let building_number = null;
     
         try {
             // Loop through the 'bill_of_quantity' child table in the form
             for (let idx = 0; idx < frm.doc.bill_of_quantity.length; idx++) {
-                let row = frm.doc.bill_of_quantity[idx];
-                floorLevel = row.floor_level || null;  // Use the row's floor_level if available
-                roomNumber = row.room_name || null;    // Use the row's room_number if available
-    
+                let row = frm.doc.bill_of_quantity[idx];    
                 // If the row is not a component
                 if (row.is_component === 0) {
                     if (!row.hid_code) {
-                        lastMainProductCode = generateNewBaseCode(frm, floorLevel, roomNumber);
+                        lastMainProductCode = generateNewBaseCode(frm);
                         await frappe.model.set_value(row.doctype, row.name, 'hid_code', lastMainProductCode);
                     } else {
                         lastMainProductCode = row.hid_code;
                     }
-    
                     lastMainProductProductCode = row.product_code;
-                    currentSuffix = 'A'; // Reset suffix to 'A' for a new main product
+                    floor_level = row.floor_level;
+                    room_number = row.room_number;
+                    room_name = row.room_name;
+                    area = row.area;
+                    building_number = row.building_number;
+                    currentSuffix = 'A';
                 }
                 // If the row is a component and the necessary codes exist
                 else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode && !row.hid_code) {
-                    let componentHidCode = generateHidCode(floorLevel, roomNumber, lastMainProductCode, currentSuffix);
+                    let componentHidCode = generateHidCode( lastMainProductCode, currentSuffix);
 
                     await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
                     await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
-    
+                    await frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level);
+                    await frappe.model.set_value(row.doctype, row.name, 'room_number', room_number);
+                    await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
+                    await frappe.model.set_value(row.doctype, row.name, 'area', area);
+                    await frappe.model.set_value(row.doctype, row.name, 'building_number', building_number);
                     // Increment suffix for the next component
                     currentSuffix = String.fromCharCode(currentSuffix.charCodeAt(0) + 1);
                     
@@ -561,17 +569,17 @@ function updatetotals(frm) {
 // Attach event handlers
 frappe.ui.form.on('Sub BOQ', {
     refresh: function(frm) {
-        frm.add_custom_button(__('Update Margins'), function() {
-            frm.doc.bill_of_quantity.forEach(row => {
-                calculateMargins(frm, row.doctype, row.name);
-            });
-            frm.save();
-        });
+        // frm.add_custom_button(__('Update Margins'), function() {
+        //     frm.doc.bill_of_quantity.forEach(row => {
+        //         calculateMargins(frm, row.doctype, row.name);
+        //     });
+        //     frm.save();
+        // });
         
         
-        frm.add_custom_button(__('Initiate Pricing Request'), function() {
-            createMaterialRequest(frm);
-        });
+        // frm.add_custom_button(__('Initiate Pricing Request'), function() {
+        //     createMaterialRequest(frm);
+        // });
 
         frm.add_custom_button(__('Create - Update Items'), function() {
             createItemsFromBoQ(frm);
@@ -691,17 +699,102 @@ frappe.ui.form.on('Sub BOQ', {
     }
 });
 
+// frappe.ui.form.on('Sub BOQ', {
+//     refresh: function (frm) {
+//         frm.add_custom_button(('Auto Fill'), function () {
+//             const selected_rows = frm.fields_dict.bill_of_quantity.grid.get_selected_children();
+
+//             if (selected_rows.length === 0) {
+//                 frappe.msgprint(('Please select rows in the table.'));
+//                 return;
+//             }
+
+//             const child_fields = Object.keys(frm.fields_dict.bill_of_quantity.grid.fields_map);
+//             const dialog = new frappe.ui.Dialog({
+//                 title: __('Auto Fill Rows'),
+//                 fields: [
+//                     {
+//                         fieldname: 'field_to_update',
+//                         label: 'Field to Update',
+//                         fieldtype: 'Select',
+//                         options: child_fields.join('\n'),
+//                         reqd: 1,
+//                     },
+//                     {
+//                         fieldname: 'value',
+//                         label: 'Value',
+//                         fieldtype: 'Data', // Default
+//                         reqd: 1,
+//                     },
+//                 ],
+//                 primary_action_label: __('Apply'),
+//                 primary_action: async (values) => {
+//                     console.log("Selected field to update:", values.field_to_update);
+//                     console.log("Value to apply:", values.value);
+
+//                     let promises = [];
+//                     selected_rows.forEach((row) => {
+//                         if (row && row.name) {
+//                             console.log("Processing row:", row.name);
+
+//                             promises.push(
+//                                 frappe.model.set_value(row.doctype, row.name, values.field_to_update, values.value)
+//                             );
+//                         }
+//                     });
+
+//                     try {
+//                         await Promise.all(promises);
+//                         frm.refresh_field('bill_of_quantity');
+//                         await frm.save();
+//                         frappe.msgprint(__('Rows updated and form saved successfully.'));
+//                     } catch (err) {
+//                         console.error('Failed to update rows or save the form:', err);
+//                         frappe.msgprint(__('An error occurred. Check the console for details.'));
+//                     }
+
+//                     dialog.hide();
+//                 },
+//             });
+
+//             dialog.fields_dict.field_to_update.$input.on('change', function () {
+//                 const selected_field = dialog.get_value('field_to_update');
+//                 console.log("Selected field:", selected_field);
+
+//                 const field_definition = frm.fields_dict.bill_of_quantity.grid.fields_map[selected_field];
+//                 if (field_definition) {
+//                     const field_type = field_definition.fieldtype || 'Data';
+//                     const options = field_definition.options || '';
+
+//                     dialog.fields_dict.value.df.fieldtype = field_type;
+
+//                     if (field_type === 'Select') {
+//                         dialog.fields_dict.value.df.options = options;
+//                     } else if (field_type === 'Link') {
+//                         dialog.fields_dict.value.df.options = field_definition.options;
+//                     }
+
+//                     dialog.fields_dict.value.refresh();
+//                 }
+//             });
+
+//             dialog.show();
+//         });
+//     },
+// });
 frappe.ui.form.on('Sub BOQ', {
     refresh: function (frm) {
-        frm.add_custom_button(('Auto Fill'), function () {
+        frm.add_custom_button(__('Auto Fill'), function () {
             const selected_rows = frm.fields_dict.bill_of_quantity.grid.get_selected_children();
 
             if (selected_rows.length === 0) {
-                frappe.msgprint(('Please select rows in the table.'));
+                frappe.msgprint(__('Please select rows in the table.'));
                 return;
             }
 
             const child_fields = Object.keys(frm.fields_dict.bill_of_quantity.grid.fields_map);
+            console.log("Available child fields:", child_fields);
+
             const dialog = new frappe.ui.Dialog({
                 title: __('Auto Fill Rows'),
                 fields: [
@@ -727,8 +820,7 @@ frappe.ui.form.on('Sub BOQ', {
                     let promises = [];
                     selected_rows.forEach((row) => {
                         if (row && row.name) {
-                            console.log("Processing row:", row.name);
-
+                            console.log("Updating row:", row.name);
                             promises.push(
                                 frappe.model.set_value(row.doctype, row.name, values.field_to_update, values.value)
                             );
@@ -740,33 +832,66 @@ frappe.ui.form.on('Sub BOQ', {
                         frm.refresh_field('bill_of_quantity');
                         await frm.save();
                         frappe.msgprint(__('Rows updated and form saved successfully.'));
-                    } catch (err) {
-                        console.error('Failed to update rows or save the form:', err);
-                        frappe.msgprint(__('An error occurred. Check the console for details.'));
+                    } catch (error) {
+                        console.error('Error while updating rows:', error);
+                        frappe.msgprint(__('An error occurred while updating rows.'));
                     }
 
                     dialog.hide();
                 },
             });
 
+            // Dynamically update 'value' field based on selected 'field_to_update'
             dialog.fields_dict.field_to_update.$input.on('change', function () {
                 const selected_field = dialog.get_value('field_to_update');
                 console.log("Selected field:", selected_field);
 
                 const field_definition = frm.fields_dict.bill_of_quantity.grid.fields_map[selected_field];
+                console.log("Field definition retrieved:", field_definition);
+
                 if (field_definition) {
-                    const field_type = field_definition.fieldtype || 'Data';
-                    const options = field_definition.options || '';
+                    const value_field = dialog.fields_dict.value;
 
-                    dialog.fields_dict.value.df.fieldtype = field_type;
+                    // Destroy and recreate the 'value' field with updated fieldtype and options
+                    value_field.df.fieldtype = field_definition.fieldtype || 'Data';
+                    value_field.df.options = '';
 
-                    if (field_type === 'Select') {
-                        dialog.fields_dict.value.df.options = options;
-                    } else if (field_type === 'Link') {
-                        dialog.fields_dict.value.df.options = field_definition.options;
+                    // Recreate the value field based on the fieldtype
+                    switch (field_definition.fieldtype) {
+                        case 'Select':
+                            value_field.df.fieldtype = 'Select';
+                            value_field.df.options = field_definition.options || '';
+                            break;
+                        case 'Link':
+                            value_field.df.fieldtype = 'Link';
+                            value_field.df.options = field_definition.options || ''; // Assuming it links to a specific DocType
+                            break;
+                        case 'Currency':
+                        case 'Float':
+                        case 'Int':
+                            value_field.df.fieldtype = 'Float'; // Handle numerical types
+                            break;
+                        case 'Attach':
+                            value_field.df.fieldtype = 'Attach';
+                            break;
+                        case 'Text':
+                            value_field.df.fieldtype = 'Text';
+                            break;
+                        case 'Check':
+                            value_field.df.fieldtype = 'Check';
+                            break;
+                        default:
+                            value_field.df.fieldtype = 'Data';
+                            break;
                     }
 
-                    dialog.fields_dict.value.refresh();
+                    // Destroy the old field and re-render the new one
+                    value_field.clear_input();
+                    value_field.make_input();
+
+                    console.log("Updated value field:", value_field.df);
+                } else {
+                    console.error("Field definition missing for:", selected_field);
                 }
             });
 
@@ -818,26 +943,28 @@ frappe.ui.form.on('Sub BOQ', {
     }
 });
 
-frappe.ui.form.on('Sub BOQ', {
-    // Trigger when a new row is added in the 'bill_of_quantity' child table
-    bill_of_quantity_add(frm, cdt, cdn) {
-        console.log('New Row Added in Bill of Quantity');
+// frappe.ui.form.on('Sub BOQ', {
+//     // Trigger when a new row is added in the 'bill_of_quantity' child table
+//     bill_of_quantity_add(frm, cdt, cdn) {
+//         console.log('New Row Added in Bill of Quantity');
         
-        // Get the current row data
-        let row = locals[cdt][cdn];
+//         // Get the current row data
+//         let row = locals[cdt][cdn];
 
-        // Get values from the parent form
-        let mainField1Value = frm.doc.floor_level;  // Assuming floor_level is a field in the main form
-        let mainField2Value = frm.doc.room_name;    // Assuming room_name is another field in the main form
+//         // Get values from the parent form
+//         let mainField1Value = frm.doc.floor_level;  // Assuming floor_level is a field in the main form
+//         let mainField2Value = frm.doc.room_name;    // Assuming room_name is another field in the main form
 
-        // Set the values in the new row
-        frappe.model.set_value(cdt, cdn, 'floor_level', mainField1Value);  // Set floor_level in the child row
-        frappe.model.set_value(cdt, cdn, 'room_name', mainField2Value);    // Set room_name in the child row
+//         // Set the values in the new row
+//         frappe.model.set_value(cdt, cdn, 'floor_level', mainField1Value);  // Set floor_level in the child row
+//         frappe.model.set_value(cdt, cdn, 'room_name', mainField2Value);    // Set room_name in the child row
 
-        // Refresh the child table field to ensure UI is updated
-        frm.refresh_field('bill_of_quantity');
-    }
-});
+//         // Refresh the child table field to ensure UI is updated
+//         frm.refresh_field('bill_of_quantity');
+//     }
+// });
+// 
+
 
 frappe.ui.form.on('Sub BOQ', {
     refresh: function(frm) {
@@ -912,7 +1039,7 @@ frappe.ui.form.on('Sub BOQ', {
                                 doc: lead_doc
                             },
                             callback: function(save_response) {
-                                frappe.msgprint(__('Data from Sub BOQ has been successfully mapped to Lead: ') + lead_doc.name);
+                                frappe.msgprint(__('Data from Sub BOQ has been successfully mapped to Lead: ') + lead_doc.custom_project_name_actual);
                             },
                             error: function(err) {
                                 frappe.msgprint(__('An error occurred while saving the Lead.'));
@@ -929,33 +1056,45 @@ frappe.ui.form.on('Sub BOQ', {
         });
     }
 });
+// frappe.ui.form.on('Sub BOQ', {
+//     onload(frm) {
+//         console.log('Sub BOQ form loaded');
+//     },
+//     refresh(frm) {
+//         frm.add_custom_button('Add Row with Parent Data', function() {
+//             let row = frm.add_child('bill_of_quantity', {
+//                 floor_level: frm.doc.floor_level,
+//                 room_name: frm.doc.room_name,
+//                 // Add other fields if needed
+//             });
 
+//             frm.refresh_field('bill_of_quantity');
+//         });
+//     }
+// });
 frappe.ui.form.on('Sub BOQ', {
-    onload: function(frm) {
-        console.log('Onload Event Triggered');
-        console.log('Floor Level:', frm.doc.floor_level);
-        console.log('Room Name:', frm.doc.room_name);
+    onload(frm) {
+        console.log('Sub BOQ form loaded');
+    },
 
-        // Use grid.on('row_created') to ensure values are set when a row is created
-        frm.fields_dict['bill_of_quantity'].grid.on('row_created', function(e, row) {
-            console.log('Row Created');
-            
-            // Ensure parent values are available
-            var parent_value_1 = frm.doc.floor_level; // Correct parent field
-            var parent_value_2 = frm.doc.room_name; // Correct parent field
-            console.log('Mapped Values:', parent_value_1, parent_value_2);
-            
-            // Set values in the newly created row
-            row.set_value('floor_level', parent_value_1); // Set child field value
-            row.set_value('child_field_2', parent_value_2); // Set child field value
+    bill_of_quantity_add(frm, cdt, cdn) {
+        console.log('New Row Added in Bill of Quantity');
+
+        // Get the parent form's values
+        let floorLevel = frm.doc.floor_level;
+        let roomName = frm.doc.room_name;
+
+        // Manually add the row to the child table
+        let newRow = frm.add_child('bill_of_quantity', {
+            floor_level: floorLevel,   // Set parent value to new row
+            room_name: roomName       // Set parent value to new row
         });
 
-        // Also log whenever rows are inserted
-        frm.fields_dict['bill_of_quantity'].grid.on('row_inserted', function(e, row) {
-            console.log('Row Inserted');
-        });
+        // Refresh the child table field to ensure the new row is shown
+        frm.refresh_field('bill_of_quantity');
+
+        console.log('Row added with values from parent:', newRow);
     }
 });
-
 
 
