@@ -148,7 +148,9 @@ async function createItemsFromBoQ(frm) {
     
         return code;
     }
-    
+    function generateHidCodeComponent(baseCode, suffix = '') {
+        return suffix ? `${baseCode}-${suffix}` : baseCode;
+    }
     
     async function generateComponentHidCode(frm) {
         let lastMainProductCode = null;
@@ -182,7 +184,7 @@ async function createItemsFromBoQ(frm) {
                 }
                 // If the row is a component and the necessary codes exist
                 else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode && !row.hid_code) {
-                    let componentHidCode = generateHidCode( lastMainProductCode, currentSuffix);
+                    let componentHidCode = generateHidCodeComponent( lastMainProductCode, currentSuffix);
 
                     await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
                     await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
@@ -596,13 +598,13 @@ frappe.ui.form.on('Sub BOQ', {
         updateMappedFields(frm);
         
     },
-    custom_update_margin: function(frm) {
-        console.log("custom_update_margin event triggered");
-        frm.doc.bill_of_quantity.forEach(row => {
-            calculateMargins(frm, row.doctype, row.name);
-        });
-        frm.save();
-    },
+    // custom_update_margin: function(frm) {
+    //     console.log("custom_update_margin event triggered");
+    //     frm.doc.bill_of_quantity.forEach(row => {
+    //         calculateMargins(frm, row.doctype, row.name);
+    //     });
+    //     frm.save();
+    // },
     custom_custom_and_clearnce: function(frm) {
         updateMappedFields(frm);
     },
@@ -883,5 +885,195 @@ frappe.ui.form.on('Sub BOQ', {
     }
 });
 
+// frappe.ui.form.on('Sub BOQ', {
+//     refresh: function (frm) {
+//         // Add the custom button for mapping rows to Lead
+//         frm.add_custom_button(__('Map to Lead'), function () {
+//             frm.trigger('map_to_lead'); // Trigger the mapping process when the button is clicked
+//         });
+//     },
 
+//     map_to_lead: function (frm) {
+//         // Validate that there is a project_name set on the form
+//         if (!frm.doc.project_name) {
+//             frappe.msgprint(__('Please ensure the Project Name is filled.'));
+//             return;
+//         }
 
+//         // Get the list of Lead records where the custom_project_name matches
+//         frappe.call({
+//             method: 'frappe.client.get_list',
+//             args: {
+//                 doctype: 'Lead',
+//                 filters: {
+//                     custom_project_name: frm.doc.project_name  // Filter by project_name field in Lead
+//                 },
+//                 fields: ['name']
+//             },
+//             callback: function(response) {
+//                 const lead_records = response.message;
+
+//                 // If no Lead record is found, show an error
+//                 if (lead_records.length === 0) {
+//                     frappe.msgprint(__('No Lead record found for the given Project Name.'));
+//                     return;
+//                 }
+
+//                 // Get the name of the first Lead record
+//                 const lead_name = lead_records[0].name;
+
+//                 // Get the full Lead document to map the Sub BOQ rows
+//                 frappe.call({
+//                     method: 'frappe.client.get',
+//                     args: {
+//                         doctype: 'Lead',
+//                         name: lead_name
+//                     },
+//                     callback: function(lead_response) {
+//                         const lead_doc = lead_response.message;
+
+//                         // Initialize counter for successfully mapped rows
+//                         let mapped_count = 0;
+
+//                         // Loop through each row in the Sub BOQ table
+//                         frm.doc.bill_of_quantity.forEach((row) => {
+//                             if (row.hid_code) { // Only map rows with hid_code populated
+//                                 // Copy this row into the Lead's custom_bill_of_quantity
+//                                 lead_doc.custom_bill_of_quantity.push({
+//                                     "item": row.item,
+//                                     "hid_code": row.hid_code,
+//                                     "quantity": row.quantity,
+//                                     "unit": row.unit,
+//                                     "room_name": row.room_name,
+//                                     "supplier": row.supplier
+//                                 });
+//                                 mapped_count++; // Increment the counter for mapped rows
+//                             }
+//                         });
+
+//                         // If any rows were mapped, save the Lead document and show a success message
+//                         if (mapped_count > 0) {
+//                             frappe.call({
+//                                 method: 'frappe.client.save',
+//                                 args: {
+//                                     doc: lead_doc
+//                                 },
+//                                 callback: function() {
+//                                     frappe.msgprint(`${mapped_count} rows have been successfully mapped to Lead: ${lead_name}`);
+//                                 },
+//                                 error: function(err) {
+//                                     frappe.msgprint(__('An error occurred while saving the Lead.'));
+//                                     console.error(err);
+//                                 }
+//                             });
+//                         } else {
+//                             frappe.msgprint(__('No rows were mapped because none of the rows had an HID Code.'));
+//                         }
+//                     },
+//                     error: function(err) {
+//                         frappe.msgprint(__('An error occurred while fetching the Lead details.'));
+//                         console.error(err);
+//                     }
+//                 });
+//             },
+//             error: function(err) {
+//                 frappe.msgprint(__('An error occurred while fetching the Lead list.'));
+//                 console.error(err);
+//             }
+//         });
+//     }
+// });
+frappe.ui.form.on('Sub BOQ', {
+    refresh: function(frm) {
+        frm.add_custom_button(__('Map to Lead'), function () {
+            frm.trigger('map_to_lead');
+        });
+    },
+
+    map_to_lead: function(frm) {
+        if (!frm.doc.project_name) {
+            frappe.msgprint(__('Please ensure the Project Name is filled.'));
+            return;
+        }
+
+        // Fetch the Lead records based on project_name
+        frappe.call({
+            method: 'frappe.client.get_list',
+            args: {
+                doctype: 'Lead',
+                filters: { custom_project_name: frm.doc.project_name },
+                fields: ['name']
+            },
+            callback: function (response) {
+                const lead_records = response.message;
+
+                if (lead_records.length === 0) {
+                    frappe.msgprint(__('No Lead record found for the given Project Name.'));
+                    return;
+                }
+
+                const lead_name = lead_records[0].name;
+
+                frappe.call({
+                    method: 'frappe.client.get',
+                    args: { doctype: 'Lead', name: lead_name },
+                    callback: function (lead_response) {
+                        const lead_doc = lead_response.message;
+                        let mapped_count = 0;
+
+                        // Get the current rows from the Lead's child table (custom_bill_of_quantity)
+                        const child_table_length = lead_doc.custom_bill_of_quantity ? lead_doc.custom_bill_of_quantity.length : 0;
+
+                        // Iterate through the Sub BOQ's Bill of Quantity rows to map to Lead
+                        frm.doc.bill_of_quantity.forEach((row, index) => {
+                            if (row.hid_code) {
+                                let mapped_row = {};
+
+                                // Ensure no overwriting happens by manually mapping each field
+                                Object.keys(row).forEach((key) => {
+                                    if (key !== "__idx" && key !== "__hash") {
+                                        mapped_row[key] = row[key];
+                                    }
+                                });
+
+                                // Set a new unique index for this row in the Lead document
+                                mapped_row.__idx = child_table_length + mapped_count;  // Correct index order
+
+                                // Add the new row to the Lead's child table without affecting Sub BOQ's table
+                                lead_doc.custom_bill_of_quantity.push(mapped_row);
+                                mapped_count++;
+                            }
+                        });
+
+                        // If there are any mapped rows, save the Lead document with updated child rows
+                        if (mapped_count > 0) {
+                            frappe.call({
+                                method: 'frappe.client.save',
+                                args: {
+                                    doc: lead_doc
+                                },
+                                callback: function () {
+                                    frappe.msgprint(`${mapped_count} rows successfully mapped to Lead: ${lead_name}`);
+                                },
+                                error: function (err) {
+                                    frappe.msgprint(__('Error while saving the Lead.'));
+                                    console.error(err);
+                                }
+                            });
+                        } else {
+                            frappe.msgprint(__('No rows were mapped because none of the rows had an HID Code.'));
+                        }
+                    },
+                    error: function (err) {
+                        frappe.msgprint(__('Error fetching Lead details.'));
+                        console.error(err);
+                    }
+                });
+            },
+            error: function (err) {
+                frappe.msgprint(__('Error fetching Lead list.'));
+                console.error(err);
+            }
+        });
+    }
+});
