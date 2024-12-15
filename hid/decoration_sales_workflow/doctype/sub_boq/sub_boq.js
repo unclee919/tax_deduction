@@ -583,7 +583,7 @@ frappe.ui.form.on('Sub BOQ', {
         //     createMaterialRequest(frm);
         // });
 
-        frm.add_custom_button(__('Create - Update Items'), function() {
+        frm.add_custom_button('<i class="fa fa-cogs" style="margin-right: 5px; color: blue;"></i> <b>Create - Update Items</b>', function () {
             createItemsFromBoQ(frm);
         });
     },
@@ -648,59 +648,6 @@ frappe.ui.form.on('Sub BOQ', {
     }
 });
 
-
-
-frappe.ui.form.on('Sub BOQ', {
-    refresh: function (frm) {
-        const autoSaveInterval = 15 * 60 * 1000; // 5 minutes in milliseconds
-        let timeRemaining = autoSaveInterval / 1000; // in seconds
-
-        // Set auto-save interval if it's not set already
-        if (!frm.auto_save_interval) {
-            frm.auto_save_interval = setInterval(function () {
-                if (!frm.is_dirty()) return;
-                frm.save()
-                    .then(() => frappe.show_alert({ message: 'Auto-saved successfully!', indicator: 'green' }))
-                    .catch(err => console.error('Auto-save failed:', err));
-            }, autoSaveInterval);
-        }
-
-        // Initialize the countdown in the header only once
-        if (!frm.countdown_displayed) {
-            frm.countdown_displayed = true;
-
-            // Add countdown alert in the header (before tabs)
-            frm.dashboard.set_headline_alert(`<div id="auto-save-timer">Auto-saving in: 05:00</div>`, 'yellow');
-        }
-
-        // Countdown logic: update the countdown every second
-        if (!frm.countdown_interval) {
-            frm.countdown_interval = setInterval(function () {
-                timeRemaining--;
-
-                // Format the remaining time as mm:ss
-                let minutes = Math.floor(timeRemaining / 60);
-                let seconds = timeRemaining % 60;
-                minutes = minutes < 10 ? `0${minutes}` : minutes;
-                seconds = seconds < 10 ? `0${seconds}` : seconds;
-
-                // Update the existing countdown in the header
-                document.getElementById("auto-save-timer").innerText = `Auto-saving in: ${minutes}:${seconds}`;
-
-                if (timeRemaining <= 0) {
-                    timeRemaining = autoSaveInterval / 1000; // Reset timer when it reaches 0
-                }
-            }, 1000); // Update every second
-        }
-    },
-
-    on_unload: function (frm) {
-        // Clear intervals when the form is unloaded
-        if (frm.auto_save_interval) clearInterval(frm.auto_save_interval);
-        if (frm.countdown_interval) clearInterval(frm.countdown_interval);
-    }
-});
-
 frappe.ui.form.on('Sub BOQ', {
     refresh: function (frm) {
         // Customize the Add Row button
@@ -740,7 +687,7 @@ frappe.ui.form.on('Sub BOQ', {
 
 frappe.ui.form.on('Sub BOQ', {
     refresh: function (frm) {
-        frm.add_custom_button(('Auto Fill'), function () {
+        frm.add_custom_button('<i class="fa fa-bolt" style="font-size: 20px;"></i> <b style="font-size: 18px;">Auto Fill</b>', function () {
             // Collect selected rows from the child table
             const selected_rows = frm.fields_dict.bill_of_quantity.grid.get_selected();
             console.log("Selected rows:", selected_rows);
@@ -885,112 +832,14 @@ frappe.ui.form.on('Sub BOQ', {
     }
 });
 
-// frappe.ui.form.on('Sub BOQ', {
-//     refresh: function (frm) {
-//         // Add the custom button for mapping rows to Lead
-//         frm.add_custom_button(__('Map to Lead'), function () {
-//             frm.trigger('map_to_lead'); // Trigger the mapping process when the button is clicked
-//         });
-//     },
-
-//     map_to_lead: function (frm) {
-//         // Validate that there is a project_name set on the form
-//         if (!frm.doc.project_name) {
-//             frappe.msgprint(__('Please ensure the Project Name is filled.'));
-//             return;
-//         }
-
-//         // Get the list of Lead records where the custom_project_name matches
-//         frappe.call({
-//             method: 'frappe.client.get_list',
-//             args: {
-//                 doctype: 'Lead',
-//                 filters: {
-//                     custom_project_name: frm.doc.project_name  // Filter by project_name field in Lead
-//                 },
-//                 fields: ['name']
-//             },
-//             callback: function(response) {
-//                 const lead_records = response.message;
-
-//                 // If no Lead record is found, show an error
-//                 if (lead_records.length === 0) {
-//                     frappe.msgprint(__('No Lead record found for the given Project Name.'));
-//                     return;
-//                 }
-
-//                 // Get the name of the first Lead record
-//                 const lead_name = lead_records[0].name;
-
-//                 // Get the full Lead document to map the Sub BOQ rows
-//                 frappe.call({
-//                     method: 'frappe.client.get',
-//                     args: {
-//                         doctype: 'Lead',
-//                         name: lead_name
-//                     },
-//                     callback: function(lead_response) {
-//                         const lead_doc = lead_response.message;
-
-//                         // Initialize counter for successfully mapped rows
-//                         let mapped_count = 0;
-
-//                         // Loop through each row in the Sub BOQ table
-//                         frm.doc.bill_of_quantity.forEach((row) => {
-//                             if (row.hid_code) { // Only map rows with hid_code populated
-//                                 // Copy this row into the Lead's custom_bill_of_quantity
-//                                 lead_doc.custom_bill_of_quantity.push({
-//                                     "item": row.item,
-//                                     "hid_code": row.hid_code,
-//                                     "quantity": row.quantity,
-//                                     "unit": row.unit,
-//                                     "room_name": row.room_name,
-//                                     "supplier": row.supplier
-//                                 });
-//                                 mapped_count++; // Increment the counter for mapped rows
-//                             }
-//                         });
-
-//                         // If any rows were mapped, save the Lead document and show a success message
-//                         if (mapped_count > 0) {
-//                             frappe.call({
-//                                 method: 'frappe.client.save',
-//                                 args: {
-//                                     doc: lead_doc
-//                                 },
-//                                 callback: function() {
-//                                     frappe.msgprint(`${mapped_count} rows have been successfully mapped to Lead: ${lead_name}`);
-//                                 },
-//                                 error: function(err) {
-//                                     frappe.msgprint(__('An error occurred while saving the Lead.'));
-//                                     console.error(err);
-//                                 }
-//                             });
-//                         } else {
-//                             frappe.msgprint(__('No rows were mapped because none of the rows had an HID Code.'));
-//                         }
-//                     },
-//                     error: function(err) {
-//                         frappe.msgprint(__('An error occurred while fetching the Lead details.'));
-//                         console.error(err);
-//                     }
-//                 });
-//             },
-//             error: function(err) {
-//                 frappe.msgprint(__('An error occurred while fetching the Lead list.'));
-//                 console.error(err);
-//             }
-//         });
-//     }
-// });
 frappe.ui.form.on('Sub BOQ', {
-    refresh: function(frm) {
-        frm.add_custom_button(__('Map to Lead'), function () {
+    refresh: function (frm) {
+        frm.add_custom_button('<i class="fa fa-map" style="margin-right: 5px; color: blue;"></i> <b>Map to BOQ</b>', function () {
             frm.trigger('map_to_lead');
         });
     },
 
-    map_to_lead: function(frm) {
+    map_to_lead: function (frm) {
         if (!frm.doc.project_name) {
             frappe.msgprint(__('Please ensure the Project Name is filled.'));
             return;
@@ -1007,45 +856,52 @@ frappe.ui.form.on('Sub BOQ', {
             callback: function (response) {
                 const lead_records = response.message;
 
-                if (lead_records.length === 0) {
+                if (!lead_records || lead_records.length === 0) {
                     frappe.msgprint(__('No Lead record found for the given Project Name.'));
                     return;
                 }
 
                 const lead_name = lead_records[0].name;
 
+                // Fetch the selected Lead document
                 frappe.call({
                     method: 'frappe.client.get',
                     args: { doctype: 'Lead', name: lead_name },
                     callback: function (lead_response) {
                         const lead_doc = lead_response.message;
+
+                        if (!lead_doc.custom_bill_of_quantity) {
+                            lead_doc.custom_bill_of_quantity = [];
+                        }
+
                         let mapped_count = 0;
 
-                        // Get the current rows from the Lead's child table (custom_bill_of_quantity)
-                        const child_table_length = lead_doc.custom_bill_of_quantity ? lead_doc.custom_bill_of_quantity.length : 0;
+                        // Determine starting index for new rows in the Lead's child table
+                        const current_row_count = lead_doc.custom_bill_of_quantity.length;
 
                         // Iterate through the Sub BOQ's Bill of Quantity rows to map to Lead
-                        frm.doc.bill_of_quantity.forEach((row, index) => {
+                        frm.doc.bill_of_quantity.forEach((row) => {
                             if (row.hid_code) {
-                                let mapped_row = {};
+                                // Create a new row object for mapping
+                                const new_row = {};
 
-                                // Ensure no overwriting happens by manually mapping each field
+                                // Copy all fields except Frappe-specific metadata
                                 Object.keys(row).forEach((key) => {
-                                    if (key !== "__idx" && key !== "__hash") {
-                                        mapped_row[key] = row[key];
+                                    if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash"].includes(key)) {
+                                        new_row[key] = row[key];
                                     }
                                 });
 
-                                // Set a new unique index for this row in the Lead document
-                                mapped_row.__idx = child_table_length + mapped_count;  // Correct index order
+                                // Assign a new index (1-based indexing)
+                                new_row.idx = current_row_count + mapped_count + 1;
 
-                                // Add the new row to the Lead's child table without affecting Sub BOQ's table
-                                lead_doc.custom_bill_of_quantity.push(mapped_row);
+                                // Add the new row to the Lead's child table
+                                lead_doc.custom_bill_of_quantity.push(new_row);
                                 mapped_count++;
                             }
                         });
 
-                        // If there are any mapped rows, save the Lead document with updated child rows
+                        // If there are mapped rows, save the updated Lead document
                         if (mapped_count > 0) {
                             frappe.call({
                                 method: 'frappe.client.save',
@@ -1053,7 +909,7 @@ frappe.ui.form.on('Sub BOQ', {
                                     doc: lead_doc
                                 },
                                 callback: function () {
-                                    frappe.msgprint(`${mapped_count} rows successfully mapped to Lead: ${lead_name}`);
+                                    frappe.msgprint(`${mapped_count} rows successfully mapped to Lead: ${custom_project_name_actual}`);
                                 },
                                 error: function (err) {
                                     frappe.msgprint(__('Error while saving the Lead.'));

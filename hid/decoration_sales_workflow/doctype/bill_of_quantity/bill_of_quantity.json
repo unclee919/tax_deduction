@@ -3,6 +3,7 @@
  "allow_rename": 1,
  "creation": "2024-08-07 02:46:38.805003",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "details_section",
@@ -18,9 +19,6 @@
   "date_of_packge",
   "room_name",
   "room_number",
-  "is_component",
-  "parent_item",
-  "base_code",
   "product_code",
   "secondary_image",
   "column_break_cepk",
@@ -31,39 +29,56 @@
   "supplier_part_number",
   "supplier",
   "manufacture_notes",
-  "designer_item_code",
-  "reselected_item_part_no",
-  "supplier_name",
-  "supplier_frozen_check",
-  "is_created",
-  "confirm_dimension",
   "specification_details",
   "reference_document",
   "descripition",
   "attach_secondary_image",
-  "manufacture_notes_copy",
   "custom_primary_picture_copy",
+  "manufacture_notes_copy",
   "procurement_and_purchasing_section",
   "procurement_note",
   "availability",
-  "status_section_section",
+  "percentage_of_vat_per_supplier",
+  "unit_price_after_discount_with_vat",
+  "currency",
+  "paid",
+  "exchange_rate",
+  "column_break_arih",
   "status",
+  "old_price",
+  "transit_fees",
+  "unit_price_after_discount_without_vat_copy",
+  "unit_price_after_discount_with_vat_sar",
+  "priority",
+  "supplier_delivery_date",
+  "status_section_section",
   "logisitic_status",
-  "coordination_status",
-  "delivered_status",
-  "to_data",
+  "ksa_delivery_date",
+  "warehouse_location",
+  "final_distention",
   "column_break_ih58",
+  "delivered_status",
+  "site_delivery_note",
+  "site_delivery_date",
+  "section_break_lytz",
+  "comment",
+  "checked",
+  "coordination_status",
+  "document_coding",
+  "column_break_htcg",
+  "hid_item_code_boq",
+  "designer_item_code",
+  "code_remark",
+  "coordination_name",
+  "section_break_yloj",
   "qaqc",
   "samples_situation",
-  "qaqc_mir_status",
-  "site_delivery_note",
-  "qaqc_wir_status",
   "reselection_status",
   "paid_by",
-  "section_break_lytz",
-  "currency",
-  "exchange_rate",
-  "column_break_htcg",
+  "column_break_uscv",
+  "qaqc_wir_status",
+  "to_data",
+  "qaqc_mir_status",
   "budgting_costing_section",
   "initial_cost_in_product_currency",
   "initial_cost_per_unit",
@@ -82,7 +97,16 @@
   "customiziation",
   "stocking",
   "installation",
-  "profit_margin"
+  "profit_margin",
+  "more_information_section",
+  "is_component",
+  "parent_item",
+  "base_code",
+  "reselected_item_part_no",
+  "supplier_name",
+  "supplier_frozen_check",
+  "is_created",
+  "confirm_dimension"
  ],
  "fields": [
   {
@@ -325,7 +349,7 @@
   {
    "fieldname": "section_break_lytz",
    "fieldtype": "Section Break",
-   "label": "Product Info"
+   "label": "Coordination"
   },
   {
    "fieldname": "column_break_htcg",
@@ -369,7 +393,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Item Status",
+   "label": "Procurement Status",
    "options": "\nUnder design\nUnder review (DU)\nReady for Purchase\nQuoted\nSent to Payment\nPaid\nUnder fabrication\nOut of Stock\nDelivered WH\nOld Stock"
   },
   {
@@ -452,9 +476,14 @@
    "options": "\nDelivered - WH\nDelivered- Site\nStock\nPartial - Delivered - WH\nPartial - Delivered - Site"
   },
   {
+   "bold": 1,
    "fieldname": "coordination_status",
    "fieldtype": "Select",
+   "in_filter": 1,
+   "in_global_search": 1,
    "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
    "label": "Coordination Status",
    "options": "\nUnder Design\nUnder Coordination\nUnder Procurement\nUnder Fabrication\nShipping\nDelivered - WH\nDelivered - Site\nInstalled At Site"
   },
@@ -517,7 +546,7 @@
   {
    "fieldname": "status_section_section",
    "fieldtype": "Section Break",
-   "label": "Status Section"
+   "label": "Logisitic"
   },
   {
    "fieldname": "column_break_ih58",
@@ -540,25 +569,254 @@
    "label": "Supplier Name"
   },
   {
+   "bold": 1,
    "fieldname": "procurement_and_purchasing_section",
    "fieldtype": "Section Break",
    "label": "Procurement And Purchasing"
   },
   {
+   "bold": 1,
    "fieldname": "procurement_note",
    "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
    "label": "Procurement Note"
   },
   {
+   "bold": 1,
    "fieldname": "availability",
    "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
    "label": "Availability"
+  },
+  {
+   "fieldname": "column_break_arih",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "old_price",
+   "fieldtype": "Currency",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Old Price"
+  },
+  {
+   "bold": 1,
+   "fieldname": "percentage_of_vat_per_supplier",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Percentage of VAT per Supplier"
+  },
+  {
+   "bold": 1,
+   "fieldname": "transit_fees",
+   "fieldtype": "Currency",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Transit Fees"
+  },
+  {
+   "bold": 1,
+   "fieldname": "unit_price_after_discount_with_vat",
+   "fieldtype": "Currency",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Unit Price After Discount With VAT"
+  },
+  {
+   "bold": 1,
+   "fieldname": "unit_price_after_discount_without_vat_copy",
+   "fieldtype": "Currency",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Unit Price After Discount Without VAT"
+  },
+  {
+   "bold": 1,
+   "fieldname": "unit_price_after_discount_with_vat_sar",
+   "fieldtype": "Currency",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Unit Price After Discount with VAT (SAR)"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "paid",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Paid"
+  },
+  {
+   "bold": 1,
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Priority",
+   "options": "\nLow\nMedium\nHigh"
+  },
+  {
+   "bold": 1,
+   "fieldname": "supplier_delivery_date",
+   "fieldtype": "Date",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Supplier Delivery Date"
+  },
+  {
+   "bold": 1,
+   "fieldname": "ksa_delivery_date",
+   "fieldtype": "Date",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "KSA Delivery Date"
+  },
+  {
+   "bold": 1,
+   "fieldname": "warehouse_location",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Warehouse Location"
+  },
+  {
+   "bold": 1,
+   "fieldname": "final_distention",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Final Distention"
+  },
+  {
+   "fieldname": "site_delivery_date",
+   "fieldtype": "Date",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Site Delivery Date"
+  },
+  {
+   "bold": 1,
+   "fieldname": "comment",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Comment"
+  },
+  {
+   "bold": 1,
+   "fieldname": "section_break_yloj",
+   "fieldtype": "Section Break",
+   "label": "QA/QC"
+  },
+  {
+   "fieldname": "column_break_uscv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "checked",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Checked"
+  },
+  {
+   "bold": 1,
+   "fieldname": "hid_item_code_boq",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "HID Item Code BOQ",
+   "options": "hid_code"
+  },
+  {
+   "fieldname": "code_remark",
+   "fieldtype": "Data",
+   "label": "Code Remark"
+  },
+  {
+   "bold": 1,
+   "fieldname": "document_coding",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Document Coding"
+  },
+  {
+   "bold": 1,
+   "fieldname": "coordination_name",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Coordination Name"
+  },
+  {
+   "fieldname": "more_information_section",
+   "fieldtype": "Section Break",
+   "label": "More Information"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-13 22:18:41.076639",
+ "modified": "2024-12-15 23:47:08.582041",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
