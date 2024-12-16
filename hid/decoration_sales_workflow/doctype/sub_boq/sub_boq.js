@@ -428,6 +428,7 @@ frappe.ui.form.on('Sub BOQ', {
                         fieldtype: 'Select',
                         options: child_fields.join('\n'),
                         reqd: 1,
+                        // default: 'product_name',
                         onchange: () => {
                             set_value_field(dialog, me);  // Handle field updates
                         },
@@ -529,26 +530,6 @@ function set_value_field(dialogObj, frm) {
 
 
 frappe.ui.form.on('Sub BOQ', {
-    refresh(frm) {
-        // Add the button in the child table beside the "Add Row" button
-        frm.fields_dict['bill_of_quantity'].grid.add_custom_button('Add Row with Parent Data', function() {
-            let row = frm.add_child('bill_of_quantity', {
-                floor_level: frm.doc.floor_level,
-                room_name: frm.doc.room_name,
-                // Add other fields as needed
-            });
-
-            frm.refresh_field('bill_of_quantity');
-        });
-
-        // Ensure the button appears near the existing buttons
-        frm.fields_dict['bill_of_quantity'].grid.custom_buttons['Add Row with Parent Data']
-            .removeClass('btn-default')
-            .addClass('btn-primary');
-    }
-});
-
-frappe.ui.form.on('Sub BOQ', {
     refresh: function (frm) {
         frm.add_custom_button('<i class="fa fa-map" style="margin-right: 5px; color: blue;"></i> <b>Map to BOQ</b>', function () {
             frm.trigger('map_to_lead');
@@ -595,7 +576,10 @@ frappe.ui.form.on('Sub BOQ', {
 
                         frm.doc.bill_of_quantity.forEach((row) => {
                             if (row.name) {
-                                // Find a matching row in the Lead using the row name
+                                // Generate a new unique name for the row
+                                const new_row_name = `${frm.doc.name}-${row.idx}-${Date.now()}`;
+
+                                // Check if a row with this name exists in the Lead's child table
                                 const existing_row = lead_rows.find(r => r.name === row.name);
 
                                 if (existing_row) {
@@ -603,7 +587,7 @@ frappe.ui.form.on('Sub BOQ', {
                                     let has_changes = false;
 
                                     Object.keys(row).forEach((key) => {
-                                        if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash"].includes(key) && row[key] !== existing_row[key]) {
+                                        if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash", "name"].includes(key) && row[key] !== existing_row[key]) {
                                             existing_row[key] = row[key];
                                             has_changes = true;
                                         }
@@ -613,13 +597,14 @@ frappe.ui.form.on('Sub BOQ', {
                                         updated_count++;
                                     }
                                 } else {
-                                    // Add new row
+                                    // Add a new row with the updated unique name
                                     const new_row = {};
                                     Object.keys(row).forEach((key) => {
                                         if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash"].includes(key)) {
                                             new_row[key] = row[key];
                                         }
                                     });
+                                    new_row.name = new_row_name;
                                     new_row.idx = lead_rows.length + 1; // Assign a new index
                                     lead_rows.push(new_row);
                                     mapped_count++;
@@ -632,7 +617,7 @@ frappe.ui.form.on('Sub BOQ', {
                                 method: 'frappe.client.save',
                                 args: { doc: lead_doc },
                                 callback: function () {
-                                    frappe.msgprint(`${mapped_count} new rows mapped and ${updated_count} rows updated in Lead: ${lead_name}`);
+                                    frappe.msgprint(`${mapped_count} new rows mapped and ${updated_count} rows updated in Project: ${custom_project_name_actual}`);
 
                                     // Save Sub BOQ to preserve state
                                     frm.save_or_update({
