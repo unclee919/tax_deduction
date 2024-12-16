@@ -75,56 +75,6 @@ async function createItemsFromBoQ(frm) {
     }
  
 
-    // async function generateComponentHidCode(frm) {
-    //     let lastMainProductCode = null;
-    //     let lastMainProductProductCode = null;
-    //     let currentSuffix = 'A';
-    //     let floor_level = null;
-    //     let room_number = null;
-    //     let room_name = null;
-    //     let area = null;
-    //     let building_number = null;
-
-
-    //     try {
-    //         for (let idx = 0; idx < frm.doc.bill_of_quantity.length; idx++) {
-    //             let row = frm.doc.bill_of_quantity[idx];
-
-    //             if (row.is_component === 0) {
-    //                 if (!row.hid_code) {
-    //                     lastMainProductCode = generateNewBaseCode(frm);
-    //                     await frappe.model.set_value(row.doctype, row.name, 'hid_code', lastMainProductCode);
-    //                 } else {
-    //                     lastMainProductCode = row.hid_code;
-    //                 }
-
-    //                 lastMainProductProductCode = row.product_code;
-    //                 floor_level = row.floor_level;
-    //                 room_number = row.room_number;
-    //                 room_name = row.room_name;
-    //                 area = row.area;
-    //                 building_number = row.building_number;
-    //                 currentSuffix = 'A';
-    //             } else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode && !row.hid_code) {
-    //                 let componentHidCode = generateHidCode(lastMainProductCode, currentSuffix);
-    //                 await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
-    //                 await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
-    //                 await frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level);
-    //                 await frappe.model.set_value(row.doctype, row.name, 'room_number', room_number);
-    //                await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
-    //                 await frappe.model.set_value(row.doctype, row.name, 'area', area);
-    //                 await frappe.model.set_value(row.doctype, row.name, 'building_number', building_number);
-    //                 // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
-    //                 // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
-    //                 currentSuffix = String.fromCharCode(currentSuffix.charCodeAt(0) + 1);
-    //             }
-    //         }
-
-    //         frm.refresh_field('bill_of_quantity');
-    //     } catch (error) {
-    //         console.error("Error processing HID code generation:", error);
-    //     }
-    // }
     function generateHidCode(floorLevel, roomNumber, baseCode, suffix = '') {
         let code = '';
     
@@ -384,267 +334,33 @@ async function updateRowInForm(frm, item_code) {
     }
 }
 
-async function createMaterialRequest(frm) {
-    console.log("createMaterialRequest function called");
-
-    try {
-        // Validate that all rows in bill_of_quantity have a valid supplier
-        for (const row of frm.doc.bill_of_quantity) {
-            if (!row.supplier) {
-                frappe.msgprint(__(`The supplier in row number'${row.idx}' is invalid or disabled. Please correct it.`));
-                throw new Error('Validation failed: Missing supplier.');
-            }
-
-            const supplier_doc = await frappe.db.get_doc('Supplier', row.supplier);
-            if (!supplier_doc || supplier_doc.disabled) {
-                frappe.msgprint(__(`The supplier name '${row.supplier}',in row number'${row.idx}' is invalid or disabled. Please correct it.`));
-                throw new Error(`Validation failed: Supplier '${row.supplier}' is invalid or disabled.`);
-            }
-        }
-
-        // Proceed with Material Request creation
-        const new_doc = frappe.model.get_new_doc('Material Request');
-        new_doc.material_request_type = 'Purchase';
-        new_doc.transaction_date = frappe.datetime.nowdate();
-        new_doc.schedule_date = frappe.datetime.nowdate();
-        new_doc.custom_from_bill_of_quantity = frm.doc.name;
-        new_doc.set_warehouse = frm.doc.custom_warhouse;
-        new_doc.custom_project_name = frm.doc.custom_project_name;
-        new_doc.custom_project_number = frm.doc.custom_project_id;
-
-        frm.doc.bill_of_quantity.forEach(row => {
-            const item = frappe.model.add_child(new_doc, 'Material Request Item', 'items');
-            item.item_code = row.product_code;
-            item.item_name = row.product_name;
-            item.stock_uom = row.uom;
-            item.qty = row.qty;
-            item.custom_hid_code = row.hid_code;
-            item.schedule_date = frappe.datetime.nowdate();
-            item.custom_supplier = row.supplier;
-            item.warehouse = frm.doc.custom_warhouse;
-            item.custom_and_clearance = row.custom_and_clearance;
-            item.logistics = row.logistics;
-            item.additional_cost = row.additional_cost;
-            item.oh = row.oh;
-            item.profit_margin = row.profit_margin;
-            item.initial_cost = row.initial_cost;
-            item.initial_cost_per_unit = row.initial_cost_per_unit;
-            item.initial_cost_in_product_currency = row.initial_cost_in_product_currency;
-            item.exchange_rate = row.exchange_rate;
-            item.cost_before_margin = row.cost_before_margin;
-            item.final_rate = row.final_rate;
-            item.custom_from_bill_of_quantity = frm.doc.name;
-            item.custom_from_bill_of_quantity_item = row.name;
-            item.image = row.attach_image_wjpb,
-            item.custom_primary_image = row.image_give,
-            item.custom_supplier_part_no = row.supplier_part_number,
-            item.custom_dimension = row.diemensions,
-            item.custom_item_link = row.item_link,
-            item.custom_supplier_name = row.supplier_name,
-
-
-            // Add additional fields here
-            item.custom_field_1 = row.custom_field_1; // Example of additional field
-            item.custom_field_2 = row.custom_field_2; // Example of additional field
-        });
-
-        const doc = await frappe.db.insert(new_doc);
-        frappe.set_route('Form', 'Material Request', doc.name);
-
-        // Update Sub BOQ Doctype with new stage
-        frm.set_value('custom_lead_stage', 'Procurment Stage');
-        await frm.save();
-    } catch (err) {
-        console.error('Error creating Material Request:', err);
-        frappe.msgprint(__('There was an issue creating the Material Request.'));
-    }
-}
-
-// Function to update margins for all rows in bill_of_quantity
-function calculateMargins(frm, cdt, cdn) {
-    console.log("calculateMargins function called for", cdt, cdn);
-    const row = locals[cdt][cdn];
-    
-    // const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
-    const initial_cost_in_product_currency = parseFloat(row.initial_cost_in_product_currency) || 0;
-    const exchange_rate = parseFloat(row.exchange_rate) || 1;
-    const custom_and_clearance = parseFloat(row.custom_and_clearnce) || 0;
-    const additionalCost = parseFloat(row.additional_cost) || 0;
-    const oh = parseFloat(row.oh) || 0;
-    const logistics = parseFloat(row.logisitics) || 0;
-    const customiziation = parseFloat(row.customiziation) || 0;
-    const stocking = parseFloat(row.stocking) || 0;
-    const installation = parseFloat(row.installation) || 0;
-    const shipping = parseFloat(row.shipping) || 0;
-    const profitMargin = parseFloat(row.profit_margin) || 0;
-    const initial_cost_per_unit = (initial_cost_in_product_currency * exchange_rate); 
-    const custom_and_clearance_cost = (initial_cost_per_unit * custom_and_clearance) / 100;
-    const additionalCost_value = (initial_cost_per_unit * additionalCost) / 100;
-    const oh_cost = (initial_cost_per_unit * oh) / 100;
-    const logistics_cost = (initial_cost_per_unit * logistics) / 100;
-    const customiziation_cost = (initial_cost_per_unit * customiziation) / 100;
-    const stocking_cost = (initial_cost_per_unit * stocking) / 100;
-    const installation_Value = (initial_cost_per_unit * installation) / 100;
-    const shipping_value = (initial_cost_per_unit * shipping) / 100;
-
-    const totalAdditionalCosts = custom_and_clearance_cost + additionalCost_value + oh_cost + logistics_cost + customiziation_cost + stocking_cost + installation_Value + shipping_value;
-    const finalCost = initial_cost_per_unit + totalAdditionalCosts;
-
-
-    const margin = finalCost * (profitMargin / 100);
-    const finalRate = finalCost + margin;
-
-    const roundedFinalCost = finalCost.toFixed(2);
-    const roundedFinalRate = finalRate.toFixed(2);
-
-    frappe.model.set_value(cdt, cdn, 'cost_before_margin', roundedFinalCost);
-    frappe.model.set_value(cdt, cdn, 'final_rate', roundedFinalRate);
-}
-
-// Function to update field values in child table based on parent form field changes
-const fieldMappings = {
-    'custom_custom_and_clearnce': 'custom_and_clearnce',  // Conditional update
-    'custom_logistics': 'logisitics',                      // Unconditional update
-    'custom_aditional_cost': 'additional_cost',           // Unconditional update
-    'custom_oh': 'oh',                                    // Unconditional update
-    'custom_customiziation': 'customiziation',            // Unconditional update
-    'custom_stocking': 'stocking',                        // Unconditional update
-    'custom_shipping' : 'shipping',                       //  Conditional update
-    'custom_installation_' : 'installation' ,                      // Unconditional update
-    'custom_profit_margin': 'profit_margin'               // Unconditional update
-    // Add more mappings as needed
-};
-
-// Function to update fields in child table based on parent document field changes
-function updateChildTableField(frm, parentField, childField, conditionalUpdate = false) {
-    console.log(`Updating child table field: ${childField} based on parent field: ${parentField}`);
-    frm.doc.bill_of_quantity.forEach(row => {
-        if (!conditionalUpdate || (conditionalUpdate && row.currency !== 'SAR')) {
-            frappe.model.set_value(row.doctype, row.name, childField, frm.doc[parentField]);
-        }
-    });
-}
-
-// Function to update mapped fields
-function updateMappedFields(frm) {
-    Object.entries(fieldMappings).forEach(([parentField, childField]) => {
-        // Apply the currency condition only for 'custom_custom_and_clearnce' field
-        const conditionalUpdate = (parentField === 'custom_custom_and_clearnce' || parentField === 'custom_shipping');
-        updateChildTableField(frm, parentField, childField, conditionalUpdate);
-    });
-}
-
-
-// Function to update initial cost per unit for the row
-function updateInitialCostPerUnit(frm, cdt, cdn) {
-    console.log("updateInitialCostPerUnit function called");
-    const row = locals[cdt][cdn];
-    const initial_cost_in_product_currency = parseFloat(row.initial_cost_in_product_currency) || 0;
-    const exchange_rate = parseFloat(row.exchange_rate) || 1;
-    const initial_cost_total = parseFloat(row.initial_cost) || 0;
-    const Quantity = parseFloat(row.qty) || 0;
-    // const initial_cost_per_unit = parseFloat(row.initial_cost_per_unit) || 0;
-
-    // if (cost_before_margin > 0) {
-    const initial_cost = (initial_cost_in_product_currency * exchange_rate)
-    const initial_cost_value = (initial_cost_total * Quantity)
-    frappe.model.set_value(cdt, cdn, 'initial_cost_per_unit', initial_cost.toFixed(2));
-    frappe.model.set_value(cdt, cdn, 'initial_cost' , initial_cost_value.toFixed(2));
-    }
-// }
-
-// Function to update totals
-function updatetotals(frm) {
-    console.log("updatetotals function called");
-    let total_cost_before_margin = 0;
-    let total_final_rate = 0;
-
-    frm.doc.bill_of_quantity.forEach(row => {
-        total_cost_before_margin += parseFloat(row.cost_before_margin) || 0;
-        total_final_rate += parseFloat(row.final_rate) || 0;
-    });
-
-    frappe.model.set_value(frm.doctype, frm.docname, 'total_cost_before_margin', total_cost_before_margin.toFixed(2));
-    frappe.model.set_value(frm.doctype, frm.docname, 'total_final_rate', total_final_rate.toFixed(2));
-}
-
-// Attach event handlers
 frappe.ui.form.on('Sub BOQ', {
     refresh: function(frm) {
-        // frm.add_custom_button(__('Update Margins'), function() {
-        //     frm.doc.bill_of_quantity.forEach(row => {
-        //         calculateMargins(frm, row.doctype, row.name);
-        //     });
-        //     frm.save();
-        // });
-        
-        
-        // frm.add_custom_button(__('Initiate Pricing Request'), function() {
-        //     createMaterialRequest(frm);
-        // });
 
         frm.add_custom_button('<i class="fa fa-cogs" style="margin-right: 5px; color: blue;"></i> <b>Create - Update Items</b>', function () {
             createItemsFromBoQ(frm);
         });
     },
     
-    before_save: function(frm) {
-        console.log("before_save event triggered");
-        frm.doc.bill_of_quantity.forEach(row => {
-            calculateMargins(frm, row.doctype, row.name);
-            updateInitialCostPerUnit(frm, row.doctype, row.name);
-        });
-        updatetotals(frm);
-        updateMappedFields(frm);
-        
-    },
-    // custom_update_margin: function(frm) {
-    //     console.log("custom_update_margin event triggered");
-    //     frm.doc.bill_of_quantity.forEach(row => {
-    //         calculateMargins(frm, row.doctype, row.name);
-    //     });
-    //     frm.save();
-    // },
-    custom_custom_and_clearnce: function(frm) {
-        updateMappedFields(frm);
-    },
-    custom_logistics: function(frm) {
-        updateMappedFields(frm);
-    },
-    custom_aditional_cost: function(frm) {
-        updateMappedFields(frm);
-    },
-    custom_oh: function(frm) {
-        updateMappedFields(frm);
-    },
-    custom_customiziation: function(frm) {
-        updateMappedFields(frm);
-    },
-    custom_stocking: function(frm) {
-        updateMappedFields(frm);
-    },
-    custom_profit_margin: function(frm) {
-        updateMappedFields(frm); 
-    },
-    total_cost_before_margin: function(frm) {
-        updatetotals(frm);
-    },
-    total_final_rate: function(frm) {
-        updatetotals(frm);
-    },
-    initial_cost_in_product_currency: function(frm) {
-        updateInitialCostPerUnit(frm);
-    },
-    exchange_rate: function(frm) {
-        updateInitialCostPerUnit(frm);
+   
+});
+frappe.ui.form.on('Sub BOQ', {
+    refresh(frm) {
+        // Add the button in the child table beside the "Add Row" button
+        frm.fields_dict['bill_of_quantity'].grid.add_custom_button('Add Row with Parent Data', function() {
+            let row = frm.add_child('bill_of_quantity', {
+                floor_level: frm.doc.floor_level,
+                room_name: frm.doc.room_name,
+                // Add other fields as needed
+            });
 
-    },
-    custom_and_clearance: function(frm){
-        calculateMargins(frm);
-    },   
-    custom_bill_of_quantity_add: function(frm, cdt, cdn) {
-        updateInitialCostPerUnit(frm, cdt, cdn);
-        updatetotals(frm, cdt, cdn);
+            frm.refresh_field('bill_of_quantity');
+        });
+
+        // Ensure the button appears near the existing buttons
+        frm.fields_dict['bill_of_quantity'].grid.custom_buttons['Add Row with Parent Data']
+            .removeClass('btn-default')
+            .addClass('btn-primary');
     }
 });
 
@@ -845,7 +561,6 @@ frappe.ui.form.on('Sub BOQ', {
             return;
         }
 
-        // Fetch the Lead records based on project_name
         frappe.call({
             method: 'frappe.client.get_list',
             args: {
@@ -863,7 +578,6 @@ frappe.ui.form.on('Sub BOQ', {
 
                 const lead_name = lead_records[0].name;
 
-                // Fetch the selected Lead document
                 frappe.call({
                     method: 'frappe.client.get',
                     args: { doctype: 'Lead', name: lead_name },
@@ -875,41 +589,60 @@ frappe.ui.form.on('Sub BOQ', {
                         }
 
                         let mapped_count = 0;
+                        let updated_count = 0;
 
-                        // Determine starting index for new rows in the Lead's child table
-                        const current_row_count = lead_doc.custom_bill_of_quantity.length;
+                        const lead_rows = lead_doc.custom_bill_of_quantity;
 
-                        // Iterate through the Sub BOQ's Bill of Quantity rows to map to Lead
                         frm.doc.bill_of_quantity.forEach((row) => {
-                            if (row.hid_code) {
-                                // Create a new row object for mapping
-                                const new_row = {};
+                            if (row.name) {
+                                // Find a matching row in the Lead using the row name
+                                const existing_row = lead_rows.find(r => r.name === row.name);
 
-                                // Copy all fields except Frappe-specific metadata
-                                Object.keys(row).forEach((key) => {
-                                    if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash"].includes(key)) {
-                                        new_row[key] = row[key];
+                                if (existing_row) {
+                                    // Update existing row if changes are found
+                                    let has_changes = false;
+
+                                    Object.keys(row).forEach((key) => {
+                                        if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash"].includes(key) && row[key] !== existing_row[key]) {
+                                            existing_row[key] = row[key];
+                                            has_changes = true;
+                                        }
+                                    });
+
+                                    if (has_changes) {
+                                        updated_count++;
                                     }
-                                });
-
-                                // Assign a new index (1-based indexing)
-                                new_row.idx = current_row_count + mapped_count + 1;
-
-                                // Add the new row to the Lead's child table
-                                lead_doc.custom_bill_of_quantity.push(new_row);
-                                mapped_count++;
+                                } else {
+                                    // Add new row
+                                    const new_row = {};
+                                    Object.keys(row).forEach((key) => {
+                                        if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash"].includes(key)) {
+                                            new_row[key] = row[key];
+                                        }
+                                    });
+                                    new_row.idx = lead_rows.length + 1; // Assign a new index
+                                    lead_rows.push(new_row);
+                                    mapped_count++;
+                                }
                             }
                         });
 
-                        // If there are mapped rows, save the updated Lead document
-                        if (mapped_count > 0) {
+                        if (mapped_count > 0 || updated_count > 0) {
                             frappe.call({
                                 method: 'frappe.client.save',
-                                args: {
-                                    doc: lead_doc
-                                },
+                                args: { doc: lead_doc },
                                 callback: function () {
-                                    frappe.msgprint(`${mapped_count} rows successfully mapped to Lead: ${custom_project_name_actual}`);
+                                    frappe.msgprint(`${mapped_count} new rows mapped and ${updated_count} rows updated in Lead: ${lead_name}`);
+
+                                    // Save Sub BOQ to preserve state
+                                    frm.save_or_update({
+                                        callback: function () {
+                                            frappe.msgprint(__('Sub BOQ saved successfully to preserve the table state.'));
+                                        },
+                                        error: function () {
+                                            frappe.msgprint(__('Error while saving Sub BOQ.'));
+                                        }
+                                    });
                                 },
                                 error: function (err) {
                                     frappe.msgprint(__('Error while saving the Lead.'));
@@ -917,7 +650,7 @@ frappe.ui.form.on('Sub BOQ', {
                                 }
                             });
                         } else {
-                            frappe.msgprint(__('No rows were mapped because none of the rows had an HID Code.'));
+                            frappe.msgprint(__('No rows were mapped or updated.'));
                         }
                     },
                     error: function (err) {
@@ -933,3 +666,4 @@ frappe.ui.form.on('Sub BOQ', {
         });
     }
 });
+

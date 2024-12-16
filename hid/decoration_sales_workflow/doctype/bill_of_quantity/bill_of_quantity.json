@@ -10,11 +10,9 @@
   "building_number",
   "area",
   "hid_code",
-  "attach_image_wjpb",
   "item_link",
   "diemensions",
   "qty",
-  "uom",
   "customizatio",
   "date_of_packge",
   "room_name",
@@ -106,7 +104,9 @@
   "supplier_name",
   "supplier_frozen_check",
   "is_created",
-  "confirm_dimension"
+  "confirm_dimension",
+  "attach_image_wjpb",
+  "uom"
  ],
  "fields": [
   {
@@ -816,7 +816,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-15 23:47:08.582041",
+ "modified": "2024-12-16 23:14:20.842483",
  "modified_by": "Administrator",
  "module": "decoration sales workflow",
  "name": "Bill of Quantity",
