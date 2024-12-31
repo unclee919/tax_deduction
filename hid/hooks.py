@@ -47,3 +47,6 @@ scheduler_events = {
         ]
     }
 }
+override_whitelisted_methods = {
+    "hid.sub_boq.map_to_lead": "hid.hid.doctype.sub_boq.sub_boq.py.map_to_lead"
+}

@@ -529,6 +529,138 @@ function set_value_field(dialogObj, frm) {
 }
 
 
+// frappe.ui.form.on('Sub BOQ', {
+//     refresh: function (frm) {
+//         frm.add_custom_button('<i class="fa fa-map" style="margin-right: 5px; color: blue;"></i> <b>Map to BOQ</b>', function () {
+//             frm.trigger('map_to_lead');
+//         });
+//     },
+
+//     map_to_lead: function (frm) {
+//         frappe.call(
+//             {
+//                 method: "hid.decoration_sales_workflow.doctype.sub_boq.sub_boq.map_to_lead",
+//                 args: {
+//                     docname: frm.doc.name,
+//                 },
+//             }
+//         );
+
+//         if (!frm.doc.project_name) {
+//             frappe.msgprint(__('Please ensure the Project Name is filled.'));
+//             return;
+//         }
+
+//         frappe.call({
+//             method: 'frappe.client.get_list',
+//             args: {
+//                 doctype: 'Lead',
+//                 filters: { custom_project_name: frm.doc.project_name },
+//                 fields: ['name']
+//             },
+//             callback: function (response) {
+//                 const lead_records = response.message;
+
+//                 if (!lead_records || lead_records.length === 0) {
+//                     frappe.msgprint(__('No Lead record found for the given Project Name.'));
+//                     return;
+//                 }
+
+//                 const lead_name = lead_records[0].name;
+
+//                 frappe.call({
+//                     method: 'frappe.client.get',
+//                     args: { doctype: 'Lead', name: lead_name },
+//                     callback: function (lead_response) {
+//                         const lead_doc = lead_response.message;
+
+//                         if (!lead_doc.custom_bill_of_quantity) {
+//                             lead_doc.custom_bill_of_quantity = [];
+//                         }
+
+//                         let mapped_count = 0;
+//                         let updated_count = 0;
+
+//                         const lead_rows = lead_doc.custom_bill_of_quantity;
+
+//                         frm.doc.bill_of_quantity.forEach((row) => {
+//                             if (row.name) {
+//                                 // Generate a new unique name for the row
+//                                 const new_row_name = `${frm.doc.name}-${row.idx}-${Date.now()}`;
+
+//                                 // Check if a row with this name exists in the Lead's child table
+//                                 const existing_row = lead_rows.find(r => r.name === row.name);
+
+//                                 if (existing_row) {
+//                                     // Update existing row if changes are found
+//                                     let has_changes = false;
+
+//                                     Object.keys(row).forEach((key) => {
+//                                         if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash", "name"].includes(key) && row[key] !== existing_row[key]) {
+//                                             existing_row[key] = row[key];
+//                                             has_changes = true;
+//                                         }
+//                                     });
+
+//                                     if (has_changes) {
+//                                         updated_count++;
+//                                     }
+//                                 } else {
+//                                     // Add a new row with the updated unique name
+//                                     const new_row = {};
+//                                     Object.keys(row).forEach((key) => {
+//                                         if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash"].includes(key)) {
+//                                             new_row[key] = row[key];
+//                                         }
+//                                     });
+//                                     new_row.name = new_row_name;
+//                                     new_row.idx = lead_rows.length + 1; // Assign a new index
+//                                     lead_rows.push(new_row);
+//                                     mapped_count++;
+//                                 }
+//                             }
+//                         });
+
+//                         if (mapped_count > 0 || updated_count > 0) {
+//                             frappe.call({
+//                                 method: 'frappe.client.save',
+//                                 args: { doc: lead_doc },
+//                                 callback: function () {
+//                                     frappe.msgprint(`${mapped_count} new rows mapped and ${updated_count} rows updated in Project: ${custom_project_name_actual}`);
+
+//                                     // Save Sub BOQ to preserve state
+//                                     frm.save_or_update({
+//                                         callback: function () {
+//                                             frappe.msgprint(__('Sub BOQ saved successfully to preserve the table state.'));
+//                                         },
+//                                         error: function () {
+//                                             frappe.msgprint(__('Error while saving Sub BOQ.'));
+//                                         }
+//                                     });
+//                                 },
+//                                 error: function (err) {
+//                                     frappe.msgprint(__('Error while saving the Lead.'));
+//                                     console.error(err);
+//                                 }
+//                             });
+//                         } else {
+//                             frappe.msgprint(__('No rows were mapped or updated.'));
+//                         }
+//                     },
+//                     error: function (err) {
+//                         frappe.msgprint(__('Error fetching Lead details.'));
+//                         console.error(err);
+//                     }
+//                 });
+//             },
+//             error: function (err) {
+//                 frappe.msgprint(__('Error fetching Lead list.'));
+//                 console.error(err);
+//             }
+//         });
+//     }
+// });
+
 frappe.ui.form.on('Sub BOQ', {
     refresh: function (frm) {
         frm.add_custom_button('<i class="fa fa-map" style="margin-right: 5px; color: blue;"></i> <b>Map to BOQ</b>', function () {
@@ -537,118 +669,21 @@ frappe.ui.form.on('Sub BOQ', {
     },
 
     map_to_lead: function (frm) {
-        if (!frm.doc.project_name) {
-            frappe.msgprint(__('Please ensure the Project Name is filled.'));
-            return;
-        }
-
-        frappe.call({
-            method: 'frappe.client.get_list',
-            args: {
-                doctype: 'Lead',
-                filters: { custom_project_name: frm.doc.project_name },
-                fields: ['name']
-            },
-            callback: function (response) {
-                const lead_records = response.message;
-
-                if (!lead_records || lead_records.length === 0) {
-                    frappe.msgprint(__('No Lead record found for the given Project Name.'));
-                    return;
+        frappe.call(
+            {
+                method: "hid.decoration_sales_workflow.doctype.sub_boq.sub_boq.map_to_lead",
+                args: {
+                    docname: frm.doc.name,
+                },
+                freeze: true,
+                freeze_message: __("Mapping to Lead..."),
+                callback: function (r) {
+                    console.log(r);
+                },
+                error: function (r) {
+                    console.log(r);
                 }
-
-                const lead_name = lead_records[0].name;
-
-                frappe.call({
-                    method: 'frappe.client.get',
-                    args: { doctype: 'Lead', name: lead_name },
-                    callback: function (lead_response) {
-                        const lead_doc = lead_response.message;
-
-                        if (!lead_doc.custom_bill_of_quantity) {
-                            lead_doc.custom_bill_of_quantity = [];
-                        }
-
-                        let mapped_count = 0;
-                        let updated_count = 0;
-
-                        const lead_rows = lead_doc.custom_bill_of_quantity;
-
-                        frm.doc.bill_of_quantity.forEach((row) => {
-                            if (row.name) {
-                                // Generate a new unique name for the row
-                                const new_row_name = `${frm.doc.name}-${row.idx}-${Date.now()}`;
-
-                                // Check if a row with this name exists in the Lead's child table
-                                const existing_row = lead_rows.find(r => r.name === row.name);
-
-                                if (existing_row) {
-                                    // Update existing row if changes are found
-                                    let has_changes = false;
-
-                                    Object.keys(row).forEach((key) => {
-                                        if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash", "name"].includes(key) && row[key] !== existing_row[key]) {
-                                            existing_row[key] = row[key];
-                                            has_changes = true;
-                                        }
-                                    });
-
-                                    if (has_changes) {
-                                        updated_count++;
-                                    }
-                                } else {
-                                    // Add a new row with the updated unique name
-                                    const new_row = {};
-                                    Object.keys(row).forEach((key) => {
-                                        if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash"].includes(key)) {
-                                            new_row[key] = row[key];
-                                        }
-                                    });
-                                    new_row.name = new_row_name;
-                                    new_row.idx = lead_rows.length + 1; // Assign a new index
-                                    lead_rows.push(new_row);
-                                    mapped_count++;
-                                }
-                            }
-                        });
-
-                        if (mapped_count > 0 || updated_count > 0) {
-                            frappe.call({
-                                method: 'frappe.client.save',
-                                args: { doc: lead_doc },
-                                callback: function () {
-                                    frappe.msgprint(`${mapped_count} new rows mapped and ${updated_count} rows updated in Project: ${custom_project_name_actual}`);
-
-                                    // Save Sub BOQ to preserve state
-                                    frm.save_or_update({
-                                        callback: function () {
-                                            frappe.msgprint(__('Sub BOQ saved successfully to preserve the table state.'));
-                                        },
-                                        error: function () {
-                                            frappe.msgprint(__('Error while saving Sub BOQ.'));
-                                        }
-                                    });
-                                },
-                                error: function (err) {
-                                    frappe.msgprint(__('Error while saving the Lead.'));
-                                    console.error(err);
-                                }
-                            });
-                        } else {
-                            frappe.msgprint(__('No rows were mapped or updated.'));
-                        }
-                    },
-                    error: function (err) {
-                        frappe.msgprint(__('Error fetching Lead details.'));
-                        console.error(err);
-                    }
-                });
-            },
-            error: function (err) {
-                frappe.msgprint(__('Error fetching Lead list.'));
-                console.error(err);
             }
-        });
-    }
-});
-
+        );
+    },
+})
