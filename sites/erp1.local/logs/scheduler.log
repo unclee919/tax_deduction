@@ -1,0 +1,415 @@
+2024-10-27 11:04:33,247 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:04:33,281 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:04:33,281 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:04:33,282 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:04:33,283 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:04:33,284 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:04:33,285 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:04:33,286 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:04:33,286 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:04:33,288 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:05:33,395 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:05:33,397 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:05:33,399 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:05:33,401 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:05:33,403 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:05:33,405 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:05:33,406 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:05:33,408 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:05:33,410 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:05:33,413 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:06:33,556 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:06:33,558 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:06:33,560 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:06:33,562 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:06:33,565 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:06:33,567 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:06:33,569 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:06:33,571 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:06:33,573 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:06:33,575 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:07:33,696 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:07:33,698 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:07:33,700 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:07:33,702 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:07:33,704 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:07:33,706 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:07:33,708 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:07:33,710 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:07:33,711 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:07:33,713 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:08:33,872 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:08:33,879 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:08:33,881 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:08:33,883 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:08:33,885 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:08:33,887 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:08:33,890 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:08:33,892 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:08:33,894 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:08:33,896 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:09:34,051 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:09:34,053 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:09:34,055 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:09:34,057 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:09:34,059 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:09:34,061 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:09:34,063 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:09:34,065 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:09:34,067 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:09:34,069 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:10:34,134 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:10:34,137 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:10:34,139 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:10:34,141 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:10:34,144 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:10:34,146 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:10:34,148 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:10:34,150 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:10:34,151 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:10:34,153 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:11:34,302 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:11:34,304 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:11:34,306 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:11:34,308 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:11:34,310 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:11:34,322 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:11:34,324 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:11:34,326 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:11:34,328 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:11:34,330 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:12:34,430 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:12:34,433 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:12:34,441 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:12:34,445 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:12:34,447 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:12:34,449 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:12:34,451 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:12:34,454 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:12:34,456 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:12:34,458 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:13:34,626 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:13:34,628 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:13:34,633 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:13:34,637 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:13:34,650 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:13:34,653 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:13:34,656 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:13:34,658 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:13:34,667 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:13:34,670 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:14:34,826 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:14:34,829 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:14:34,831 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:14:34,833 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:14:34,835 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:14:34,837 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:14:34,839 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:14:34,841 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:14:34,843 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:14:34,846 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:15:35,001 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:15:35,003 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:15:35,005 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:15:35,006 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:15:35,009 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:15:35,011 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:15:35,013 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:15:35,015 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:15:35,018 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:15:35,020 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:16:35,185 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:16:35,187 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:16:35,189 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:16:35,191 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:16:35,194 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:16:35,195 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:16:35,198 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:16:35,200 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:16:35,202 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:16:35,204 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:17:35,363 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:17:35,365 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:17:35,368 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:17:35,370 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:17:35,371 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:17:35,374 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:17:35,375 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:17:35,378 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:17:35,380 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:17:35,382 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:18:35,528 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:18:35,530 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:18:35,532 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:18:35,534 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:18:35,536 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:18:35,537 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:18:35,538 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:18:35,539 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:18:35,540 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:18:35,540 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:19:35,683 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:19:35,685 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:19:35,687 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:19:35,690 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:19:35,692 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:19:35,694 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:19:35,696 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:19:35,698 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:19:35,700 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:19:35,702 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:20:35,847 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:20:35,850 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:20:35,852 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:20:35,854 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:20:35,856 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:20:35,858 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:20:35,861 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:20:35,863 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:20:35,866 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:20:35,868 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:21:35,982 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:21:35,985 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:21:35,988 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:21:35,990 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:21:35,992 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:21:35,993 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:21:35,995 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:21:35,997 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:21:35,999 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:21:36,001 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:22:36,137 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:22:36,138 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:22:36,139 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:22:36,140 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:22:36,141 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:22:36,141 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:22:36,142 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:22:36,143 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:22:36,144 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:22:36,145 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:23:36,191 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:23:36,193 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:23:36,195 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:23:36,197 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:23:36,199 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:23:36,201 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:23:36,203 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:23:36,205 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:23:36,206 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:23:36,209 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:24:36,367 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:24:36,369 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:24:36,372 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:24:36,375 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:24:36,379 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:24:36,382 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:24:36,383 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:24:36,386 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:24:36,387 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:24:36,390 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:25:36,541 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:25:36,543 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:25:36,544 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:25:36,546 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:25:36,548 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:25:36,550 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:25:36,552 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:25:36,554 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:25:36,556 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:25:36,558 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:26:36,690 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:26:36,693 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:26:36,696 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:26:36,698 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:26:36,701 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:26:36,704 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:26:36,705 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:26:36,707 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:26:36,709 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:26:36,712 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:27:36,825 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:27:36,827 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:27:36,830 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:27:36,833 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:27:36,835 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:27:36,838 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:27:36,840 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:27:36,842 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:27:36,844 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:27:36,846 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:28:37,037 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.weekly_backup because it was found in queue for erp1.local
+2024-10-27 11:28:37,041 ERROR scheduler Skipped queueing frappe.social.doctype.energy_point_log.energy_point_log.send_weekly_summary because it was found in queue for erp1.local
+2024-10-27 11:28:37,045 ERROR scheduler Skipped queueing frappe.utils.change_log.check_for_update because it was found in queue for erp1.local
+2024-10-27 11:28:37,048 ERROR scheduler Skipped queueing frappe.desk.form.document_follow.send_weekly_updates because it was found in queue for erp1.local
+2024-10-27 11:28:37,052 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:28:37,056 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_weekly because it was found in queue for erp1.local
+2024-10-27 11:28:37,059 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-10-27 11:28:37,062 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-10-27 11:28:37,067 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-10-27 11:28:37,070 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-11-15 22:52:31,354 ERROR scheduler Exception in Enqueue Events for Site erp1.local
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/scheduler.py", line 78, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/scheduler.py", line 93, in enqueue_events
+    for job_type in frappe.get_all("Scheduled Job Type", filters={"stopped": 0}, fields="*"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2067, in get_all
+    return get_list(doctype, *args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2042, in get_list
+    return frappe.model.db_query.DatabaseQuery(doctype).execute(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 191, in execute
+    result = self.build_and_run()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 206, in build_and_run
+    args = self.prepare_args()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 246, in prepare_args
+    self.build_conditions()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 580, in build_conditions
+    self.build_filter_conditions(self.filters, self.conditions)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 601, in build_filter_conditions
+    conditions.append(self.prepare_filter_condition(f))
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 711, in prepare_filter_condition
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/boot.py", line 375, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+2024-11-15 22:53:31,489 ERROR scheduler Exception in Enqueue Events for Site erp1.local
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/scheduler.py", line 78, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/scheduler.py", line 93, in enqueue_events
+    for job_type in frappe.get_all("Scheduled Job Type", filters={"stopped": 0}, fields="*"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2067, in get_all
+    return get_list(doctype, *args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2042, in get_list
+    return frappe.model.db_query.DatabaseQuery(doctype).execute(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 191, in execute
+    result = self.build_and_run()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 206, in build_and_run
+    args = self.prepare_args()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 246, in prepare_args
+    self.build_conditions()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 580, in build_conditions
+    self.build_filter_conditions(self.filters, self.conditions)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 601, in build_filter_conditions
+    conditions.append(self.prepare_filter_condition(f))
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/db_query.py", line 711, in prepare_filter_condition
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/boot.py", line 375, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+2024-12-21 10:03:09,856 ERROR scheduler Exception in Enqueue Events for Site erp1.local
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/pymysql/connections.py", line 649, in connect
+    sock = socket.create_connection(
+  File "/usr/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/usr/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/scheduler.py", line 75, in enqueue_events_for_site
+    if is_scheduler_inactive():
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/scheduler.py", line 117, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/scheduler.py", line 130, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/database/database.py", line 834, in get_single_value
+    ).run()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/query_builder/utils.py", line 87, in execute_query
+    result = frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/database/database.py", line 204, in sql
+    self.connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/database/database.py", line 109, in connect
+    self._conn: "MariadbConnection" | "PostgresConnection" = self.get_connection()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/database/mariadb/database.py", line 107, in get_connection
+    conn = self._get_connection()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/database/mariadb/database.py", line 113, in _get_connection
+    return self.create_connection()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/database/mariadb/database.py", line 116, in create_connection
+    return pymysql.connect(**self.get_connection_settings())
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/pymysql/connections.py", line 361, in __init__
+    self.connect()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/pymysql/connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '127.0.0.1' ([Errno 111] Connection refused)")
+2024-12-21 10:05:33,322 ERROR scheduler Exception in Enqueue Events for Site erp1.local
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/pymysql/connections.py", line 649, in connect
+    sock = socket.create_connection(
+  File "/usr/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/usr/lib/pyth2024-12-30 12:57:30,031 ERROR scheduler Skipped queueing frappe.integrations.doctype.google_drive.google_drive.daily_backup because it was found in queue for erp1.local
+2024-12-30 12:57:30,038 ERROR scheduler Skipped queueing frappe.email.doctype.auto_email_report.auto_email_report.send_daily because it was found in queue for erp1.local
+2024-12-30 12:57:30,041 ERROR scheduler Skipped queueing frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_daily because it was found in queue for erp1.local
+2024-12-30 12:57:30,044 ERROR scheduler Skipped queueing frappe.integrations.doctype.dropbox_settings.dropbox_settings.take_backups_daily because it was found in queue for erp1.local
+2024-12-30 12:57:30,065 ERROR scheduler Skipped queueing frappe.monitor.flush because it was found in queue for erp1.local
+2024-12-30 12:57:30,069 ERROR scheduler Skipped queueing frappe.email.queue.flush because it was found in queue for erp1.local
+2024-12-30 12:57:30,071 ERROR scheduler Skipped queueing frappe.core.doctype.log_settings.log_settings.run_log_clean_up because it was found in queue for erp1.local
+2024-12-30 12:57:30,073 ERROR scheduler Skipped queueing frappe.core.doctype.prepared_report.prepared_report.expire_stalled_report because it was found in queue for erp1.local
+2024-12-30 12:57:30,077 ERROR scheduler Skipped queueing frappe.email.doctype.email_account.email_account.pull because it was found in queue for erp1.local
+2024-12-30 12:57:30,092 ERROR scheduler Skipped queueing frappe.deferred_insert.save_to_db because it was found in queue for erp1.local
+2024-12-30 12:57:30,096 ERROR scheduler Skipped queueing frappe.utils.global_search.sync_global_search because it was found in queue for erp1.local
+2024-12-30 12:57:30,100 ERROR scheduler Skipped queueing frappe.email.doctype.email_account.email_account.notify_unreplied because it was found in queue for erp1.local
+2024-12-30 12:57:30,104 ERROR scheduler Skipped queueing frappe.twofactor.delete_all_barcodes_for_users because it was found in queue for erp1.local
+2024-12-30 12:57:30,107 ERROR scheduler Skipped queueing frappe.website.doctype.web_page.web_page.check_publish_status because it was found in queue for erp1.local
+2024-12-30 12:57:30,110 ERROR scheduler Skipped queueing frappe.oauth.delete_oauth2_data because it was found in queue for erp1.local

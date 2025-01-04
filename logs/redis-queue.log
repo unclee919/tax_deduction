@@ -1,0 +1,222 @@
+12596:C 26 Oct 2024 01:08:46.397 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+12596:C 26 Oct 2024 01:08:46.397 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=12596, just started
+12596:C 26 Oct 2024 01:08:46.397 # Configuration loaded
+12596:M 26 Oct 2024 01:08:46.397 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+12596:M 26 Oct 2024 01:08:46.398 * Running mode=standalone, port=11000.
+12596:M 26 Oct 2024 01:08:46.398 # Server initialized
+12596:M 26 Oct 2024 01:08:46.398 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+12596:M 26 Oct 2024 01:08:46.398 * Ready to accept connections
+972:C 03 Nov 2024 19:46:32.492 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+972:C 03 Nov 2024 19:46:32.492 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=972, just started
+972:C 03 Nov 2024 19:46:32.492 # Configuration loaded
+972:M 03 Nov 2024 19:46:32.494 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+972:M 03 Nov 2024 19:46:32.496 * Running mode=standalone, port=11000.
+972:M 03 Nov 2024 19:46:32.499 # Server initialized
+972:M 03 Nov 2024 19:46:32.502 * Ready to accept connections
+1000:C 03 Nov 2024 21:58:15.734 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1000:C 03 Nov 2024 21:58:15.734 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=1000, just started
+1000:C 03 Nov 2024 21:58:15.734 # Configuration loaded
+1000:M 03 Nov 2024 21:58:15.737 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+1000:M 03 Nov 2024 21:58:15.743 * Running mode=standalone, port=11000.
+1000:M 03 Nov 2024 21:58:15.743 # Server initialized
+1000:M 03 Nov 2024 21:58:15.744 * Ready to accept connections
+1032:C 04 Nov 2024 08:50:52.582 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1032:C 04 Nov 2024 08:50:52.582 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=1032, just started
+1032:C 04 Nov 2024 08:50:52.582 # Configuration loaded
+1032:M 04 Nov 2024 08:50:52.582 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+1032:M 04 Nov 2024 08:50:52.584 * Running mode=standalone, port=11000.
+1032:M 04 Nov 2024 08:50:52.584 # Server initialized
+1032:M 04 Nov 2024 08:50:52.584 * Ready to accept connections
+997:C 04 Nov 2024 20:16:43.683 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+997:C 04 Nov 2024 20:16:43.683 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=997, just started
+997:C 04 Nov 2024 20:16:43.683 # Configuration loaded
+997:M 04 Nov 2024 20:16:43.684 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+997:M 04 Nov 2024 20:16:43.686 * Running mode=standalone, port=11000.
+997:M 04 Nov 2024 20:16:43.686 # Server initialized
+997:M 04 Nov 2024 20:16:43.686 * Ready to accept connections
+1023:C 07 Nov 2024 14:46:53.362 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1023:C 07 Nov 2024 14:46:53.362 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=1023, just started
+1023:C 07 Nov 2024 14:46:53.362 # Configuration loaded
+1023:M 07 Nov 2024 14:46:53.369 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+1023:M 07 Nov 2024 14:46:53.371 * Running mode=standalone, port=11000.
+1023:M 07 Nov 2024 14:46:53.371 # Server initialized
+1023:M 07 Nov 2024 14:46:53.372 * Ready to accept connections
+946:C 11 Nov 2024 19:30:54.349 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+946:C 11 Nov 2024 19:30:54.349 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=946, just started
+946:C 11 Nov 2024 19:30:54.349 # Configuration loaded
+946:M 11 Nov 2024 19:30:54.356 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+946:M 11 Nov 2024 19:30:54.372 * Running mode=standalone, port=11000.
+946:M 11 Nov 2024 19:30:54.373 # Server initialized
+946:M 11 Nov 2024 19:30:54.388 * Ready to accept connections
+987:C 15 Nov 2024 22:32:35.792 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+987:C 15 Nov 2024 22:32:35.792 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=987, just started
+987:C 15 Nov 2024 22:32:35.792 # Configuration loaded
+987:M 15 Nov 2024 22:32:35.793 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+987:M 15 Nov 2024 22:32:35.803 * Running mode=standalone, port=11000.
+987:M 15 Nov 2024 22:32:35.803 # Server initialized
+987:M 15 Nov 2024 22:32:35.804 * Ready to accept connections
+984:C 20 Nov 2024 19:04:38.509 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+984:C 20 Nov 2024 19:04:38.509 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=984, just started
+984:C 20 Nov 2024 19:04:38.509 # Configuration loaded
+984:M 20 Nov 2024 19:04:38.511 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+984:M 20 Nov 2024 19:04:38.517 * Running mode=standalone, port=11000.
+984:M 20 Nov 2024 19:04:38.517 # Server initialized
+984:M 20 Nov 2024 19:04:38.518 * Ready to accept connections
+977:C 20 Nov 2024 19:05:19.290 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+977:C 20 Nov 2024 19:05:19.290 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=977, just started
+977:C 20 Nov 2024 19:05:19.290 # Configuration loaded
+977:M 20 Nov 2024 19:05:19.303 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+977:M 20 Nov 2024 19:05:19.307 * Running mode=standalone, port=11000.
+977:M 20 Nov 2024 19:05:19.307 # Server initialized
+977:M 20 Nov 2024 19:05:19.307 * Ready to accept connections
+954:C 24 Nov 2024 02:04:40.371 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+954:C 24 Nov 2024 02:04:40.371 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=954, just started
+954:C 24 Nov 2024 02:04:40.371 # Configuration loaded
+954:M 24 Nov 2024 02:04:40.373 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+954:M 24 Nov 2024 02:04:40.374 * Running mode=standalone, port=11000.
+954:M 24 Nov 2024 02:04:40.374 # Server initialized
+954:M 24 Nov 2024 02:04:40.374 * Ready to accept connections
+1003:C 28 Nov 2024 22:11:29.129 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1003:C 28 Nov 2024 22:11:29.129 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=1003, just started
+1003:C 28 Nov 2024 22:11:29.129 # Configuration loaded
+1003:M 28 Nov 2024 22:11:29.132 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+1003:M 28 Nov 2024 22:11:29.133 * Running mode=standalone, port=11000.
+1003:M 28 Nov 2024 22:11:29.133 # Server initialized
+1003:M 28 Nov 2024 22:11:29.134 * Ready to accept connections
+893:C 02 Dec 2024 08:21:49.149 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+893:C 02 Dec 2024 08:21:49.149 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=893, just started
+893:C 02 Dec 2024 08:21:49.149 # Configuration loaded
+893:M 02 Dec 2024 08:21:49.153 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+893:M 02 Dec 2024 08:21:49.160 * Running mode=standalone, port=11000.
+893:M 02 Dec 2024 08:21:49.160 # Server initialized
+893:M 02 Dec 2024 08:21:49.160 * Ready to accept connections
+951:C 05 Dec 2024 01:16:41.584 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+951:C 05 Dec 2024 01:16:41.584 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=951, just started
+951:C 05 Dec 2024 01:16:41.584 # Configuration loaded
+951:M 05 Dec 2024 01:16:41.586 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+951:M 05 Dec 2024 01:16:41.587 * Running mode=standalone, port=11000.
+951:M 05 Dec 2024 01:16:41.587 # Server initialized
+951:M 05 Dec 2024 01:16:41.587 * Ready to accept connections
+935:C 07 Dec 2024 22:15:45.140 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+935:C 07 Dec 2024 22:15:45.141 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=935, just started
+935:C 07 Dec 2024 22:15:45.141 # Configuration loaded
+935:M 07 Dec 2024 22:15:45.143 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+935:M 07 Dec 2024 22:15:45.145 * Running mode=standalone, port=11000.
+935:M 07 Dec 2024 22:15:45.145 # Server initialized
+935:M 07 Dec 2024 22:15:45.146 * Ready to accept connections
+883:C 09 Dec 2024 19:36:17.419 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+883:C 09 Dec 2024 19:36:17.419 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=883, just started
+883:C 09 Dec 2024 19:36:17.419 # Configuration loaded
+883:M 09 Dec 2024 19:36:17.425 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+883:M 09 Dec 2024 19:36:17.430 * Running mode=standalone, port=11000.
+883:M 09 Dec 2024 19:36:17.434 # Server initialized
+883:M 09 Dec 2024 19:36:17.435 * Ready to accept connections
+936:C 11 Dec 2024 22:52:29.954 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+936:C 11 Dec 2024 22:52:29.954 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=936, just started
+936:C 11 Dec 2024 22:52:29.954 # Configuration loaded
+936:M 11 Dec 2024 22:52:29.987 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+936:M 11 Dec 2024 22:52:30.025 * Running mode=standalone, port=11000.
+936:M 11 Dec 2024 22:52:30.025 # Server initialized
+936:M 11 Dec 2024 22:52:30.025 * Ready to accept connections
+914:C 12 Dec 2024 09:23:39.260 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+914:C 12 Dec 2024 09:23:39.260 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=914, just started
+914:C 12 Dec 2024 09:23:39.260 # Configuration loaded
+914:M 12 Dec 2024 09:23:39.271 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+914:M 12 Dec 2024 09:23:39.272 * Running mode=standalone, port=11000.
+914:M 12 Dec 2024 09:23:39.272 # Server initialized
+914:M 12 Dec 2024 09:23:39.276 * Ready to accept connections
+899:C 14 Dec 2024 08:51:04.900 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+899:C 14 Dec 2024 08:51:04.901 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=899, just started
+899:C 14 Dec 2024 08:51:04.901 # Configuration loaded
+899:M 14 Dec 2024 08:51:04.905 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+899:M 14 Dec 2024 08:51:05.019 * Running mode=standalone, port=11000.
+899:M 14 Dec 2024 08:51:05.019 # Server initialized
+899:M 14 Dec 2024 08:51:05.021 * Ready to accept connections
+902:C 14 Dec 2024 12:38:41.147 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+902:C 14 Dec 2024 12:38:41.147 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=902, just started
+902:C 14 Dec 2024 12:38:41.148 # Configuration loaded
+902:M 14 Dec 2024 12:38:41.149 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+902:M 14 Dec 2024 12:38:41.153 * Running mode=standalone, port=11000.
+902:M 14 Dec 2024 12:38:41.153 # Server initialized
+902:M 14 Dec 2024 12:38:41.154 * Ready to accept connections
+919:C 14 Dec 2024 14:10:28.579 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+919:C 14 Dec 2024 14:10:28.579 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=919, just started
+919:C 14 Dec 2024 14:10:28.579 # Configuration loaded
+919:M 14 Dec 2024 14:10:28.582 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+919:M 14 Dec 2024 14:10:28.589 * Running mode=standalone, port=11000.
+919:M 14 Dec 2024 14:10:28.589 # Server initialized
+919:M 14 Dec 2024 14:10:28.590 * Ready to accept connections
+932:C 14 Dec 2024 22:15:06.414 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+932:C 14 Dec 2024 22:15:06.414 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=932, just started
+932:C 14 Dec 2024 22:15:06.414 # Configuration loaded
+932:M 14 Dec 2024 22:15:06.415 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+932:M 14 Dec 2024 22:15:06.417 * Running mode=standalone, port=11000.
+932:M 14 Dec 2024 22:15:06.417 # Server initialized
+932:M 14 Dec 2024 22:15:06.418 * Ready to accept connections
+924:C 15 Dec 2024 22:57:44.771 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+924:C 15 Dec 2024 22:57:44.771 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=924, just started
+924:C 15 Dec 2024 22:57:44.771 # Configuration loaded
+924:M 15 Dec 2024 22:57:44.774 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+924:M 15 Dec 2024 22:57:44.776 * Running mode=standalone, port=11000.
+924:M 15 Dec 2024 22:57:44.776 # Server initialized
+924:M 15 Dec 2024 22:57:44.782 * Ready to accept connections
+889:C 16 Dec 2024 21:35:20.283 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+889:C 16 Dec 2024 21:35:20.283 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=889, just started
+889:C 16 Dec 2024 21:35:20.283 # Configuration loaded
+889:M 16 Dec 2024 21:35:20.284 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+889:M 16 Dec 2024 21:35:20.294 * Running mode=standalone, port=11000.
+889:M 16 Dec 2024 21:35:20.294 # Server initialized
+889:M 16 Dec 2024 21:35:20.295 * Ready to accept connections
+940:C 20 Dec 2024 16:36:44.328 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+940:C 20 Dec 2024 16:36:44.328 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=940, just started
+940:C 20 Dec 2024 16:36:44.328 # Configuration loaded
+940:M 20 Dec 2024 16:36:44.330 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+940:M 20 Dec 2024 16:36:44.331 * Running mode=standalone, port=11000.
+940:M 20 Dec 2024 16:36:44.331 # Server initialized
+940:M 20 Dec 2024 16:36:44.364 * Ready to accept connections
+892:C 21 Dec 2024 10:02:06.700 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+892:C 21 Dec 2024 10:02:06.700 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=892, just started
+892:C 21 Dec 2024 10:02:06.700 # Configuration loaded
+892:M 21 Dec 2024 10:02:06.701 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+892:M 21 Dec 2024 10:02:06.717 * Running mode=standalone, port=11000.
+892:M 21 Dec 2024 10:02:06.717 # Server initialized
+892:M 21 Dec 2024 10:02:06.717 * Ready to accept connections
+890:C 21 Dec 2024 10:04:31.136 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+890:C 21 Dec 2024 10:04:31.136 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=890, just started
+890:C 21 Dec 2024 10:04:31.136 # Configuration loaded
+890:M 21 Dec 2024 10:04:31.138 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+890:M 21 Dec 2024 10:04:31.153 * Running mode=standalone, port=11000.
+890:M 21 Dec 2024 10:04:31.153 # Server initialized
+890:M 21 Dec 2024 10:04:31.153 * Ready to accept connections
+890:C 28 Dec 2024 16:21:33.086 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+890:C 28 Dec 2024 16:21:33.086 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=890, just started
+890:C 28 Dec 2024 16:21:33.086 # Configuration loaded
+890:M 28 Dec 2024 16:21:33.092 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+890:M 28 Dec 2024 16:21:33.121 * Running mode=standalone, port=11000.
+890:M 28 Dec 2024 16:21:33.132 # Server initialized
+890:M 28 Dec 2024 16:21:33.169 * Ready to accept connections
+913:C 28 Dec 2024 16:25:40.163 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+913:C 28 Dec 2024 16:25:40.163 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=913, just started
+913:C 28 Dec 2024 16:25:40.163 # Configuration loaded
+913:M 28 Dec 2024 16:25:40.177 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+913:M 28 Dec 2024 16:25:40.178 * Running mode=standalone, port=11000.
+913:M 28 Dec 2024 16:25:40.178 # Server initialized
+913:M 28 Dec 2024 16:25:40.178 * Ready to accept connections
+1093:C 30 Dec 2024 12:27:05.104 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1093:C 30 Dec 2024 12:27:05.104 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=1093, just started
+1093:C 30 Dec 2024 12:27:05.104 # Configuration loaded
+1093:M 30 Dec 2024 12:27:05.105 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+1093:M 30 Dec 2024 12:27:05.112 * Running mode=standalone, port=11000.
+1093:M 30 Dec 2024 12:27:05.112 # Server initialized
+1093:M 30 Dec 2024 12:27:05.113 * Ready to accept connections
+1093:signal-handler (1735554607) Received SIGTERM scheduling shutdown...
+1093:M 30 Dec 2024 12:30:07.828 # User requested shutdown...
+1093:M 30 Dec 2024 12:30:07.828 * Removing the pid file.
+1093:M 30 Dec 2024 12:30:07.838 # Redis is now ready to exit, bye bye...
+1448:C 30 Dec 2024 12:55:01.500 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1448:C 30 Dec 2024 12:55:01.500 # Redis version=6.0.16, bits=64, commit=00000000, modified=0, pid=1448, just started
+1448:C 30 Dec 2024 12:55:01.500 # Configuration loaded
+1448:M 30 Dec 2024 12:55:01.501 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+1448:M 30 Dec 2024 12:55:01.503 * Running mode=standalone, port=11000.
+1448:M 30 Dec 2024 12:55:01.503 # Server initialized
+1448:M 30 Dec 2024 12:55:01.508 * Ready to accept connections
