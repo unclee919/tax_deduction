@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Sub-BOQ-{####}",
+ "creation": "2024-12-07 22:17:00.581336",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "project_name",
+  "project_names",
+  "project_number",
+  "column_break_emkz",
+  "floor_level",
+  "room_name",
+  "requirment_tab",
+  "products_section",
+  "bill_of_quantity"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Link",
+   "label": "Project Code",
+   "options": "Project"
+  },
+  {
+   "fieldname": "project_number",
+   "fieldtype": "Data",
+   "label": "Project Number"
+  },
+  {
+   "fieldname": "column_break_emkz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "requirment_tab",
+   "fieldtype": "Tab Break",
+   "label": "Requirment"
+  },
+  {
+   "fieldname": "products_section",
+   "fieldtype": "Section Break",
+   "label": "Products"
+  },
+  {
+   "fieldname": "bill_of_quantity",
+   "fieldtype": "Table",
+   "label": "Bill of Quantity",
+   "options": "Bill of Quantity"
+  },
+  {
+   "fieldname": "floor_level",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Floor Level",
+   "options": "parent.floor_level"
+  },
+  {
+   "fetch_from": "project_name.project_name",
+   "fieldname": "project_names",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Project Name",
+   "options": "Project"
+  },
+  {
+   "fieldname": "room_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-10 01:59:30.128152",
+ "modified_by": "Administrator",
+ "module": "decoration sales workflow",
+ "name": "Sub BOQ",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,2 @@
+(()=>{frappe.provide("frappe.views");frappe.views.ImageView=class extends frappe.views.ImageView{item_details_html(l){console.log("hi");let t=this.get_fields_in_list_view().map(e=>e.fieldname)||[],s=this.meta.title_field||"name";t=t.filter(e=>e!==s);let i='<div><ul class="list-unstyled image-view-info">',a=!1;return t.forEach((e,f)=>{l[e]&&!a&&(f==0?i+=`<li>${__(l[e])}</li>`:i+=`<li class="text-muted">${__(l[e])}</li>`)}),i+="</ul></div>",i}};})();
+//# sourceMappingURL=hid.bundle.XCFOOF3M.js.map
