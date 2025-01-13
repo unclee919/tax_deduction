@@ -865,6 +865,7 @@ frappe.ui.form.on('Lead', {
 
 function set_value_field(dialogObj, frm) {
     const status_regex = /status/i;
+    let field_mappings = frm.fields_dict.custom_bill_of_quantity.grid.fields_map;
     const new_df = Object.assign({}, field_mappings[dialogObj.get_value("field_to_update")]);
 
     if (
@@ -886,39 +887,6 @@ function set_value_field(dialogObj, frm) {
     dialogObj.refresh(dialogObj);
 }
 
-frappe.ui.form.on('Lead', {
-    refresh: function (frm) {
-        // Customize the Add Row button
-        frm.fields_dict['custom_bill_of_quantity'].grid.add_custom_button('Add Multiple Rows', function () {
-            frappe.prompt(
-                [
-                    {
-                        fieldname: 'number_of_rows',
-                        fieldtype: 'Int',
-                        label: 'Number of Rows',
-                        reqd: 1
-                    }
-                ],
-                function (data) {
-                    if (data.number_of_rows > 0) {
-                        for (let i = 0; i < data.number_of_rows; i++) {
-                            let new_row = frm.add_child('custom_bill_of_quantity');
-                            // Optional: Set default values for the new rows here
-                            new_row.floor_level = frm.doc.custom_floor_level;
-                            new_row.room_name = frm.doc.custom_room_name;
-                            new_row.some_field = "Default Value";
-                        }
-                        frm.refresh_field('custom_bill_of_quantity');
-                    } else {
-                        frappe.msgprint(__('Please enter a valid number greater than 0.'));
-                    }
-                },
-                __('Add Rows'),
-                __('Add')
-            );
-        });
-    }
-});
 
 
 frappe.ui.form.on('Purchase Order', {
