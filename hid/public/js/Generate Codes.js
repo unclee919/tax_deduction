@@ -85,13 +85,12 @@ async function createItemsFromBoQ(frm) {
         let room_number = null;
         let room_name = null;
         let area = null;
-        let building_number = null;
-
-
+        let building_number = null;  
         try {
+            // Loop through the 'custom_bill_of_quantity' child table in the form
             for (let idx = 0; idx < frm.doc.custom_bill_of_quantity.length; idx++) {
-                let row = frm.doc.custom_bill_of_quantity[idx];
-
+                let row = frm.doc.custom_bill_of_quantity[idx];    
+                // If the row is not a component
                 if (row.is_component === 0) {
                     if (!row.hid_code) {
                         lastMainProductCode = generateNewBaseCode(frm);
@@ -99,7 +98,6 @@ async function createItemsFromBoQ(frm) {
                     } else {
                         lastMainProductCode = row.hid_code;
                     }
-
                     lastMainProductProductCode = row.product_code;
                     floor_level = row.floor_level;
                     room_number = row.room_number;
@@ -107,36 +105,47 @@ async function createItemsFromBoQ(frm) {
                     area = row.area;
                     building_number = row.building_number;
                     currentSuffix = 'A';
-                } else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode && !row.hid_code) {
-                    let componentHidCode = generateHidCode(lastMainProductCode, currentSuffix);
+                }
+                // If the row is a component and the necessary codes exist
+                else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode && !row.hid_code) {
+                    let componentHidCode = generateHidCodeComponent( lastMainProductCode, currentSuffix);
+
                     await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
                     await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
                     await frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level);
                     await frappe.model.set_value(row.doctype, row.name, 'room_number', room_number);
-                   await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
+                    await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
                     await frappe.model.set_value(row.doctype, row.name, 'area', area);
                     await frappe.model.set_value(row.doctype, row.name, 'building_number', building_number);
-                    // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
-                    // await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
+                    // Increment suffix for the next component
                     currentSuffix = String.fromCharCode(currentSuffix.charCodeAt(0) + 1);
+                    
+                    // Optionally handle suffix beyond 'Z' if needed
+                    if (currentSuffix > 'Z') {
+                        currentSuffix = 'A'; // Reset to 'A' after 'Z'
+                    }
                 }
             }
-
+    
+            // Refresh the field after updating all rows
             frm.refresh_field('custom_bill_of_quantity');
         } catch (error) {
             console.error("Error processing HID code generation:", error);
         }
     }
 
-    function generateNewBaseCode(frm) {
+    function generateNewBaseCode(frm, floorLevel = '', roomNumber = '') {
         const mainProductCodes = frm.doc.custom_bill_of_quantity
             .filter(row => row.is_component === 0 && row.hid_code)
             .map(row => row.hid_code);
     
         // If there are no existing codes, start from 'base_code-001'
-        // if (mainProductCodes.length === 0) {
-        //     return 'base_code-001';
-        // }
+        let baseCode = 'base_code-001';
+        if (mainProductCodes.length === 0) {
+            if (floorLevel) baseCode += `-${floorLevel}`;
+            if (roomNumber) baseCode += `-${roomNumber}`;
+            return baseCode;
+        }
     
         // Extract the numeric part from the last code
         const lastCode = mainProductCodes.sort().pop();
@@ -145,7 +154,14 @@ async function createItemsFromBoQ(frm) {
         // Increment the number part and format it to three digits
         const newNumber = String(parseInt(number, 10) + 1).padStart(3, '0');
     
-        return `${prefix}-${newNumber}`;
+        baseCode = `${prefix}-${newNumber}`;
+        if (floorLevel && roomNumber) {
+            baseCode = `-${floorLevel}-${roomNumber}` + baseCode;
+        } else {
+            if (floorLevel) baseCode = `-${floorLevel}` + baseCode;
+            if (roomNumber) baseCode = `-${roomNumber}` + baseCode;
+        }
+        
     }
     
     for (const row of frm.doc.custom_bill_of_quantity) {
@@ -164,8 +180,10 @@ async function createItemsFromBoQ(frm) {
                 await generateComponentHidCode(frm);
             } else {
                 const base_code = frm.is_new() ? row.base_code : row.base_code;
+                const floorLevel = row.floor_level;
+                const roomNumber = row.room_name;
                 const formatindex = String(index).padStart(3, '0');
-                if (!row.hid_code) {row.hid_code = generateHidCode(base_code, formatindex);}
+                if (!row.hid_code) {row.hid_code = generateHidCode(floorLevel, roomNumber, base_code, formatindex);}
                 // row.hid_code = generateHidCode(base_code, formatindex);
             }
     
@@ -624,7 +642,7 @@ frappe.ui.form.on('Lead', {
             createMaterialRequest(frm);
         });
 
-        frm.add_custom_button(__('Create - Update Items'), function() {
+        frm.add_custom_button('<i class="fa fa-cogs" style="margin-right: 5px; color: blue;"></i> <b>Create - Update Items</b>', function () {
             createItemsFromBoQ(frm);
         });
     },
@@ -844,6 +862,8 @@ frappe.ui.form.on('Lead', {
                         for (let i = 0; i < data.number_of_rows; i++) {
                             let new_row = frm.add_child('custom_bill_of_quantity');
                             // Optional: Set default values for the new rows here
+                            new_row.floor_level = frm.doc.custom_floor_level;
+                            new_row.room_name = frm.doc.custom_room_name;
                             new_row.some_field = "Default Value";
                         }
                         frm.refresh_field('custom_bill_of_quantity');
@@ -880,3 +900,22 @@ frappe.ui.form.on('Purchase Order', {
     }
 });
 
+frappe.ui.form.on('Lead', {
+    refresh(frm) {
+        // Add the button in the child table beside the "Add Row" button
+        frm.fields_dict['custom_bill_of_quantity'].grid.add_custom_button('Add Row with Parent Data', function() {
+            let row = frm.add_child('custom_bill_of_quantity', {
+                floor_level: frm.doc.custom_floor_level,
+                room_name: frm.doc.custom_room_name,
+                // Add other fields as needed
+            });
+
+            frm.refresh_field('custom_bill_of_quantity');
+        });
+
+        // Ensure the button appears near the existing buttons
+        frm.fields_dict['custom_bill_of_quantity'].grid.custom_buttons['Add Row with Parent Data']
+            .removeClass('btn-default')
+            .addClass('btn-primary');
+    }
+});

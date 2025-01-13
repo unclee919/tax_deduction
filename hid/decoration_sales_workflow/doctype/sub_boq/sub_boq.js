@@ -73,32 +73,7 @@ async function createItemsFromBoQ(frm) {
             frappe.msgprint(`Error creating item with product_code "${itemData.item_code}": ${err.message || 'Unknown error'}`);
         }
     }
- 
-
-    function generateHidCode(floorLevel, roomNumber, baseCode, suffix = '') {
-        let code = '';
-    
-        // Add floor level and room number first, with a hyphen between them if both are present
-        if (floorLevel && roomNumber) {
-            code += `${floorLevel}-${roomNumber}`;
-        } else {
-            if (floorLevel) code += `${floorLevel}`;
-            if (roomNumber) code += `${roomNumber}`;
-        }
-    
-        // Add base code next
-        if (baseCode) {
-            code += `-${baseCode}`;
-        }
-    
-        // Add suffix if provided
-        if (suffix) {
-            code += `-${suffix}`;
-        }
-    
-        return code;
-    }
-    function generateHidCodeComponent(baseCode, suffix = '') {
+    function generateHidCode(baseCode, suffix = '') {
         return suffix ? `${baseCode}-${suffix}` : baseCode;
     }
     
@@ -110,8 +85,7 @@ async function createItemsFromBoQ(frm) {
         let room_number = null;
         let room_name = null;
         let area = null;
-        let building_number = null;
-    
+        let building_number = null;  
         try {
             // Loop through the 'bill_of_quantity' child table in the form
             for (let idx = 0; idx < frm.doc.bill_of_quantity.length; idx++) {
