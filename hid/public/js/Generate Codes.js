@@ -762,15 +762,22 @@ frappe.ui.form.on('Lead', {
 
 frappe.ui.form.on('Lead', {
     refresh: function (frm) {
-        frm.add_custom_button(('Auto Fill'), function () {
-            const selected_rows = frm.fields_dict.custom_bill_of_quantity.grid.get_selected_children();
+        frm.add_custom_button('<i class="fa fa-bolt" style="font-size: 20px;"></i> <b style="font-size: 18px;">Auto Fill</b>', function () {
+            // Collect selected rows from the child table
+            const selected_rows = frm.fields_dict.custom_bill_of_quantity.grid.get_selected();
+            console.log("Selected rows:", selected_rows);
 
             if (selected_rows.length === 0) {
-                frappe.msgprint(('Please select rows in the table.'));
+                frappe.msgprint(('Please select rows in the table'));
                 return;
             }
 
+            // Get the list of fields in the child table
             const child_fields = Object.keys(frm.fields_dict.custom_bill_of_quantity.grid.fields_map);
+            console.log("Available child fields:", child_fields);
+
+            // Create the dialog
+            var me = frm;
             const dialog = new frappe.ui.Dialog({
                 title: __('Auto Fill Rows'),
                 fields: [
@@ -780,44 +787,53 @@ frappe.ui.form.on('Lead', {
                         fieldtype: 'Select',
                         options: child_fields.join('\n'),
                         reqd: 1,
+                        // default: 'product_name',
+                        onchange: () => {
+                            set_value_field(dialog, me);  // Handle field updates
+                        },
                     },
                     {
                         fieldname: 'value',
                         label: 'Value',
-                        fieldtype: 'Data', // Default
+                        fieldtype: 'Data', // Default type (will dynamically change)
                         reqd: 1,
                     },
                 ],
                 primary_action_label: __('Apply'),
-                primary_action: async (values) => {
-                    console.log("Selected field to update:", values.field_to_update);
+                primary_action: (values) => {
+                    console.log("Field to update:", values.field_to_update);
                     console.log("Value to apply:", values.value);
 
-                    let promises = [];
-                    selected_rows.forEach((row) => {
-                        if (row && row.name) {
-                            console.log("Processing row:", row.name);
+                    let changes_applied = false;
 
-                            promises.push(
-                                frappe.model.set_value(row.doctype, row.name, values.field_to_update, values.value)
-                            );
+                    // Loop through the selected rows and apply the value to the specified field
+                    selected_rows.forEach((row) => {
+                        const child_row = frm.doc.custom_bill_of_quantity.find((r) => r.name === row);
+                        console.log("Checking row:", row, child_row);
+
+                        if (child_row) {
+                            console.log("Field exists, updating:", values.field_to_update, "to", values.value);
+                            child_row[values.field_to_update] = values.value;
+                            changes_applied = true;
+                        } else {
+                            console.warn("Row not found:", row);
                         }
                     });
 
-                    try {
-                        await Promise.all(promises);
+                    if (changes_applied) {
                         frm.refresh_field('custom_bill_of_quantity');
-                        await frm.save();
-                        frappe.msgprint(__('Rows updated and form saved successfully.'));
-                    } catch (err) {
-                        console.error('Failed to update rows or save the form:', err);
-                        frappe.msgprint(__('An error occurred. Check the console for details.'));
+                        frm.save().then(() => {
+                            frappe.msgprint(__('Rows updated and form saved successfully.'));
+                        });
+                    } else {
+                        frappe.msgprint(__('No rows were updated. Please check the field names.'));
                     }
 
                     dialog.hide();
                 },
             });
 
+            // Dynamically update the Value field's type based on the selected field
             dialog.fields_dict.field_to_update.$input.on('change', function () {
                 const selected_field = dialog.get_value('field_to_update');
                 console.log("Selected field:", selected_field);
@@ -827,15 +843,18 @@ frappe.ui.form.on('Lead', {
                     const field_type = field_definition.fieldtype || 'Data';
                     const options = field_definition.options || '';
 
+                    console.log("Updating Value field type:", field_type);
+
+                    // Dynamically update the field based on type
                     dialog.fields_dict.value.df.fieldtype = field_type;
 
                     if (field_type === 'Select') {
                         dialog.fields_dict.value.df.options = options;
                     } else if (field_type === 'Link') {
-                        dialog.fields_dict.value.df.options = field_definition.options;
+                        dialog.fields_dict.value.df.options = options;
                     }
 
-                    dialog.fields_dict.value.refresh();
+                    dialog.fields_dict.value.refresh(); // Ensures the field type change reflects immediately
                 }
             });
 
@@ -843,6 +862,29 @@ frappe.ui.form.on('Lead', {
         });
     },
 });
+
+function set_value_field(dialogObj, frm) {
+    const status_regex = /status/i;
+    const new_df = Object.assign({}, field_mappings[dialogObj.get_value("field_to_update")]);
+
+    if (
+        new_df.label.match(status_regex) &&
+        new_df.fieldtype === "Select" &&
+        !new_df.default
+    ) {
+        let options = [];
+        if (typeof new_df.options === "string") {
+            options = new_df.options.split("\n");
+        }
+        new_df.default = options[0] || options[1];
+    }
+
+    new_df.label = __("Value");
+    delete new_df.depends_on;
+
+    dialogObj.replace_field("value", new_df);
+    dialogObj.refresh(dialogObj);
+}
 
 frappe.ui.form.on('Lead', {
     refresh: function (frm) {
