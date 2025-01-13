@@ -1,0 +1,1049 @@
+Updating Dashboard for frappe
+Updating Dashboard for erpnext
+Updating Dashboard for hrms
+Updating Dashboard for lending
+Wrote document file for DocType Category at /home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/category.json
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/category.py already exists, skipping...
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/test_category.py already exists, skipping...
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/category.js already exists, skipping...
+Wrote document file for DocType Category at /home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/category.json
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/category.py already exists, skipping...
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/test_category.py already exists, skipping...
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/category.js already exists, skipping...
+Wrote document file for DocType Category at /home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/category.json
+Wrote document file for DocType Bill of Quantity at /home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.json
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.py already exists, skipping...
+Wrote document file for DocType Bill of Quantity at /home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.json
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.py already exists, skipping...
+Wrote document file for DocType Category at /home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/category.json
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/category/category.py already exists, skipping...
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/desk/search.py", line 331, in get_link_title
+    return frappe.db.get_value(doctype, docname, meta.title_field)
+  File "apps/frappe/frappe/database/database.py", line 512, in get_value
+    result = self.get_values(
+  File "apps/frappe/frappe/database/database.py", line 616, in get_values
+    out = self._get_values_from_table(
+  File "apps/frappe/frappe/database/database.py", line 889, in _get_values_from_table
+    return query.run(as_dict=as_dict, debug=debug, update=update, run=run, pluck=pluck)
+  File "apps/frappe/frappe/query_builder/utils.py", line 87, in execute_query
+    result = frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "apps/frappe/frappe/database/database.py", line 227, in sql
+    self._cursor.execute(query, values)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "env/lib/python3.10/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "env/lib/python3.10/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column '' in 'field list'")
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/desk/search.py", line 331, in get_link_title
+    return frappe.db.get_value(doctype, docname, meta.title_field)
+  File "apps/frappe/frappe/database/database.py", line 512, in get_value
+    result = self.get_values(
+  File "apps/frappe/frappe/database/database.py", line 616, in get_values
+    out = self._get_values_from_table(
+  File "apps/frappe/frappe/database/database.py", line 889, in _get_values_from_table
+    return query.run(as_dict=as_dict, debug=debug, update=update, run=run, pluck=pluck)
+  File "apps/frappe/frappe/query_builder/utils.py", line 87, in execute_query
+    result = frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "apps/frappe/frappe/database/database.py", line 227, in sql
+    self._cursor.execute(query, values)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "env/lib/python3.10/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "env/lib/python3.10/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column '' in 'field list'")
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/desk/search.py", line 331, in get_link_title
+    return frappe.db.get_value(doctype, docname, meta.title_field)
+  File "apps/frappe/frappe/database/database.py", line 512, in get_value
+    result = self.get_values(
+  File "apps/frappe/frappe/database/database.py", line 616, in get_values
+    out = self._get_values_from_table(
+  File "apps/frappe/frappe/database/database.py", line 889, in _get_values_from_table
+    return query.run(as_dict=as_dict, debug=debug, update=update, run=run, pluck=pluck)
+  File "apps/frappe/frappe/query_builder/utils.py", line 87, in execute_query
+    result = frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "apps/frappe/frappe/database/database.py", line 227, in sql
+    self._cursor.execute(query, values)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "env/lib/python3.10/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "env/lib/python3.10/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column '' in 'field list'")
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/desk/search.py", line 331, in get_link_title
+    return frappe.db.get_value(doctype, docname, meta.title_field)
+  File "apps/frappe/frappe/database/database.py", line 512, in get_value
+    result = self.get_values(
+  File "apps/frappe/frappe/database/database.py", line 616, in get_values
+    out = self._get_values_from_table(
+  File "apps/frappe/frappe/database/database.py", line 889, in _get_values_from_table
+    return query.run(as_dict=as_dict, debug=debug, update=update, run=run, pluck=pluck)
+  File "apps/frappe/frappe/query_builder/utils.py", line 87, in execute_query
+    result = frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "apps/frappe/frappe/database/database.py", line 227, in sql
+    self._cursor.execute(query, values)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "env/lib/python3.10/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "env/lib/python3.10/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column '' in 'field list'")
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/desk/search.py", line 331, in get_link_title
+    return frappe.db.get_value(doctype, docname, meta.title_field)
+  File "apps/frappe/frappe/database/database.py", line 512, in get_value
+    result = self.get_values(
+  File "apps/frappe/frappe/database/database.py", line 616, in get_values
+    out = self._get_values_from_table(
+  File "apps/frappe/frappe/database/database.py", line 889, in _get_values_from_table
+    return query.run(as_dict=as_dict, debug=debug, update=update, run=run, pluck=pluck)
+  File "apps/frappe/frappe/query_builder/utils.py", line 87, in execute_query
+    result = frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "apps/frappe/frappe/database/database.py", line 227, in sql
+    self._cursor.execute(query, values)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "env/lib/python3.10/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "env/lib/python3.10/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column '' in 'field list'")
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/desk/search.py", line 331, in get_link_title
+    return frappe.db.get_value(doctype, docname, meta.title_field)
+  File "apps/frappe/frappe/database/database.py", line 512, in get_value
+    result = self.get_values(
+  File "apps/frappe/frappe/database/database.py", line 616, in get_values
+    out = self._get_values_from_table(
+  File "apps/frappe/frappe/database/database.py", line 889, in _get_values_from_table
+    return query.run(as_dict=as_dict, debug=debug, update=update, run=run, pluck=pluck)
+  File "apps/frappe/frappe/query_builder/utils.py", line 87, in execute_query
+    result = frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "apps/frappe/frappe/database/database.py", line 227, in sql
+    self._cursor.execute(query, values)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "env/lib/python3.10/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "env/lib/python3.10/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column '' in 'field list'")
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/desk/search.py", line 331, in get_link_title
+    return frappe.db.get_value(doctype, docname, meta.title_field)
+  File "apps/frappe/frappe/database/database.py", line 512, in get_value
+    result = self.get_values(
+  File "apps/frappe/frappe/database/database.py", line 616, in get_values
+    out = self._get_values_from_table(
+  File "apps/frappe/frappe/database/database.py", line 889, in _get_values_from_table
+    return query.run(as_dict=as_dict, debug=debug, update=update, run=run, pluck=pluck)
+  File "apps/frappe/frappe/query_builder/utils.py", line 87, in execute_query
+    result = frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "apps/frappe/frappe/database/database.py", line 227, in sql
+    self._cursor.execute(query, values)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "env/lib/python3.10/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "env/lib/python3.10/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column '' in 'field list'")
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/client.py", line 227, in save
+    doc.save()
+  File "apps/frappe/frappe/model/document.py", line 337, in save
+    return self._save(*args, **kwargs)
+  File "apps/frappe/frappe/model/document.py", line 367, in _save
+    self.check_if_latest()
+  File "apps/frappe/frappe/model/document.py", line 815, in check_if_latest
+    frappe.msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.TimestampMismatchError: Error: Document has been modified after you have opened it (2024-12-09 21:13:46.702741, 2024-12-09 21:13:46.886952). Please refresh to get the latest document.
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/desk/form/save.py", line 39, in savedocs
+    doc.save()
+  File "apps/frappe/frappe/model/document.py", line 337, in save
+    return self._save(*args, **kwargs)
+  File "apps/frappe/frappe/model/document.py", line 372, in _save
+    self._validate_links()
+  File "apps/frappe/frappe/model/document.py", line 930, in _validate_links
+    frappe.throw(_("Could not find {0}").format(msg), frappe.LinkValidationError)
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.LinkValidationError: Could not find Lead Stage: Procurment Stage
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/client.py", line 227, in save
+    doc.save()
+  File "apps/frappe/frappe/model/document.py", line 337, in save
+    return self._save(*args, **kwargs)
+  File "apps/frappe/frappe/model/document.py", line 367, in _save
+    self.check_if_latest()
+  File "apps/frappe/frappe/model/document.py", line 815, in check_if_latest
+    frappe.msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.TimestampMismatchError: Error: Document has been modified after you have opened it (2024-12-09 21:14:03.443087, 2024-12-09 21:14:03.475737). Please refresh to get the latest document.
+
+Wrote document file for DocType Bill of Quantity at /home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.json
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.py already exists, skipping...
+Failed to alter schema using query: ALTER TABLE `tabBill of Quantity` MODIFY `installation` decimal(21,9) not null default 0, MODIFY `percentage_of_vat_per_supplier` decimal(21,9) not null default 0, MODIFY `cost_before_margin` decimal(21,9) not null default 0, MODIFY `total_before_margins` decimal(21,9) not null default 0, MODIFY `shipping` decimal(21,9) not null default 0, MODIFY `profit_margin` decimal(21,9) not null default 0, MODIFY `oh` decimal(21,9) not null default 0, MODIFY `final_rate` decimal(21,9) not null default 0, MODIFY `product_code_category` varchar(140), MODIFY `additional_cost` decimal(21,9) not null default 0, MODIFY `logisitics` decimal(21,9) not null default 0, MODIFY `stocking` decimal(21,9) not null default 0, MODIFY `total_finals` decimal(21,9) not null default 0, MODIFY `custom_and_clearnce` decimal(21,9) not null default 0, MODIFY `customiziation` decimal(21,9) not null default 0
+
+
+There was an issue while migrating the DocType: Bill of Quantity
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/frappe/frappe/desk/form/save.py", line 39, in savedocs
+    doc.save()
+  File "apps/frappe/frappe/model/document.py", line 337, in save
+    return self._save(*args, **kwargs)
+  File "apps/frappe/frappe/model/document.py", line 390, in _save
+    self.run_post_save_methods()
+  File "apps/frappe/frappe/model/document.py", line 1128, in run_post_save_methods
+    self.run_method("on_update")
+  File "apps/frappe/frappe/model/document.py", line 962, in run_method
+    out = Document.hook(fn)(self, *args, **kwargs)
+  File "apps/frappe/frappe/model/document.py", line 1322, in composer
+    return composed(self, method, *args, **kwargs)
+  File "apps/frappe/frappe/model/document.py", line 1304, in runner
+    add_to_return_value(self, fn(self, *args, **kwargs))
+  File "apps/frappe/frappe/model/document.py", line 959, in fn
+    return method_object(*args, **kwargs)
+  File "apps/frappe/frappe/core/doctype/doctype/doctype.py", line 500, in on_update
+    raise e
+  File "apps/frappe/frappe/core/doctype/doctype/doctype.py", line 497, in on_update
+    frappe.db.updatedb(self.name, Meta(self))
+  File "apps/frappe/frappe/database/mariadb/database.py", line 443, in updatedb
+    db_table.sync()
+  File "apps/frappe/frappe/database/schema.py", line 44, in sync
+    self.alter()
+  File "apps/frappe/frappe/database/mariadb/schema.py", line 111, in alter
+    frappe.db.sql_ddl(query)
+  File "apps/frappe/frappe/database/database.py", line 410, in sql_ddl
+    self.sql(query, debug=debug)
+  File "apps/frappe/frappe/database/database.py", line 227, in sql
+    self._cursor.execute(query, values)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "env/lib/python3.10/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "env/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "env/lib/python3.10/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "env/lib/python3.10/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.DataError: (1265, "Data truncated for column 'percentage_of_vat_per_supplier' at row 1")
+
+Failed to alter schema using query: ALTER TABLE `tabBill of Quantity` MODIFY `cost_before_margin` decimal(21,9) not null default 0, MODIFY `final_rate` decimal(21,9) not null default 0, MODIFY `custom_and_clearnce` decimal(21,9) not null default 0, MODIFY `logisitics` decimal(21,9) not null default 0, MODIFY `percentage_of_vat_per_supplier` decimal(21,9) not null default 0, MODIFY `profit_margin` decimal(21,9) not null default 0, MODIFY `installation` decimal(21,9) not null default 0, MODIFY `shipping` decimal(21,9) not null default 0, MODIFY `additional_cost` decimal(21,9) not null default 0, MODIFY `product_code_category` varchar(140), MODIFY `customiziation` decimal(21,9) not null default 0, MODIFY `stocking` decimal(21,9) not null default 0, MODIFY `total_finals` decimal(21,9) not null default 0, MODIFY `total_before_margins` decimal(21,9) not null default 0, MODIFY `oh` decimal(21,9) not null default 0
+
+
+There was an issue while migrating the DocType: Bill of Quantity
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/handler.py", line 74, in execute_cmd
+    method = get_attr(cmd)
+  File "apps/frappe/frappe/handler.py", line 287, in get_attr
+    method = frappe.get_attr(cmd)
+  File "apps/frappe/frappe/__init__.py", line 1768, in get_attr
+    return getattr(get_module(modulename), methodname)
+  File "apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'hid.hid'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 76, in execute_cmd
+    frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.ValidationError: Failed to get method for command hid.hid.decoration_sales_workflow.doctype.sub_boq.sub_boq.py.map_to_lead with No module named 'hid.hid'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/handler.py", line 74, in execute_cmd
+    method = get_attr(cmd)
+  File "apps/frappe/frappe/handler.py", line 287, in get_attr
+    method = frappe.get_attr(cmd)
+  File "apps/frappe/frappe/__init__.py", line 1768, in get_attr
+    return getattr(get_module(modulename), methodname)
+AttributeError: module 'hid.decoration_sales_workflow.doctype.sub_boq.sub_boq' has no attribute 'map_to_lead'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 76, in execute_cmd
+    frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.ValidationError: Failed to get method for command hid.decoration_sales_workflow.doctype.sub_boq.sub_boq.map_to_lead with module 'hid.decoration_sales_workflow.doctype.sub_boq.sub_boq' has no attribute 'map_to_lead'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/handler.py", line 74, in execute_cmd
+    method = get_attr(cmd)
+  File "apps/frappe/frappe/handler.py", line 287, in get_attr
+    method = frappe.get_attr(cmd)
+  File "apps/frappe/frappe/__init__.py", line 1768, in get_attr
+    return getattr(get_module(modulename), methodname)
+  File "apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'hid.sub_boq'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 76, in execute_cmd
+    frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.ValidationError: Failed to get method for command hid.sub_boq.map_to_lead with No module named 'hid.sub_boq'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/handler.py", line 74, in execute_cmd
+    method = get_attr(cmd)
+  File "apps/frappe/frappe/handler.py", line 287, in get_attr
+    method = frappe.get_attr(cmd)
+  File "apps/frappe/frappe/__init__.py", line 1768, in get_attr
+    return getattr(get_module(modulename), methodname)
+  File "apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'hid.sub_boq'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 76, in execute_cmd
+    frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.ValidationError: Failed to get method for command hid.sub_boq.map_to_lead with No module named 'hid.sub_boq'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/handler.py", line 74, in execute_cmd
+    method = get_attr(cmd)
+  File "apps/frappe/frappe/handler.py", line 287, in get_attr
+    method = frappe.get_attr(cmd)
+  File "apps/frappe/frappe/__init__.py", line 1768, in get_attr
+    return getattr(get_module(modulename), methodname)
+  File "apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'hid.sub_boq'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 76, in execute_cmd
+    frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.ValidationError: Failed to get method for command hid.sub_boq.py.map_to_lead with No module named 'hid.sub_boq'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/handler.py", line 74, in execute_cmd
+    method = get_attr(cmd)
+  File "apps/frappe/frappe/handler.py", line 287, in get_attr
+    method = frappe.get_attr(cmd)
+  File "apps/frappe/frappe/__init__.py", line 1768, in get_attr
+    return getattr(get_module(modulename), methodname)
+  File "apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'hid.sub_boq'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 76, in execute_cmd
+    frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.ValidationError: Failed to get method for command hid.sub_boq.map_to_lead with No module named 'hid.sub_boq'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/handler.py", line 74, in execute_cmd
+    method = get_attr(cmd)
+  File "apps/frappe/frappe/handler.py", line 287, in get_attr
+    method = frappe.get_attr(cmd)
+  File "apps/frappe/frappe/__init__.py", line 1768, in get_attr
+    return getattr(get_module(modulename), methodname)
+  File "apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1001, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'hid.decoration_sales_workflow.doctype.sub_boq.sub_boq.py'; 'hid.decoration_sales_workflow.doctype.sub_boq.sub_boq' is not a package
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 76, in execute_cmd
+    frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.ValidationError: Failed to get method for command hid.decoration_sales_workflow.doctype.sub_boq.sub_boq.py.map_to_lead with No module named 'hid.decoration_sales_workflow.doctype.sub_boq.sub_boq.py'; 'hid.decoration_sales_workflow.doctype.sub_boq.sub_boq' is not a package
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/handler.py", line 74, in execute_cmd
+    method = get_attr(cmd)
+  File "apps/frappe/frappe/handler.py", line 287, in get_attr
+    method = frappe.get_attr(cmd)
+  File "apps/frappe/frappe/__init__.py", line 1764, in get_attr
+    throw(_("App {0} is not installed").format(app_name), AppNotInstalledError)
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.AppNotInstalledError: App my_app is not installed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 76, in execute_cmd
+    frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.ValidationError: Failed to get method for command my_app.sub_boq.map_to_lead with App my_app is not installed
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/handler.py", line 74, in execute_cmd
+    method = get_attr(cmd)
+  File "apps/frappe/frappe/handler.py", line 287, in get_attr
+    method = frappe.get_attr(cmd)
+  File "apps/frappe/frappe/__init__.py", line 1768, in get_attr
+    return getattr(get_module(modulename), methodname)
+  File "apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'hid.hid'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 76, in execute_cmd
+    frappe.throw(_("Failed to get method for command {0} with {1}").format(cmd, e))
+  File "apps/frappe/frappe/__init__.py", line 655, in throw
+    msgprint(
+  File "apps/frappe/frappe/__init__.py", line 620, in msgprint
+    _raise_exception()
+  File "apps/frappe/frappe/__init__.py", line 571, in _raise_exception
+    raise exc
+frappe.exceptions.ValidationError: Failed to get method for command hid.hid.decoration_sales_workflow.doctype.sub_boq.sub_boq.map_to_lead with No module named 'hid.hid'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+TypeError: map_to_lead() missing 2 required positional arguments: 'project_name' and 'boq_rows'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+TypeError: map_to_lead() missing 2 required positional arguments: 'project_name' and 'boq_rows'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+TypeError: map_to_lead() missing 2 required positional arguments: 'project_name' and 'boq_rows'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+TypeError: map_to_lead() missing 2 required positional arguments: 'project_name' and 'boq_rows'
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 99, in application
+    init_request(request)
+  File "apps/frappe/frappe/app.py", line 195, in init_request
+    frappe.local.http_request = HTTPRequest()
+  File "apps/frappe/frappe/auth.py", line 43, in __init__
+    self.set_session()
+  File "apps/frappe/frappe/auth.py", line 77, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "apps/frappe/frappe/auth.py", line 110, in __init__
+    if self.login() is False:
+  File "apps/frappe/frappe/auth.py", line 135, in login
+    self.authenticate(user=user, pwd=pwd)
+  File "apps/frappe/frappe/auth.py", line 255, in authenticate
+    self.fail("Invalid login credentials", user=user.name)
+  File "apps/frappe/frappe/auth.py", line 300, in fail
+    raise frappe.AuthenticationError
+frappe.exceptions.AuthenticationError
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/hid/hid/decoration_sales_workflow/doctype/sub_boq/sub_boq.py", line 220, in map_to_lead
+    frappe.msgprint(str(lead_row_list))
+UnboundLocalError: local variable 'lead_row_list' referenced before assignment
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/hid/hid/decoration_sales_workflow/doctype/sub_boq/sub_boq.py", line 220, in map_to_lead
+    frappe.msgprint(str(lead_row_list))
+UnboundLocalError: local variable 'lead_row_list' referenced before assignment
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/hid/hid/decoration_sales_workflow/doctype/sub_boq/sub_boq.py", line 220, in map_to_lead
+    frappe.msgprint(str(lead_row_list))
+UnboundLocalError: local variable 'lead_row_list' referenced before assignment
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/hid/hid/decoration_sales_workflow/doctype/sub_boq/sub_boq.py", line 220, in map_to_lead
+    frappe.msgprint(str(lead_row_list))
+UnboundLocalError: local variable 'lead_row_list' referenced before assignment
+
+Traceback (most recent call last):
+  File "apps/frappe/frappe/app.py", line 114, in application
+    response = frappe.api.handle(request)
+  File "apps/frappe/frappe/api/__init__.py", line 49, in handle
+    data = endpoint(**arguments)
+  File "apps/frappe/frappe/api/v1.py", line 36, in handle_rpc_call
+    return frappe.handler.handle()
+  File "apps/frappe/frappe/handler.py", line 49, in handle
+    data = execute_cmd(cmd)
+  File "apps/frappe/frappe/handler.py", line 85, in execute_cmd
+    return frappe.call(method, **frappe.form_dict)
+  File "apps/frappe/frappe/__init__.py", line 1778, in call
+    return fn(*args, **newargs)
+  File "apps/frappe/frappe/utils/typing_validations.py", line 31, in wrapper
+    return func(*args, **kwargs)
+  File "apps/hid/hid/decoration_sales_workflow/doctype/sub_boq/sub_boq.py", line 220, in map_to_lead
+    frappe.msgprint(str(lead_row_list))
+UnboundLocalError: local variable 'lead_row_list' referenced before assignment
+
+Wrote document file for DocType Bill of Quantity at /home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.json
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.py already exists, skipping...
+Wrote document file for DocType Bill of Quantity at /home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.json
+/home/frappe/frappe-bench-15/apps/hid/hid/decoration_sales_workflow/doctype/bill_of_quantity/bill_of_quantity.py already exists, skipping...

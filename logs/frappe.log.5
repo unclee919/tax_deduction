@@ -1,0 +1,1461 @@
+2024-10-26 00:46:04,466 ERROR frappe New Exception collected in error log
+Site: erp1.local
+Form Dict: {}
+2024-10-26 00:46:05,274 ERROR frappe New Exception collected in error log
+Site: erp1.local
+Form Dict: {}
+2024-10-26 03:04:56,866 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 6678471537125373045
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-10-26 03:04:56,907 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 6678471537125373045
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-10-26 03:05:29,835 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -2206661742573397473
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-10-26 03:05:29,838 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -2206661742573397473
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-10-26 09:47:18,332 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 6720426368307398303
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-10-26 09:47:18,354 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 6720426368307398303
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-10-26 09:47:43,494 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 7903429054844841266
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-10-26 09:47:43,499 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 7903429054844841266
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-10-26 13:52:53,360 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -2970031438599450853
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-10-26 13:52:53,363 ERROR frappe Unable to load translations
+Site: 
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/synchronization.py", line 40, in filelock
+    with _StrongFileLock(lock_path, timeout=timeout):
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 314, in __enter__
+    self.acquire()
+  File "/home/frappe/frappe-bench-15/env/lib/python3.10/site-packages/filelock/_api.py", line 279, in acquire
+    raise Timeout(lock_filename)  # noqa: TRY301
+filelock._error.Timeout: The file lock '/home/frappe/frappe-bench-15/config/bench_build.lock' could not be acquired.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -2970031438599450853
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 155, in get_all_translations
+    return frappe.cache.hget(MERGED_TRANSLATION_KEY, lang, generator=_merge_translations)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/redis_wrapper.py", line 237, in hget
+    value = generator()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 147, in _merge_translations
+    all_translations = get_translations_from_apps(lang).copy()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/translate.py", line 172, in get_translations_from_apps
+    for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1583, in get_installed_apps
+    connect()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 330, in connect
+    assert db_name or local.conf.db_name, "site must be fully initialized, db_name missing"
+AssertionError: site must be fully initialized, db_name missing
+2024-11-15 22:51:30,122 ERROR frappe Could not take error snapshot: invalid syntax (hooks.py, line 35)
+Site: erp1.local
+Form Dict: {'sid': '1869d5f79b13216b68e8172f5432a6754f228ba224bb6f9522bd28c4'}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 99, in application
+    init_request(request)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 197, in init_request
+    for before_request_task in frappe.get_hooks("before_request"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/error.py", line 86, in log_error_snapshot
+    log_error(title=str(exception), defer_insert=True)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/error.py", line 61, in log_error
+    error_log = frappe.get_doc(
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+2024-11-15 22:51:30,129 ERROR frappe Failed to run after request hook
+Site: erp1.local
+Form Dict: {'sid': '1869d5f79b13216b68e8172f5432a6754f228ba224bb6f9522bd28c4'}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 146, in application
+    run_after_request_hooks(request, response)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 161, in run_after_request_hooks
+    for after_request_task in frappe.get_hooks("after_request"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+2024-11-15 22:51:56,823 ERROR frappe Failed to run after request hook
+Site: erp1.local
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 99, in application
+    init_request(request)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 195, in init_request
+    frappe.local.http_request = HTTPRequest()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 43, in __init__
+    self.set_session()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 77, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 119, in __init__
+    self.make_session(resume=True)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 205, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 220, in __init__
+    self.resume()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 291, in resume
+    data = self.get_session_record()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 309, in get_session_record
+    r = self.get_session_data()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 323, in get_session_data
+    data = self.get_session_data_from_cache()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 337, in get_session_data_from_cache
+    frappe.utils.now(), session_data.get("last_updated")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 351, in now
+    return now_datetime().strftime(DATETIME_FORMAT)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 303, in now_datetime
+    dt = convert_utc_to_system_timezone(datetime.datetime.now(pytz.UTC))
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 338, in convert_utc_to_system_timezone
+    time_zone = get_system_timezone()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 318, in get_system_timezone
+    return frappe.get_system_settings("time_zone") or "Asia/Kolkata"  # Default to India ?!
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 132, in application
+    response = handle_exception(e)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 323, in handle_exception
+    allow_traceback = frappe.get_system_settings("allow_error_traceback") if frappe.db else False
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 146, in application
+    run_after_request_hooks(request, response)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 161, in run_after_request_hooks
+    for after_request_task in frappe.get_hooks("after_request"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+2024-11-15 22:52:02,620 ERROR frappe Failed to run after request hook
+Site: erp1.local
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 99, in application
+    init_request(request)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 195, in init_request
+    frappe.local.http_request = HTTPRequest()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 43, in __init__
+    self.set_session()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 77, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 119, in __init__
+    self.make_session(resume=True)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 205, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 220, in __init__
+    self.resume()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 291, in resume
+    data = self.get_session_record()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 309, in get_session_record
+    r = self.get_session_data()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 323, in get_session_data
+    data = self.get_session_data_from_cache()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 337, in get_session_data_from_cache
+    frappe.utils.now(), session_data.get("last_updated")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 351, in now
+    return now_datetime().strftime(DATETIME_FORMAT)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 303, in now_datetime
+    dt = convert_utc_to_system_timezone(datetime.datetime.now(pytz.UTC))
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 338, in convert_utc_to_system_timezone
+    time_zone = get_system_timezone()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 318, in get_system_timezone
+    return frappe.get_system_settings("time_zone") or "Asia/Kolkata"  # Default to India ?!
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 132, in application
+    response = handle_exception(e)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 323, in handle_exception
+    allow_traceback = frappe.get_system_settings("allow_error_traceback") if frappe.db else False
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 146, in application
+    run_after_request_hooks(request, response)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 161, in run_after_request_hooks
+    for after_request_task in frappe.get_hooks("after_request"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+2024-11-15 22:52:02,677 ERROR frappe Failed to run after request hook
+Site: erp1.local
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 99, in application
+    init_request(request)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 195, in init_request
+    frappe.local.http_request = HTTPRequest()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 43, in __init__
+    self.set_session()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 77, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 119, in __init__
+    self.make_session(resume=True)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 205, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 220, in __init__
+    self.resume()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 291, in resume
+    data = self.get_session_record()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 309, in get_session_record
+    r = self.get_session_data()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 323, in get_session_data
+    data = self.get_session_data_from_cache()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 337, in get_session_data_from_cache
+    frappe.utils.now(), session_data.get("last_updated")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 351, in now
+    return now_datetime().strftime(DATETIME_FORMAT)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 303, in now_datetime
+    dt = convert_utc_to_system_timezone(datetime.datetime.now(pytz.UTC))
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 338, in convert_utc_to_system_timezone
+    time_zone = get_system_timezone()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 318, in get_system_timezone
+    return frappe.get_system_settings("time_zone") or "Asia/Kolkata"  # Default to India ?!
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 132, in application
+    response = handle_exception(e)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 323, in handle_exception
+    allow_traceback = frappe.get_system_settings("allow_error_traceback") if frappe.db else False
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 146, in application
+    run_after_request_hooks(request, response)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 161, in run_after_request_hooks
+    for after_request_task in frappe.get_hooks("after_request"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+2024-11-15 22:52:05,385 ERROR frappe Failed to run after request hook
+Site: erp1.local
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 99, in application
+    init_request(request)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 195, in init_request
+    frappe.local.http_request = HTTPRequest()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 43, in __init__
+    self.set_session()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 77, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 119, in __init__
+    self.make_session(resume=True)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 205, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 220, in __init__
+    self.resume()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 291, in resume
+    data = self.get_session_record()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 309, in get_session_record
+    r = self.get_session_data()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 323, in get_session_data
+    data = self.get_session_data_from_cache()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 337, in get_session_data_from_cache
+    frappe.utils.now(), session_data.get("last_updated")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 351, in now
+    return now_datetime().strftime(DATETIME_FORMAT)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 303, in now_datetime
+    dt = convert_utc_to_system_timezone(datetime.datetime.now(pytz.UTC))
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 338, in convert_utc_to_system_timezone
+    time_zone = get_system_timezone()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 318, in get_system_timezone
+    return frappe.get_system_settings("time_zone") or "Asia/Kolkata"  # Default to India ?!
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 132, in application
+    response = handle_exception(e)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 323, in handle_exception
+    allow_traceback = frappe.get_system_settings("allow_error_traceback") if frappe.db else False
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 146, in application
+    run_after_request_hooks(request, response)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 161, in run_after_request_hooks
+    for after_request_task in frappe.get_hooks("after_request"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+2024-11-15 22:52:05,388 ERROR frappe Failed to run after request hook
+Site: erp1.local
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 99, in application
+    init_request(request)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 195, in init_request
+    frappe.local.http_request = HTTPRequest()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 43, in __init__
+    self.set_session()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 77, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 119, in __init__
+    self.make_session(resume=True)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 205, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 220, in __init__
+    self.resume()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 291, in resume
+    data = self.get_session_record()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 309, in get_session_record
+    r = self.get_session_data()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 323, in get_session_data
+    data = self.get_session_data_from_cache()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 337, in get_session_data_from_cache
+    frappe.utils.now(), session_data.get("last_updated")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 351, in now
+    return now_datetime().strftime(DATETIME_FORMAT)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 303, in now_datetime
+    dt = convert_utc_to_system_timezone(datetime.datetime.now(pytz.UTC))
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 338, in convert_utc_to_system_timezone
+    time_zone = get_system_timezone()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 318, in get_system_timezone
+    return frappe.get_system_settings("time_zone") or "Asia/Kolkata"  # Default to India ?!
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 132, in application
+    response = handle_exception(e)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 323, in handle_exception
+    allow_traceback = frappe.get_system_settings("allow_error_traceback") if frappe.db else False
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 146, in application
+    run_after_request_hooks(request, response)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 161, in run_after_request_hooks
+    for after_request_task in frappe.get_hooks("after_request"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+2024-11-15 22:52:11,745 ERROR frappe Failed to run after request hook
+Site: erp1.local
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 99, in application
+    init_request(request)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 195, in init_request
+    frappe.local.http_request = HTTPRequest()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 43, in __init__
+    self.set_session()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 77, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 119, in __init__
+    self.make_session(resume=True)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/auth.py", line 205, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 220, in __init__
+    self.resume()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 291, in resume
+    data = self.get_session_record()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 309, in get_session_record
+    r = self.get_session_data()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 323, in get_session_data
+    data = self.get_session_data_from_cache()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/sessions.py", line 337, in get_session_data_from_cache
+    frappe.utils.now(), session_data.get("last_updated")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 351, in now
+    return now_datetime().strftime(DATETIME_FORMAT)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 303, in now_datetime
+    dt = convert_utc_to_system_timezone(datetime.datetime.now(pytz.UTC))
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 338, in convert_utc_to_system_timezone
+    time_zone = get_system_timezone()
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/data.py", line 318, in get_system_timezone
+    return frappe.get_system_settings("time_zone") or "Asia/Kolkata"  # Default to India ?!
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 132, in application
+    response = handle_exception(e)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 323, in handle_exception
+    allow_traceback = frappe.get_system_settings("allow_error_traceback") if frappe.db else False
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 2402, in get_system_settings
+    local.system_settings = get_cached_doc("System Settings")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1217, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1343, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/document.py", line 83, in get_doc
+    controller = get_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 70, in get_controller
+    site_controllers[doctype] = import_controller(doctype)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/model/base_document.py", line 88, in import_controller
+    class_overrides = frappe.get_hooks("override_doctype_class")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 146, in application
+    run_after_request_hooks(request, response)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/app.py", line 161, in run_after_request_hooks
+    for after_request_task in frappe.get_hooks("after_request"):
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1651, in get_hooks
+    hooks = _dict(_load_app_hooks())
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/utils/caching.py", line 59, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1620, in _load_app_hooks
+    app_hooks = get_module(f"{app}.hooks")
+  File "/home/frappe/frappe-bench-15/apps/frappe/frappe/__init__.py", line 1486, in get_module
+    return importlib.import_module(modulename)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/frappe/frappe-bench-15/apps/hid/hid/hooks.py", line 35
+    "Lead": "public/js/auto_save.py"
+          ^
+SyntaxError: invalid syntax

@@ -1,0 +1,11 @@
+{
+ "db_name": "erp1",
+ "db_password": "eIQQu1MDOzIZhf3i",
+ "db_type": "mariadb",
+ "developer_mode": 1,
+ "maintenance_mode": 0,
+ "server_script_enabled": 1,
+ "user_type_doctype_limit": {
+  "employee_self_service": 40
+ }
+}
