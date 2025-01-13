@@ -11,6 +11,7 @@ async function createItemsFromBoQ(frm) {
         if (!product_code) {
             console.error("Invalid product_code for checkItemExists.");
             return false;
+        return baseCode;
         }
         try {
             return await frappe.db.exists('Item', product_code);
@@ -95,6 +96,7 @@ async function createItemsFromBoQ(frm) {
                     if (!row.hid_code) {
                         lastMainProductCode = generateNewBaseCode(frm);
                         await frappe.model.set_value(row.doctype, row.name, 'hid_code', lastMainProductCode);
+                        frm.refresh_field('bill_of_quantity');
                     } else {
                         lastMainProductCode = row.hid_code;
                     }
@@ -108,15 +110,18 @@ async function createItemsFromBoQ(frm) {
                 }
                 // If the row is a component and the necessary codes exist
                 else if (row.is_component === 1 && lastMainProductCode && lastMainProductProductCode && !row.hid_code) {
-                    let componentHidCode = generateHidCodeComponent( lastMainProductCode, currentSuffix);
-
-                    await frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode);
-                    await frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode);
-                    await frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level);
-                    await frappe.model.set_value(row.doctype, row.name, 'room_number', room_number);
-                    await frappe.model.set_value(row.doctype, row.name, 'room_name', room_name);
-                    await frappe.model.set_value(row.doctype, row.name, 'area', area);
-                    await frappe.model.set_value(row.doctype, row.name, 'building_number', building_number);
+                    let componentHidCode = generateHidCode(lastMainProductCode, currentSuffix);
+                    console.log(`Setting HID code for row ${row.idx}:`, componentHidCode);
+                    await Promise.all([
+                        frappe.model.set_value(row.doctype, row.name, 'hid_code', componentHidCode),
+                        frappe.model.set_value(row.doctype, row.name, 'parent_item', lastMainProductProductCode),
+                        frappe.model.set_value(row.doctype, row.name, 'floor_level', floor_level),
+                        frappe.model.set_value(row.doctype, row.name, 'room_number', room_number),
+                        frappe.model.set_value(row.doctype, row.name, 'room_name', room_name),
+                        frappe.model.set_value(row.doctype, row.name, 'area', area),
+                        frappe.model.set_value(row.doctype, row.name, 'building_number', building_number)
+                    ]);
+                    
                     // Increment suffix for the next component
                     currentSuffix = String.fromCharCode(currentSuffix.charCodeAt(0) + 1);
                     
@@ -158,10 +163,10 @@ async function createItemsFromBoQ(frm) {
     
         baseCode = `${prefix}-${newNumber}`;
         if (floorLevel && roomNumber) {
-            baseCode = `-${floorLevel}-${roomNumber}` + baseCode;
+            baseCode = `${floorLevel}-${roomNumber}-${baseCode}`;
         } else {
-            if (floorLevel) baseCode = `-${floorLevel}` + baseCode;
-            if (roomNumber) baseCode = `-${roomNumber}` + baseCode;
+            if (floorLevel) baseCode = `${floorLevel}-${baseCode}`;
+            if (roomNumber) baseCode = `${roomNumber}-${baseCode}`;
         }
         
     }
@@ -186,7 +191,7 @@ async function createItemsFromBoQ(frm) {
                 const roomNumber = row.room_name;
                 const formatindex = String(index).padStart(3, '0');
                 if (!row.hid_code) {row.hid_code = generateHidCode(floorLevel, roomNumber, base_code, formatindex);}
-                // row.hid_code = generateHidCode(base_code, formatindex);
+                row.hid_code = generateHidCode(floorLevel,roomNumber,base_code, formatindex);
             }
     
             try {
@@ -224,6 +229,8 @@ async function createItemsFromBoQ(frm) {
     // Attempt to save the form and display results
     try {
         await frm.save();
+        frm.reload_doc(); // Ensure the latest data is loaded after save
+
         // frappe.msgprint(`Items creation process completed. Created: ${itemsCreated}, Updated: ${itemsUpdated}, Skipped: ${itemsSkipped}`);
     } catch (err) {
         console.error('Error saving document:', err);
@@ -501,139 +508,6 @@ function set_value_field(dialogObj, frm) {
     dialogObj.replace_field("value", new_df);
     dialogObj.refresh(dialogObj);
 }
-
-
-// frappe.ui.form.on('Sub BOQ', {
-//     refresh: function (frm) {
-//         frm.add_custom_button('<i class="fa fa-map" style="margin-right: 5px; color: blue;"></i> <b>Map to BOQ</b>', function () {
-//             frm.trigger('map_to_lead');
-//         });
-//     },
-
-//     map_to_lead: function (frm) {
-//         frappe.call(
-//             {
-//                 method: "hid.decoration_sales_workflow.doctype.sub_boq.sub_boq.map_to_lead",
-//                 args: {
-//                     docname: frm.doc.name,
-//                 },
-//             }
-//         );
-
-//         if (!frm.doc.project_name) {
-//             frappe.msgprint(__('Please ensure the Project Name is filled.'));
-//             return;
-//         }
-
-//         frappe.call({
-//             method: 'frappe.client.get_list',
-//             args: {
-//                 doctype: 'Lead',
-//                 filters: { custom_project_name: frm.doc.project_name },
-//                 fields: ['name']
-//             },
-//             callback: function (response) {
-//                 const lead_records = response.message;
-
-//                 if (!lead_records || lead_records.length === 0) {
-//                     frappe.msgprint(__('No Lead record found for the given Project Name.'));
-//                     return;
-//                 }
-
-//                 const lead_name = lead_records[0].name;
-
-//                 frappe.call({
-//                     method: 'frappe.client.get',
-//                     args: { doctype: 'Lead', name: lead_name },
-//                     callback: function (lead_response) {
-//                         const lead_doc = lead_response.message;
-
-//                         if (!lead_doc.custom_bill_of_quantity) {
-//                             lead_doc.custom_bill_of_quantity = [];
-//                         }
-
-//                         let mapped_count = 0;
-//                         let updated_count = 0;
-
-//                         const lead_rows = lead_doc.custom_bill_of_quantity;
-
-//                         frm.doc.bill_of_quantity.forEach((row) => {
-//                             if (row.name) {
-//                                 // Generate a new unique name for the row
-//                                 const new_row_name = `${frm.doc.name}-${row.idx}-${Date.now()}`;
-
-//                                 // Check if a row with this name exists in the Lead's child table
-//                                 const existing_row = lead_rows.find(r => r.name === row.name);
-
-//                                 if (existing_row) {
-//                                     // Update existing row if changes are found
-//                                     let has_changes = false;
-
-//                                     Object.keys(row).forEach((key) => {
-//                                         if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash", "name"].includes(key) && row[key] !== existing_row[key]) {
-//                                             existing_row[key] = row[key];
-//                                             has_changes = true;
-//                                         }
-//                                     });
-
-//                                     if (has_changes) {
-//                                         updated_count++;
-//                                     }
-//                                 } else {
-//                                     // Add a new row with the updated unique name
-//                                     const new_row = {};
-//                                     Object.keys(row).forEach((key) => {
-//                                         if (!["__idx", "__islocal", "__unsaved", "__deleted", "__hash"].includes(key)) {
-//                                             new_row[key] = row[key];
-//                                         }
-//                                     });
-//                                     new_row.name = new_row_name;
-//                                     new_row.idx = lead_rows.length + 1; // Assign a new index
-//                                     lead_rows.push(new_row);
-//                                     mapped_count++;
-//                                 }
-//                             }
-//                         });
-
-//                         if (mapped_count > 0 || updated_count > 0) {
-//                             frappe.call({
-//                                 method: 'frappe.client.save',
-//                                 args: { doc: lead_doc },
-//                                 callback: function () {
-//                                     frappe.msgprint(`${mapped_count} new rows mapped and ${updated_count} rows updated in Project: ${custom_project_name_actual}`);
-
-//                                     // Save Sub BOQ to preserve state
-//                                     frm.save_or_update({
-//                                         callback: function () {
-//                                             frappe.msgprint(__('Sub BOQ saved successfully to preserve the table state.'));
-//                                         },
-//                                         error: function () {
-//                                             frappe.msgprint(__('Error while saving Sub BOQ.'));
-//                                         }
-//                                     });
-//                                 },
-//                                 error: function (err) {
-//                                     frappe.msgprint(__('Error while saving the Lead.'));
-//                                     console.error(err);
-//                                 }
-//                             });
-//                         } else {
-//                             frappe.msgprint(__('No rows were mapped or updated.'));
-//                         }
-//                     },
-//                     error: function (err) {
-//                         frappe.msgprint(__('Error fetching Lead details.'));
-//                         console.error(err);
-//                     }
-//                 });
-//             },
-//             error: function (err) {
-//                 frappe.msgprint(__('Error fetching Lead list.'));
-//                 console.error(err);
-//             }
-//         });
-//     }
-// });
 
 frappe.ui.form.on('Sub BOQ', {
     refresh: function (frm) {
