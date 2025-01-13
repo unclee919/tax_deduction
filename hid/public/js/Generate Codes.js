@@ -190,7 +190,7 @@ async function createItemsFromBoQ(frm) {
                 const roomNumber = row.room_name;
                 const formatindex = String(index).padStart(3, '0');
                 if (!row.hid_code) {row.hid_code = generateHidCode(floorLevel, roomNumber, base_code, formatindex);}
-                row.hid_code = generateHidCode(floorLevel,roomNumber,base_code, formatindex);
+                row.hid_code = generateHidCode(base_code, formatindex);
             }
     
             try {
